@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flora</title>
+  <meta name="description" content="Terms and Conditions for Focus – an online service converting UI/UX designs into HTML, CSS, and JavaScript code." />
+  <link rel="icon" type="image/x-icon" href="Images/Flora.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+html {
+-webkit-tap-highlight-color:transparent;
+scroll-behavior:smooth;}
+
+:root {
+--primary:#FF0099;
+--secondary:#FFCADD;
+--base:#FFFFFF;}
+
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Kalnia, serif;
+font-weight:500;
+font-style:normal;
+user-select:none;}
+
+img {
+pointer-events:none;}
+
+body {
+margin:0;
+padding:0;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.Main-Container {
+position:fixed;
+top:0;
+width:100vw;
+height:100vh;
+overflow-x:hidden;
+overflow-y:auto;
+scroll-behavior:smooth;
+display:flex;
+justify-content:center;
+align-items:center;
+scroll-behavior:smooth;}
+
+.Container {
+position:absolute;
+top:0;
+width:100%;
+display:flex;
+flex-direction:column;
+background:var(--base);
+transition:0.4s;}
+
+/* Header */
+
+header {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+header .cover {
+position:absolute;
+top:0;
+right:0;
+height:auto;}
+
+header .logo {
+position:absolute;
+top:15px;
+left:15px;
+width:auto;
+height:30px;
+object-fit:cover;}
+
+header .Ham {
+position:absolute;
+top:10px;
+right:10px;}
+
+header .wrapper {
+position:absolute;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+white-space:nowrap;}
+
+header h1 {
+position:relative;
+text-align:left;
+align-self:start;}
+
+header a {
+position:relative;
+text-decoration:none;
+background:var(--primary);
+color:var(--base);
+text-shadow:0 2px 3px rgba(0,0,0,0.3);
+box-shadow:0 10px 20px rgba(255,0,153,0.25);}
+
+body.mouse header a:hover {
+transform:scale(1.2);}
+
+.menu button {
+position:relative;
+line-height:20px;
+background:var(--primary);
+color:var(--base);
+font-size:0.65rem;
+padding:5px 20px;
+border:none;
+border-radius:50px;
+box-shadow:0 5px 10px rgba(255,0,153,0.25);}
+
+.menu .sign-up {
+background:var(--base);
+color:var(--primary);}
+
+button, header a {
+transition:0.3s;}
+
+.menu .wrapper {
+transition:0.4s;}
+
+button, a, .icon {
+cursor:pointer;}
+
+button:active, header a:active, .social-media .Icon:active, .accounts .account-container .account:active, .accounts .account-container img:active, .menu .container .icon:active {
+transform:scale(0.85);}
+
+section {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;}
+
+/* Collections */
+
+.collections {
+position:relative;
+display:flex;
+flex-direction:column;
+padding-bottom:50px;}
+
+.collections h1 {
+position:relative;
+color:var(--primary);
+align-self:start;
+padding-left:20px;}
+
+.collections .wrapper-container {
+position:relative;
+width:100%;
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections .wrapper {
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;}
+
+.collections .carousel {
+position:absolute;
+left:0;
+width:auto;
+height:230px;
+display:flex;
+align-items:center;
+justify-content:start;
+padding:0 20px;
+gap:20px;
+list-style:none;}
+
+.collections .carousel li {
+position:relative;
+width:280px;
+height:100%;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+scroll-snap-align:center;
+scroll-snap-stop:always;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);}
+
+.collections li .details {
+position:absolute;
+right:0;
+width:50%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections li .details h1 {
+position:absolute;
+top:20px;
+width:70%;
+font-family:"Inter", sans-serif;
+font-size:1.5rem;
+font-weight:1000;
+color:var(--base);
+text-align:right;
+display:flex;
+align-items:center;
+justify-content:center;
+text-shadow:0 4px 5px rgba(0,0,0,0.2);}
+
+.collections li .brand {
+position:absolute;
+bottom:70px;
+height:25px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections li .brand .line {
+position:absolute;
+width:100%;
+height:0.5px;
+border-radius:1px;
+background:var(--base);
+box-shadow:0 0.5px 1px rgba(0,0,0,0.2);}
+
+.collections li .brand span {
+font-size:0.6rem;
+color:var(--base);
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.collections li button {
+position:absolute;
+bottom:30px;
+padding:8px 14px;
+background:var(--base);
+font-size:0.5rem;
+border:none;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 3px 6px rgba(255,0,153,0.2);}
+
+.collections li img {
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;}
+
+.collections .arrows {
+position:absolute;
+width:calc(100% - 50px);
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+pointer-events:none;}
+
+body.mouse .arrows {
+display:flex;}
+
+body.touch .arrows {
+display:none;}
+
+.collections .arrows img {
+position:absolute;
+width:40px;
+height:40px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+pointer-events:auto;
+cursor:pointer;
+transition:0.2s;
+background:var(--secondary);
+box-shadow:-2px 2px 10px rgba(0,0,0,0.2);}
+
+.collections .arrows .left {
+left:0;
+opacity:0;}
+
+.collections .arrows .right {
+right:0;}
+
+.collections .arrows img:active {
+transform:scale(0.8);}
+
+/* Daily Routine */
+
+.daily-routine {
+flex-direction:column;
+padding:30px 0;
+background:var(--primary);}
+
+.daily-routine .group {
+position:relative;
+width:100%;
+height:140px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;}
+
+.daily-routine .group img {
+position:relative;
+width:70px;
+height:70px;
+border-radius:35px;
+object-fit:cover;
+opacity:0;
+box-shadow:0 5px 10px rgba(0,0,0,0.2);}
+
+.daily-routine h1 {
+position:relative;
+text-align:center;
+color:var(--base);
+font-size:1rem;
+line-height:25px;
+opacity:0;
+transition:0.5s 1s;
+transform:translateY(-10px);
+text-shadow:0 2px 3px rgba(0,0,0,0.3);}
+
+@keyframes PopUp1 {
+to {transform:translate(0px,17.5px) scale(1);opacity:1;}}
+
+@keyframes PopUp2 {
+to {transform:translate(-1.875px,-17.5px) scale(1);opacity:1;}}
+
+@keyframes PopUp3 {
+to {transform:translate(1.875px,-17.5px) scale(1);opacity:1;}}
+
+@keyframes PopUp4 {
+to {transform:translate(0px,17.5px) scale(1);opacity:1;}}
+
+/* Products */
+
+.products {
+padding:50px 0 80px 0;
+flex-direction:column;
+gap:40px;}
+
+.products .wrapper {
+position:relative;
+width:100%;
+height:60px;
+display:flex;
+align-items:center;
+overflow:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;}
+
+.products .wrapper::-webkit-scrollbar, .collections .wrapper::-webkit-scrollbar {
+display:none;}
+
+.products .sections {
+padding:0 20px;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:10px;}
+
+.products button {
+position:relative;
+background:var(--base);
+color:var(--primary);
+font-weight:600;
+white-space:nowrap;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.products button.active {
+background:var(--primary);
+color:var(--base);
+text-shadow:0 2px 3px rgba(0,0,0,0.3);
+box-shadow:0 3px 6px rgba(255,0,153,0.2);}
+
+.products ul {
+position:relative;
+width:100%;
+display:none;
+justify-content:center;
+list-style:none;
+gap:80px;}
+
+.products ul.active {
+display:grid;}
+
+.products ul li {
+position:relative;
+width:250px;
+height:320px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:10px;
+opacity:0;
+transform:translateY(40px);}
+
+@keyframes Show {
+to {opacity:1;transform:translateY(0);}}
+
+.products ul li img {
+position:relative;
+width:250px;
+height:250px;
+border-radius:15px;
+object-fit:cover;
+overflow:hidden;}
+
+.products .info {
+position:relative;
+width:100%;
+height:80px;}
+
+.products .info p, .products .info span {
+position:absolute;
+left:0;
+line-height:30px;
+font-size:0.8rem;
+font-weight:800;
+font-family:"Inter", sans-serif;}
+
+.products .info p {
+top:0;}
+
+.products .info span {
+bottom:0;
+font-size:1.2rem;}
+
+.products .info .icon {
+position:absolute;
+bottom:0;
+right:0;
+transition:0.3s;}
+
+.products .info .icon:active {
+transform:scale(0.8);}
+
+.products .info .icon.active {
+fill:var(--primary);
+filter:drop-shadow(0 3px 6px rgba(255,0,153,0.2));}
+
+.products .info button {
+position:absolute;
+bottom:0;
+right:45px;
+width:60px;
+height:30px;
+display:flex;
+justify-content:center;
+align-items:center;
+background:var(--primary);
+box-shadow:0 3px 10px rgba(255,0,153,0.2);}
+
+.products .info button .cart, .products .info button .check {
+position:absolute;}
+
+.products .info button.active .check, .products .info button .cart {
+display:flex;}
+
+.products .info button.active .cart, .products .info button .check {
+display:none;}
+
+/* Features */
+
+.features ul {
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+flex-direction:column;
+gap:60px;
+list-style:none;
+padding:60px 0 100px 0;}
+
+.features ul li {
+position:relative;
+width:100%;
+height:250px;
+display:flex;
+justify-content:center;
+align-items:center;
+opacity:0;
+transition:0.5s;}
+
+.features ul li img {
+position:absolute;
+display:flex;
+justify-content:center;
+align-items:center;}
+
+.features ul li .text {
+position:absolute;
+display:flex;
+justify-content:center;
+flex-direction:column;
+align-items:center;
+gap:10px;}
+
+.features ul li .text h1 {
+position:relative;
+width:100%;
+font-size:1rem;
+font-weight:550;
+line-height:30px;}
+
+.features ul li .text p {
+position:relative;
+width:100%;
+font-size:0.8rem;
+line-height:20px;}
+
+/* Footer */
+
+footer {
+position:relative;
+width:100vw;
+display:flex;
+justify-content:center;
+background:var(--secondary);}
+
+footer .wrapper {
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+padding:50px 0 5px 0;}
+
+footer .group {
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;}
+
+footer .wrapper ul {
+position:relative;
+top:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:start;
+gap:20px;
+list-style:none;}
+
+footer .wrapper ul li {
+font-size:0.7rem;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-size:1rem;
+font-weight:550;
+color:var(--primary);
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+footer .wrapper .social-media {
+position:relative;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:20px;}
+
+footer .wrapper .social-media .Icons {
+position:relative;
+display:flex;
+gap:5px;}
+
+footer .wrapper .social-media .Icon {
+transition:0.3s;
+cursor:pointer;}
+
+footer .wrapper .copyright {
+position:relative;
+width:100%;
+height:20px;
+display:flex;
+justify-content:center;
+align-items:center;}
+
+footer .wrapper .copyright svg {
+margin-left:5px;
+filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));}
+
+footer .wrapper .copyright p {
+color:var(--base);
+font-size:0.5rem;
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+/* Sign Up / Login Window */
+
+.window-container {
+position:fixed;
+bottom:-100vh;
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.6s ease;
+pointer-events:auto;
+scroll-behavior:smooth;}
+
+.window {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--secondary);
+box-shadow:0 -5px 10px rgba(0,0,0,0.1);}
+
+.window-container.active {
+bottom:0;}
+
+.window .wrapper {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:10px;
+transition:0.5s;}
+
+.window .wrapper h1 {
+margin:20px 0;
+font-size:1.8rem;
+color:var(--primary);
+text-shadow:0 2px 3px rgba(0,0,0,0.1);}
+
+.window .wrapper .input-field {
+position:relative;
+width:250px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.input-field span {
+position:absolute;
+top:0;
+left:0;
+font-size:0.65rem;}
+
+.input-field a {
+position:absolute;
+top:2px;
+right:0;
+font-size:0.5rem;
+font-weight:600;
+color:var(--primary);
+font-family:"Inter", sans-serif;}
+
+.input-field input {
+position:absolute;
+bottom:15px;
+width:100%;
+height:35px;
+border-radius:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--base);
+border:none;
+font-size:0.7rem;
+font-weight:700;
+font-family:"Inter", sans-serif;
+padding-left:10px;
+box-shadow:0 5px 5px rgba(255,0,153,0.1);}
+
+.input-field input::placeholder {
+color:#cacaca;}
+
+.input-field input:focus {
+border:none;
+outline:none;}
+
+.input-field p {
+position:absolute;
+left:5px;
+bottom:0;
+font-size:0.5rem;
+font-weight:700;
+color:#FF005F;
+font-family:"Inter", sans-serif;}
+
+.window .wrapper button {
+position:relative;
+width:250px;
+height:40px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--primary);
+border:none;
+color:var(--base);
+font-size:1rem;
+box-shadow:0 5px 10px rgba(255,0,153,0.2);}
+
+.window .accounts {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;
+padding:10px 0;}
+
+.window .accounts .container {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;}
+
+.accounts .container span {
+position:relative;
+font-size:0.7rem;
+color:var(--base);
+text-shadow:0 1px 2px rgba(0,0,0,0.4);}
+
+.accounts .container .line {
+position:relative;
+width:20%;
+height:1px;
+border-radius:1px;
+background:var(--base);
+box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.accounts .account-container {
+position:relative;
+display:flex;
+gap:30px;}
+
+.accounts .account-container img {
+position:relative;
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+background:var(--base);
+cursor:pointer;
+transition:0.3s;
+pointer-events:auto;
+box-shadow:0 3px 6px rgba(0,0,0,0.15);}
+
+.window .switch {
+position:absolute;
+bottom:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:5px;
+transition:0.5s;
+font-weight:700;
+font-family:"Inter", sans-serif;}
+
+.window .switch p {
+position:relative;
+font-size:0.65rem;
+font-weight:500;
+font-family:"Inter", sans-serif;}
+
+.window .switch span {
+position:relative;
+font-size:0.8rem;
+color:var(--primary);
+font-weight:700;
+font-family:"Inter", sans-serif;
+cursor:pointer;}
+
+.window.Success .switch, .window.Success .wrapper {
+opacity:0.5;}
+
+.window .success {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+pointer-events:none;}
+
+.window .success .Pop {
+position:relative;
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:30px;
+background:var(--primary);
+opacity:0;
+transform:scale(0.5);
+box-shadow:0 5px 10px rgba(255,0,153,0.2);}
+
+.window .success .Check {
+stroke-dasharray:90;
+stroke-dashoffset:90;}
+
+@keyframes Success {
+50% {opacity:1;transform:scale(1.2);}
+100% {opacity:1;transform:scale(1);}}
+
+@keyframes Check {
+to {stroke-dasharray:90;stroke-dashoffset:0;}}
+
+.window .success span {
+position:relative;
+font-size:1.5rem;
+line-height:35px;
+color:var(--primary);
+opacity:0;
+transition:0.3s 0.3s;
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.window .success.active .Pop {
+animation:Success 0.5s linear forwards;}
+
+.window .success.active .Check {
+animation:Check 0.5s ease forwards;}
+
+.window .success.active span {
+opacity:1;}
+
+.loader {
+display:none;
+pointer-events:none;
+animation:rotate 2s linear infinite;
+filter:drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));}
+
+.loader circle {
+stroke-width:6px;
+stroke:var(--primary);
+fill:none;
+stroke-dasharray:126; /* 2πr ≈ 2*3.14*20 */
+stroke-dashoffset:0;
+transform-origin:center;
+animation:dash 1.5s ease-in-out infinite;}
+
+@keyframes rotate {
+100% {transform:rotate(360deg);}}
+
+@keyframes dash {
+0% {stroke-dashoffset:126;}
+50% {stroke-dashoffset:32;transform:rotate(45deg);}
+100% {stroke-dashoffset:126;transform:rotate(360deg);}}
+
+.window.Success .loader {
+display:flex;}
+
+.menu .container {
+position:absolute;
+top:15px;
+right:15px;
+display:none;
+align-items:center;
+justify-content:center;
+gap:15px;}
+
+.menu .container .icon {
+position:relative;
+width:40px;
+height:40px;
+border-radius:50%;
+transition:0.3s;
+pointer-events:auto;
+background:var(--base);
+box-shadow:0 3px 5px rgba(255,0,153,0.2);}
+
+@media screen and (max-width:400px) {
+
+header {
+height:140vw;
+padding-bottom:100px;}
+
+header .cover {
+width:70vw;}
+
+header .wrapper {
+left:20px;
+transform:translateY(150px);}
+
+header h1 {
+font-size:1.2rem;
+line-height:35px;}
+
+header a {
+line-height:20px;
+padding:8px 20px;
+font-size:0.6rem;
+border-radius:50px;}
+
+header .Title2 {
+margin-bottom:30px;}
+
+.collections {
+padding-top:30px;}
+
+.collections h1 {
+font-size:1.2rem;
+margin-bottom:-10px;}
+
+.features ul li {
+height:250px;}
+
+.features ul li img {
+width:120px;
+height:170px;
+clip-path:path("M29.7891 0C19.3504 7.32606e-06 9.32574 1.67027 0 4.74316V165.256C9.32582 168.329 19.3503 170 29.7891 170C79.6111 170 120 131.944 120 85C120 38.0558 79.6111 0 29.7891 0Z");}
+
+.features ul li .text {
+width:calc(100% - 190px);}
+
+.features ul li .text h1 {
+position:relative;
+width:100%;
+font-size:1rem;
+font-weight:550;
+line-height:30px;}
+
+.features ul li .text p {
+width:100%;
+font-size:0.8rem;
+line-height:20px;}
+
+.text.a, .text.c {
+left:160px;}
+
+.text.b {
+left:40px;}
+
+}
+
+@media screen and (min-width:400px) {
+
+header {
+height:140vw;
+padding-bottom:20px;}
+
+header .cover {
+width:70vw;}
+
+header .wrapper {
+left:20px;
+transform:translateY(100px);}
+
+header h1 {
+font-size:1.5rem;
+line-height:40px;}
+
+header a {
+line-height:20px;
+padding:8px 20px;
+font-size:0.6rem;
+border-radius:50px;}
+
+header .Title2 {
+margin-bottom:30px;}
+
+}
+
+@media screen and (min-width:600px) {
+
+header {
+height:100vw;
+padding-bottom:20px;}
+
+header .cover {
+width:60vw;}
+
+header .wrapper {
+left:30px;
+transform:translateY(130px);}
+
+header h1 {
+font-size:1.8rem;
+line-height:40px;}
+
+header a {
+line-height:20px;
+padding:10px 22px;
+font-size:0.8rem;
+border-radius:50px;}
+
+header .Title2 {
+margin-bottom:30px;}
+
+}
+
+@media screen and (min-width:400px) {
+
+.collections h1 {
+font-size:1.5rem;}
+
+.features ul li {
+height:250px;}
+
+.features ul li img {
+width:120px;
+height:170px;
+clip-path:path("M29.7891 0C19.3504 7.32606e-06 9.32574 1.67027 0 4.74316V165.256C9.32582 168.329 19.3503 170 29.7891 170C79.6111 170 120 131.944 120 85C120 38.0558 79.6111 0 29.7891 0Z");}
+
+.features ul li .text {
+width:calc(100% - 180px);}
+
+.features ul li .text h1 {
+position:relative;
+width:100%;
+font-size:1.2rem;
+font-weight:550;
+line-height:40px;}
+
+.features ul li .text p {
+width:100%;
+font-size:1rem;
+line-height:30px;}
+
+.text.a, .text.c {
+left:150px;}
+
+.text.b {
+left:30px;}
+
+}
+
+@media screen and (min-width:800px) {
+
+header {
+height:84vw;}
+
+header .cover {
+width:50vw;}
+
+header .wrapper {
+left:20px;
+transform:translateY(50px);}
+
+header h1 {
+font-size:2.5rem;
+line-height:60px;}
+
+header a {
+line-height:30px;
+padding:10px 25px;
+font-size:0.8rem;
+border-radius:50px;}
+
+header .Title2 {
+margin-bottom:40px;}
+
+.collections h1 {
+font-size:1.5rem;}
+
+.features ul li {
+height:350px;}
+
+.features ul li img {
+width:200px;
+height:290px;
+clip-path:path("M49.6475 0C32.2499 4.83224e-05 15.5428 2.85088 0 8.09277V281.906C15.5428 287.148 32.2498 290 49.6475 290C132.685 290 200 225.081 200 145C200 64.9187 132.685 0 49.6475 0Z");}
+
+.features ul li .text {
+width:calc(100% - 350px);}
+
+.features ul li .text h1 {
+position:relative;
+width:100%;
+font-size:2rem;
+font-weight:550;
+line-height:60px;}
+
+.features ul li .text p {
+width:100%;
+font-size:1.2rem;
+line-height:30px;}
+
+.text.a, .text.c {
+left:260px;}
+
+.text.b {
+left:60px;}
+
+}
+
+@media screen and (min-width:1200px) {
+
+header {
+height:60vw;}
+
+header .cover {
+width:35vw;}
+
+header .wrapper {
+left:50px;
+transform:translateY(50px);}
+
+header h1 {
+font-size:3.5rem;
+line-height:90px;}
+
+header a {
+line-height:40px;
+padding:8px 25px;
+font-size:1rem;
+border-radius:50px;}
+
+header .Title2 {
+margin-bottom:60px;}
+
+.collections h1 {
+font-size:2rem;}
+
+.features ul li {
+height:350px;}
+
+.features ul li img {
+width:200px;
+height:290px;
+clip-path:path("M49.6475 0C32.2499 4.83224e-05 15.5428 2.85088 0 8.09277V281.906C15.5428 287.148 32.2498 290 49.6475 290C132.685 290 200 225.081 200 145C200 64.9187 132.685 0 49.6475 0Z");}
+
+.features ul li .text {
+width:calc(100% - 500px);}
+
+.features ul li .text h1 {
+position:relative;
+width:100%;
+font-size:2.5rem;
+font-weight:550;
+line-height:80px;}
+
+.features ul li .text p {
+width:100%;
+font-size:1.5rem;
+line-height:40px;}
+
+.text.a, .text.c {
+left:260px;}
+
+.text.b {
+left:60px;}
+
+}
+
+@media screen and (max-width:1200px) {
+
+.menu {
+position:fixed;
+top:0;
+right:-250px;
+width:250px;
+height:100vh;
+overflow-x:hidden;
+overflow-y:auto;
+transition:right 0.4s, filter 0.4s 1s;
+background:var(--secondary);}
+
+.menu ul {
+position:absolute;
+top:140px;
+left:20px;
+width:210px;
+display:flex;
+flex-direction:column;
+list-style:none;
+padding-bottom:50px;}
+
+.menu ul li {
+position:relative;
+width:100%;
+height:50px;
+display:flex;
+align-items:center;
+font-size:0.8rem;}
+
+.menu.active {
+right:0;}
+
+.menu .wrapper {
+position:absolute;
+top:80px;
+left:20px;
+display:flex;
+gap:20px;
+align-items:center;
+justify-content:center;}
+
+.Cross, .Ham {
+display:flex;
+cursor:pointer;}
+
+.products .wrapper {
+height:60px;}
+
+.products .sections {
+gap:10px;}
+
+.products button {
+padding:8px 14px;
+font-size:0.5rem;
+border:1.5px solid var(--primary);
+border-radius:50px;}
+
+}
+
+@media screen and (min-width:1200px) {
+
+.menu {
+position:absolute;
+top:0;
+width:100%;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:right 0.4s, filter 0.4s;}
+
+.menu ul {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:25px;
+list-style:none;}
+
+.menu ul li {
+position:relative;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:5px 10px;
+font-size:1.2rem;}
+
+.menu .wrapper {
+position:absolute;
+right:20px;
+display:flex;
+gap:20px;
+align-items:center;
+justify-content:center;}
+
+.Cross, .Ham {
+display:none;}
+
+.products .wrapper {
+height:100px;}
+
+.products .sections {
+gap:20px;}
+
+.products button {
+padding:10px 18px;
+font-size:0.7rem;
+border:2px solid var(--primary);
+border-radius:50px;}
+
+}
+
+@media screen and (max-width:660px) {
+
+.products ul {
+grid-template-columns:repeat(1,250px);}
+
+}
+
+@media screen and (min-width:660px) {
+
+.products ul {
+grid-template-columns:repeat(2,250px);}
+
+}
+
+@media screen and (min-width:990px) {
+
+.products ul {
+grid-template-columns:repeat(3,250px);}
+
+}
+
+@media screen and (min-width:1320px) {
+
+.products ul {
+grid-template-columns:repeat(4,250px);}
+
+}
+
+@media screen and (max-width:462px) {
+
+.products .wrapper {
+justify-content:start;}
+
+.products .wrapper .sections {
+position:absolute;
+left:0;}
+
+}
+
+@media screen and (min-width:462px) {
+
+.products .wrapper {
+justify-content:center;}
+
+.products .wrapper .sections {
+position:relative;}
+
+}
+
+@media screen and (max-width:750px) {
+
+footer .wrapper ul li {
+font-size:0.6rem;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-size:0.9rem;}
+
+footer .group {
+align-items:center;
+flex-direction:column;
+gap:50px;}
+
+footer .group ul {
+width:calc(100% - 60px);}
+
+footer .social-media {
+padding-top:80px;}
+
+}
+
+@media screen and (min-width:750px) and (max-width:1100px) {
+
+footer .wrapper ul li {
+font-size:0.8rem;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-size:1rem;}
+
+footer .group {
+gap:calc((100% - 550px)/3);
+align-items:start;}
+
+footer .wrapper ul {
+width:150px;}
+
+footer .social-media {
+padding-top:100px;}
+
+}
+
+@media screen and (min-width:1100px) {
+
+footer .wrapper ul li {
+font-size:1rem;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-size:1.3rem;}
+
+footer .group {
+gap:200px;
+align-items:start;}
+
+footer .wrapper ul {
+width:180px;}
+
+footer .social-media {
+padding-top:100px;}
+
+}
+
+@media screen and (max-width:400px)  and (max-height:650px) {
+
+.window-container {
+overflow:auto;}
+
+.window {
+top:50px;
+width:100%;
+height:650px;
+border-radius:200px 200px 0 0;}
+
+.window .switch {
+bottom:10px;}
+
+}
+
+@media screen and (max-width:400px)  and (min-height:650px) {
+
+.window-container {
+overflow:auto;}
+
+.window {
+bottom:0;
+width:100%;
+height:95%;
+border-radius:200px 200px 0 0;}
+
+.window .switch {
+bottom:10px;}
+
+}
+
+@media screen and (min-width:400px)  and (max-height:650px) {
+
+.window-container {
+overflow:auto;}
+
+.window {
+top:50px;
+width:360px;
+height:650px;
+border-radius:200px 200px 0 0;}
+
+.window .switch {
+bottom:10px;}
+
+}
+
+@media screen and (min-width:400px)  and (min-height:650px) {
+
+.window {
+width:360px;
+height:650px;
+border-radius:200px 200px 10px 10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.15);}
+
+.window .switch {
+bottom:20px;}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="Main-Container">
+
+<div class="Container">
+
+<!-- Header -->
+<header>
+
+<img class="cover" src="Images/cover.png">
+
+<img class="logo" src="Images/Flora-Logo.svg">
+
+<svg class="Ham" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.43555 24H27.5332M7.43555 17H27.5332M7.43555 10H27.5332" stroke="#FF0099" stroke-width="2.87109" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
+<div class="wrapper">
+<h1 class="Title1">Discover Your</h1>
+<h1 class="Title2">Natural Beauty</h1>
+<a href="#Products">SHOP NOW</a>
+</div>
+
+</header>
+
+<!-- Collections -->
+<section class="collections">
+<h1>Exclusive Offers</h1>
+
+<div class="wrapper-container">
+
+<div class="wrapper">
+
+<ul class="carousel"></ul>
+
+</div>
+
+<div class="arrows">
+<img class="left" src="Images/arrow-left.svg">
+<img class="right" src="Images/arrow-right.svg">
+</div>
+
+</div>
+
+</section>
+
+<!-- Daily Routine -->
+<section class="daily-routine">
+<div class="group">
+<img src="Images/routine1.jpg" style="transform:translate(0,17.5px) scale(0.5);">
+<img src="Images/routine2.jpg" style="transform:translate(-1.875px,-17.5px) scale(0.5);">
+<img src="Images/routine3.jpg" style="transform:translate(1.875px,-17.5px) scale(0.5);">
+<img src="Images/routine4.jpg" style="transform:translate(0,17.5px) scale(0.5);">
+</div>
+<h1>All Your Skincare</h1>
+<h1>Products In One Place!</h1>
+</section>
+
+<!-- Products -->
+<section class="products" id="Products">
+
+<div class="wrapper">
+<div class="sections">
+<button class="active">Best Seller</button>
+<button>New Arrival</button>
+<button>Serums</button>
+<button>Creams</button>
+<button>Cleansers</button>
+</div>
+</div>
+
+<ul class="best-seller active"></ul>
+<ul class="new-arrival"></ul>
+<ul class="serum"></ul>
+<ul class="cream"></ul>
+<ul class="cleanser"></ul>
+
+</section>
+
+<!-- Features -->
+<section class="features">
+<ul>
+<li>
+<img src="Images/feature1.png" style="left:0;">
+<div class="text a">
+<h1>Botanical Care</h1>
+<p>Made with delicate floral extracts like calendula and rose, our formulas soothe and care for skin naturally and gently.</p>
+</div>
+</li>
+<li>
+<img src="Images/feature2.png" style="right:0;transform:scaleX(-1);">
+<div class="text b">
+<h1>Gentle On Skin</h1>
+<p>Designed for all skin types, our products are lightweight, non-irritating, and perfect for daily use without harsh effects.</p>
+</div>
+</li>
+<li>
+<img src="Images/feature3.png" style="left:0;">
+<div class="text c">
+<h1>Radiant Glow</h1>
+<p>Enhances your natural beauty by deeply nourishing your skin, leaving it fresh, smooth, and beautifully glowing.</p>
+</div>
+</li>
+</ul>
+</section>
+
+<!-- Footer -->
+<footer>
+
+<div class="wrapper">
+
+<div class="group">
+
+<ul>
+<li class="title">About Us</li>
+<li>Our Story</li>
+<li>Our Philosophy</li>
+<li>Our Promise</li>
+</ul>
+
+<ul>
+<li class="title">Products</li>
+<li>New Arrivals</li>
+<li>Best Seller</li>
+<li>Special Offers</li>
+<li>Skincare Essentials</li>
+</ul>
+
+<ul>
+<li class="title">Support</li>
+<li>Contact Us</li>
+<li>Shipping & Delivery</li>
+<li>Returns & Refunds</li>
+</ul>
+
+</div>
+
+<div class="social-media">
+<span>Follow Us</span>
+<div class="Icons">
+
+<svg class="Icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.9993 15.0067C17.2352 15.0067 15.0067 17.2566 15.0067 19.9993C15.0067 22.7421 17.2566 24.992 19.9993 24.992C22.7421 24.992 24.992 22.7421 24.992 19.9993C24.992 17.2566 22.7421 15.0067 19.9993 15.0067ZM34.9987 19.9993C34.9987 17.9209 34.9987 15.8852 34.8915 13.8067C34.7844 11.4069 34.2273 9.2641 32.4702 7.52846C30.7131 5.77139 28.5918 5.21428 26.1919 5.10714C24.1134 5 22.0778 5 19.9993 5C17.9209 5 15.8852 5 13.8067 5.10714C11.4069 5.21428 9.2641 5.77139 7.52846 7.52846C5.77139 9.28552 5.21428 11.4069 5.10714 13.8067C5 15.8852 5 17.9209 5 19.9993C5 22.0778 5 24.1134 5.10714 26.1919C5.21428 28.5918 5.77139 30.7346 7.52846 32.4702C9.28552 34.2273 11.4069 34.7844 13.8067 34.8915C15.8852 34.9987 17.9209 34.9987 19.9993 34.9987C22.0778 34.9987 24.1134 34.9987 26.1919 34.8915C28.5918 34.7844 30.7346 34.2273 32.4702 32.4702C34.2273 30.7131 34.7844 28.5918 34.8915 26.1919C35.0201 24.1349 34.9987 22.0778 34.9987 19.9993ZM19.9993 27.6918C15.7352 27.6918 12.3068 24.2634 12.3068 19.9993C12.3068 15.7352 15.7352 12.3068 19.9993 12.3068C24.2634 12.3068 27.6918 15.7352 27.6918 19.9993C27.6918 24.2634 24.2634 27.6918 19.9993 27.6918ZM28.0133 13.7853C27.0276 13.7853 26.2133 12.9925 26.2133 11.9854C26.2133 10.9783 27.0062 10.1855 28.0133 10.1855C29.0204 10.1855 29.8132 10.9783 29.8132 11.9854C29.8186 12.2201 29.7758 12.4534 29.6873 12.6709C29.5988 12.8884 29.4666 13.0854 29.2989 13.2496C29.1346 13.4174 28.9377 13.5495 28.7202 13.638C28.5027 13.7265 28.2694 13.7693 28.0347 13.7639L28.0133 13.7853Z" fill="black"/>
+</svg>
+
+<svg class="Icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.0216 5C11.7251 5 5 11.7251 5 20.0216C5 26.3849 8.96028 31.8179 14.5492 34.0057C14.4167 32.8159 14.2992 30.9956 14.5981 29.6986C14.8725 28.5239 16.3602 22.2339 16.3602 22.2339C16.3602 22.2339 15.91 21.3279 15.91 20.0019C15.91 17.9165 17.1242 16.3555 18.627 16.3555C19.9098 16.3555 20.531 17.315 20.531 18.47C20.531 19.7575 19.7134 21.686 19.2876 23.4725C18.9305 24.9659 20.0367 26.1838 21.5102 26.1838C24.1783 26.1838 26.2336 23.3692 26.2336 19.3064C26.2336 15.723 23.6492 13.2072 19.9587 13.2072C15.6854 13.2072 13.179 16.4185 13.179 19.7218C13.179 21.014 13.6733 22.404 14.2955 23.153C14.4176 23.3043 14.4327 23.4368 14.3979 23.5891C14.2851 24.059 14.0304 25.0918 13.9816 25.2976C13.913 25.5767 13.7664 25.635 13.4779 25.5034C11.6077 24.6369 10.4282 21.8956 10.4282 19.6833C10.4282 14.9505 13.8744 10.5936 20.3552 10.5936C25.5636 10.5936 29.6159 14.3133 29.6159 19.267C29.6159 24.4509 26.3511 28.6207 21.8091 28.6207C20.2866 28.6207 18.8572 27.8322 18.3535 26.8924L17.4137 30.4608C17.0763 31.7681 16.1553 33.4071 15.5341 34.4014C16.9438 34.8318 18.4268 35.0724 19.9831 35.0724C28.2655 35.0724 35 28.3519 35 20.0507C35 11.7543 28.2645 5.03383 19.9831 5.03383L20.0216 5Z" fill="black"/>
+</svg>
+
+<svg class="Icon" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M10.4545 5.03516C9.00791 5.03516 7.62053 5.60983 6.5976 6.63276C5.57467 7.65568 5 9.04307 5 10.4897V29.5806C5 31.0272 5.57467 32.4146 6.5976 33.4376C7.62053 34.4605 9.00791 35.0352 10.4545 35.0352H29.5455C30.9921 35.0352 32.3795 34.4605 33.4024 33.4376C34.4253 32.4146 35 31.0272 35 29.5806V10.4897C35 9.04307 34.4253 7.65568 33.4024 6.63276C32.3795 5.60983 30.9921 5.03516 29.5455 5.03516H10.4545ZM9.99909 9.80788C9.84982 9.86336 9.71556 9.95293 9.60701 10.0695C9.49847 10.186 9.41863 10.3262 9.37387 10.4791C9.32911 10.6319 9.32065 10.7931 9.34918 10.9498C9.3777 11.1064 9.44242 11.2543 9.53818 11.3815L17.1936 21.5406L9.12773 30.1929L9.06773 30.2624H11.8591L18.4455 23.2002L23.5073 29.9202C23.6247 30.0757 23.7842 30.1945 23.9668 30.2624H29.9968C30.1459 30.2067 30.2798 30.1169 30.3881 30.0002C30.4963 29.8836 30.5759 29.7433 30.6204 29.5905C30.6649 29.4377 30.6731 29.2766 30.6444 29.1201C30.6157 28.9635 30.5508 28.8159 30.455 28.6888L22.7995 18.5297L30.9323 9.80788H28.1368L21.5505 16.8715L16.4859 10.1515C16.3687 9.99547 16.2092 9.87623 16.0264 9.80788H9.99909ZM24.8355 28.2824L12.4059 11.7879H15.1591L27.5873 28.2811L24.8355 28.2824Z" fill="black"/>
+</svg>
+
+</div>
+</div>
+
+<div class="copyright">
+<p>©2026</p>
+<svg width="35" height="13" viewBox="0 0 35 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M9.28803 10V9.90681L9.82852 9.76703V3.63536L9.28803 3.49558V3.40239H14.6929L14.376 5.8066H14.2549L13.8169 4.27834C13.7424 4.02985 13.6274 3.84658 13.4721 3.72854C13.3168 3.60429 13.146 3.54217 12.9596 3.54217H11.1984V6.58005H12.1395C12.2389 6.58005 12.329 6.5552 12.4098 6.5055C12.4968 6.4558 12.5713 6.39057 12.6334 6.30981C12.739 6.19799 12.8322 6.05199 12.913 5.87183C13 5.69167 13.0497 5.5053 13.0621 5.31271H13.1553V7.67034H13.0621L12.2048 6.69188H11.1984V9.79499L11.7388 9.90681V10H9.28803ZM16.8632 9.81363L17.3664 9.90681V10H15.0554V9.90681L15.5586 9.81363V3.49558H15.0088V3.39307L16.8632 3.0576V9.81363ZM20.4837 5.20089C20.8876 5.20089 21.2448 5.25991 21.5554 5.37795C21.866 5.49598 22.1269 5.66682 22.3382 5.89047C22.5494 6.11412 22.7078 6.38125 22.8134 6.69188C22.9252 6.99629 22.9811 7.33486 22.9811 7.70761C22.9811 8.04929 22.9252 8.36923 22.8134 8.66743C22.7078 8.95942 22.5494 9.21723 22.3382 9.44088C22.1269 9.65832 21.866 9.82916 21.5554 9.95341C21.251 10.0777 20.8938 10.1398 20.4837 10.1398C20.0737 10.1398 19.7103 10.0777 19.3935 9.95341C19.0828 9.82916 18.8219 9.65832 18.6107 9.44088C18.4057 9.21723 18.2504 8.95942 18.1448 8.66743C18.0392 8.36923 17.9863 8.04929 17.9863 7.70761C17.9863 7.33486 18.0423 6.99629 18.1541 6.69188C18.2721 6.38125 18.4367 6.11412 18.648 5.89047C18.8654 5.66682 19.1294 5.49598 19.4401 5.37795C19.7507 5.25991 20.0986 5.20089 20.4837 5.20089ZM20.4931 5.31271C20.2259 5.31271 20.0054 5.41833 19.8314 5.62955C19.6575 5.84077 19.527 6.12654 19.4401 6.48687C19.3593 6.84719 19.3189 7.2541 19.3189 7.70761C19.3189 8.02444 19.3407 8.32575 19.3841 8.61152C19.4276 8.89108 19.496 9.13647 19.5892 9.34769C19.6886 9.55892 19.8128 9.72665 19.9619 9.8509C20.111 9.96894 20.2849 10.028 20.4837 10.028C20.6825 10.028 20.8534 9.96894 20.9963 9.8509C21.1454 9.73287 21.2696 9.56824 21.369 9.35701C21.4684 9.13958 21.5399 8.89108 21.5833 8.61152C21.6268 8.33196 21.6486 8.03066 21.6486 7.70761C21.6486 7.37214 21.6268 7.05841 21.5833 6.76643C21.5399 6.47444 21.4715 6.21973 21.3783 6.0023C21.2852 5.78486 21.164 5.61712 21.0149 5.49909C20.872 5.37484 20.6981 5.31271 20.4931 5.31271ZM23.7009 10V9.90681L24.2041 9.78567V5.63887H23.6636V5.53636L25.5087 5.20089V6.66392L25.5832 6.73847C25.6702 6.53346 25.7541 6.35019 25.8348 6.18867C25.9218 6.02093 26.0088 5.88426 26.0958 5.77865C26.2449 5.57985 26.4064 5.43386 26.5803 5.34067C26.7605 5.24748 26.9593 5.20089 27.1767 5.20089C27.3258 5.20089 27.4687 5.23195 27.6054 5.29408C27.7421 5.34999 27.8539 5.44007 27.9409 5.56432C28.0278 5.68235 28.0713 5.83456 28.0713 6.02093C28.0713 6.16382 28.034 6.29428 27.9595 6.41232C27.8849 6.53035 27.7824 6.62354 27.652 6.69188C27.5215 6.76021 27.3631 6.79438 27.1767 6.79438C27.0152 6.79438 26.8692 6.76643 26.7388 6.71051C26.6083 6.64839 26.5058 6.56763 26.4312 6.46823C26.3629 6.36262 26.3287 6.24458 26.3287 6.11412C26.3287 6.06442 26.3318 6.02093 26.338 5.98366C26.3505 5.94017 26.3598 5.89979 26.366 5.86252C26.3784 5.82524 26.3846 5.79107 26.3846 5.76001C26.3846 5.71652 26.3691 5.69478 26.338 5.69478C26.2821 5.69478 26.2138 5.74759 26.133 5.8532C26.0585 5.95881 25.9684 6.12033 25.8628 6.33777C25.8069 6.46202 25.7479 6.6049 25.6857 6.76643C25.6236 6.92795 25.5646 7.09879 25.5087 7.27895V9.78567L26.0212 9.90681V10H23.7009ZM31.1155 5.20089C31.4882 5.20089 31.8082 5.24127 32.0753 5.32203C32.3486 5.40279 32.5723 5.52704 32.7462 5.69478C32.9202 5.86252 33.0475 6.07374 33.1283 6.32845C33.2091 6.58316 33.2494 6.88136 33.2494 7.22304V9.68317C33.2494 9.75771 33.265 9.81673 33.296 9.86022C33.3333 9.90371 33.383 9.92545 33.4451 9.92545C33.5073 9.92545 33.5818 9.90681 33.6688 9.86954C33.762 9.83226 33.8551 9.78256 33.9483 9.72044V9.81363C33.8676 9.87575 33.7713 9.93166 33.6595 9.98136C33.5538 10.0311 33.4389 10.0683 33.3147 10.0932C33.1966 10.1242 33.0786 10.1398 32.9606 10.1398C32.6499 10.1398 32.4014 10.059 32.2151 9.89749C32.0349 9.72976 31.9448 9.45952 31.9448 9.08677C31.9448 8.98737 31.9448 8.91593 31.9448 8.87244C31.9448 8.82274 31.9448 8.78547 31.9448 8.76062C31.9448 8.72956 31.9448 8.69539 31.9448 8.65811L31.8703 8.6022C31.7522 8.84449 31.6125 9.06192 31.4509 9.25451C31.2956 9.44088 31.1217 9.6024 30.9291 9.73908C30.7365 9.86954 30.5377 9.96894 30.3327 10.0373C30.1277 10.1056 29.9227 10.1398 29.7177 10.1398C29.4878 10.1398 29.2797 10.0994 29.0933 10.0186C28.9069 9.93788 28.7578 9.81984 28.646 9.66453C28.5342 9.50922 28.4783 9.31974 28.4783 9.09609C28.4783 8.57425 28.7734 8.17354 29.3636 7.89398C29.9599 7.60821 30.8204 7.46532 31.9448 7.46532C31.9448 6.93727 31.9075 6.52103 31.833 6.21662C31.7585 5.91221 31.628 5.69478 31.4416 5.56432C31.2615 5.43386 31.0005 5.36863 30.6588 5.36863C30.4538 5.36863 30.2706 5.39037 30.109 5.43386C29.9475 5.47113 29.8202 5.51462 29.727 5.56432C29.6338 5.61402 29.5872 5.66061 29.5872 5.7041C29.5872 5.73516 29.6214 5.76933 29.6897 5.8066C29.758 5.84388 29.8761 5.89358 30.0438 5.9557C30.3731 6.07374 30.5377 6.25079 30.5377 6.48687C30.5377 6.68566 30.4476 6.84097 30.2675 6.9528C30.0873 7.05841 29.8668 7.11122 29.6058 7.11122C29.3511 7.11122 29.1337 7.05841 28.9535 6.9528C28.7796 6.84097 28.6926 6.67945 28.6926 6.46823C28.6926 6.31292 28.7578 6.16071 28.8883 6.01161C29.0188 5.86252 29.1958 5.72584 29.4195 5.60159C29.6493 5.47734 29.9102 5.38105 30.2022 5.31271C30.4942 5.23816 30.7986 5.20089 31.1155 5.20089ZM31.9448 7.57715C31.423 7.57715 30.9943 7.64549 30.6588 7.78216C30.3234 7.91883 30.0749 8.09589 29.9134 8.31332C29.7518 8.52455 29.6711 8.75441 29.6711 9.0029C29.6711 9.152 29.699 9.27625 29.7549 9.37565C29.8109 9.46884 29.8854 9.54028 29.9786 9.58998C30.0718 9.63347 30.1805 9.65521 30.3047 9.65521C30.4414 9.65521 30.5843 9.62725 30.7334 9.57134C30.8887 9.51543 31.0409 9.42846 31.19 9.31042C31.3391 9.19238 31.4789 9.04328 31.6094 8.86312C31.746 8.68296 31.8578 8.46553 31.9448 8.21082V7.57715Z" fill="var(--base)"/>
+<path d="M4.07212 10.5523C4.32694 10.5523 4.58362 10.5228 4.84216 10.4638C5.10069 10.4048 5.36525 10.32 5.63583 10.2092C5.54317 9.25488 5.27289 8.36365 4.82502 7.53551C4.37714 6.70737 3.80184 5.97781 3.09914 5.34685C3.94856 5.78852 4.68401 6.37217 5.30548 7.09777C5.92695 7.82338 6.3614 8.65152 6.60881 9.5822C6.6397 9.55854 6.66858 9.53298 6.69545 9.50553L6.78256 9.41657C7.14549 9.04588 7.42148 8.63181 7.61051 8.17436C7.79955 7.71691 7.89422 7.23974 7.89453 6.74286C7.89453 6.20654 7.79028 5.69388 7.58179 5.20488C7.37329 4.71588 7.08372 4.2821 6.71306 3.90352C6.08757 3.26467 5.27676 2.8487 4.28061 2.65563C3.28447 2.46255 1.88678 2.44473 0.0875376 2.60215C-0.0514594 4.48716 -0.0282934 5.92465 0.157036 6.91464C0.342365 7.90462 0.743912 8.71494 1.36168 9.34559C1.74006 9.73205 2.16292 10.0299 2.63025 10.239C3.09759 10.4482 3.57821 10.5526 4.07212 10.5523Z" fill="var(--base)"/>
+</svg>
+<p>. All Rights Reserved.</p>
+</div>
+
+</div>
+
+</footer>
+
+</div>
+
+<!-- Menu -->
+<div class="menu">
+
+<div class="container">
+
+<img class="icon" src="Images/cart.svg">
+<img class="icon" src="Images/account.svg">
+
+</div>
+
+<div class="wrapper">
+
+<button class="sign-up">Sign Up</button>
+<button class="login">Login</button>
+
+</div>
+
+<ul>
+<li>Home</li>
+<li>About Us</li>
+<li>Products</li>
+<li>Contacts</li>
+</ul>
+
+<svg class="Cross" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M23.1574 12.7094C23.2295 12.6374 23.2866 12.552 23.3257 12.4579C23.3647 12.3639 23.3848 12.263 23.3849 12.1612C23.3849 12.0594 23.3649 11.9585 23.326 11.8644C23.2871 11.7703 23.23 11.6848 23.1581 11.6127C23.0861 11.5407 23.0007 11.4835 22.9066 11.4445C22.8125 11.4054 22.7117 11.3853 22.6099 11.3852C22.508 11.3852 22.4072 11.4052 22.3131 11.4441C22.219 11.483 22.1334 11.5401 22.0614 11.612L17.3848 16.2886L12.7095 11.612C12.564 11.4665 12.3666 11.3848 12.1608 11.3848C11.955 11.3848 11.7577 11.4665 11.6121 11.612C11.4666 11.7576 11.3849 11.9549 11.3849 12.1607C11.3849 12.3665 11.4666 12.5639 11.6121 12.7094L16.2888 17.3847L11.6121 22.0599C11.5401 22.132 11.4829 22.2175 11.4439 22.3117C11.4049 22.4058 11.3849 22.5067 11.3849 22.6086C11.3849 22.7105 11.4049 22.8114 11.4439 22.9056C11.4829 22.9997 11.5401 23.0852 11.6121 23.1573C11.7577 23.3028 11.955 23.3846 12.1608 23.3846C12.2627 23.3846 12.3636 23.3645 12.4578 23.3255C12.5519 23.2865 12.6375 23.2293 12.7095 23.1573L17.3848 18.4807L22.0614 23.1573C22.2069 23.3026 22.4042 23.3842 22.6099 23.3841C22.8155 23.384 23.0127 23.3021 23.1581 23.1566C23.3034 23.0111 23.385 22.8138 23.3849 22.6081C23.3847 22.4025 23.3029 22.2053 23.1574 22.0599L18.4808 17.3847L23.1574 12.7094Z" fill="var(--primary)" stroke="var(--primary)" stroke-width="0.4"/>
+</svg>
+
+</div>
+
+<!-- Sign Up / Login Window -->
+<div class="window-container">
+
+<div class="window">
+
+<div class="wrapper">
+
+<h1></h1>
+
+<div class="input-field username">
+<span>Username</span>
+<input placeholder="Enter your username" type="text">
+<p></p>
+</div>
+
+<div class="input-field email">
+<span>Email</span>
+<input placeholder="Enter your email" type="email">
+<p></p>
+</div>
+
+<div class="input-field password" style="margin-bottom:20px;">
+<span>Password</span>
+<a>forgot password?</a>
+<input placeholder="Enter your password" type="password">
+<p></p>
+</div>
+
+<button></button>
+
+<div class="accounts">
+<div class="container">
+<div class="line"></div>
+<span>or continue with</span>
+<div class="line"></div>
+</div>
+<div class="account-container">
+<img class="submit" src="Images/Google.svg">
+<img class="submit" src="Images/Facebook.svg">
+</div>
+</div>
+
+</div>
+
+<div class="switch">
+<p></p><span></span>
+</div>
+
+<svg class="loader" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="40" cy="40" r="20" stroke-linecap="round"/>
+</svg>
+
+<div class="success">
+<div class="Pop">
+<svg class="Check" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M36 60.2681L52.0025 76.2707L84 44.2656" stroke="var(--base)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+</div>
+<span>Logged In</span>
+<span>Successfully</span>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<audio src="Pop.mp3"></audio>
+
+<script src="Skincare.js"></script>
+
+</body>
+
+</html>
