@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Crispo</title>
+
+  <link rel="icon" type="image/x-icon" href="Images/Crispo.svg">
+  <link rel="stylesheet" href="Slow.css"/>
+  <link rel="stylesheet" href="Gentle.css"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Khand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+html {
+-webkit-tap-highlight-color:transparent;
+scroll-behavior:smooth;}
+
+:root {
+--i1:100vw;
+--i2:360px;
+--i3:1200px;
+--ia:360px;
+--ib:300px;
+--primary:linear-gradient(to right, #FA5C00, #FFC300);
+--secondary:#FFF;
+--grey1:#CACACA;
+--grey2:#A3A3A3;
+--width:calc(850px/3);
+--background:linear-gradient(to bottom right, #3E362F, #110B0B);
+--gap:25px;}
+
+* {
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Luckiest Guy", cursive; 
+font-weight:500;
+font-style:normal;
+user-select:none;}
+
+img {
+pointer-events:none;}
+
+body {
+margin:0;
+padding:0;
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:100vh;}
+
+.Demo-Container {
+position:absolute;
+width:calc(330px + 490px * (100vw - 360px)/1200px);
+height:calc(330px + 490px * (100vw - 360px)/1200px);
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.Main-Container {
+position:absolute;
+width:1000px;
+height:1000px;
+transform:scale(calc((330px + 490px * (100vw - 360px)/1200px)/1000px));
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--background);}
+
+.Container {
+position:absolute;
+top:0;
+width:1000px;
+transition:0.4s;
+display:flex;
+flex-direction:column;}
+
+
+/* Header */
+
+header {
+position:relative;
+width:100%;
+height:700px;
+padding:200px 0 125px 0;
+display:flex;
+align-items:center;
+justify-content:space-between;}
+
+header .cover {
+position:relative;
+width:550px;
+height:550px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.path {
+animation:Blob 5s infinite linear;}
+
+@keyframes Blob {
+
+  0% {d:path("M56,-27C68,-10,73,18,63,33C53,48,27,53,1,53C-25,53,-50,48,-59,33C-68,18,-62,-7,-49,-24C-36,-41,-18,-51,2,-52C22,-53,44,-45,56,-27Z");}
+
+  20% {d:path("M53,-27C65,-13,69,16,61,32C53,48,28,55,3,55C-22,55,-48,50,-58,34C-68,18,-63,-7,-51,-24C-39,-41,-20,-50,1,-51C22,-51,42,-43,53,-27Z");}
+  
+  40% {d:path("M50,-28C61,-16,65,13,59,31C53,49,29,56,4,56C-21,56,-46,51,-57,35C-68,19,-65,-8,-53,-25C-41,-42,-21,-50,-1,-50C19,-50,39,-41,50,-28Z");}
+
+  60% {d:path("M52,-29C63,-14,67,15,60,33C53,51,27,57,1,57C-25,57,-50,52,-60,36C-70,20,-65,-7,-51,-24C-37,-41,-18,-49,1,-50C20,-51,41,-44,52,-29Z");}
+
+  80% {d:path("M54,-26C65,-10,69,18,62,35C55,52,28,57,1,57C-26,57,-52,52,-61,35C-70,18,-64,-8,-50,-24C-36,-40,-18,-49,2,-50C22,-51,43,-42,54,-26Z");}
+
+  100% {d:path("M56,-27C68,-10,73,18,63,33C53,48,27,53,1,53C-25,53,-50,48,-59,33C-68,18,-62,-7,-49,-24C-36,-41,-18,-51,2,-52C22,-53,44,-45,56,-27Z");}
+
+}
+
+.blob {
+position:absolute;
+width:550px;
+height:550px;}
+
+.Burger {
+position:absolute;
+width:270px;
+height:270px;
+object-fit:cover;
+opacity:0;
+transform:translate(0,5.5%) scale(0.5);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.5s;}
+
+.Fries {
+position:absolute;
+width:270px;
+height:270px;
+object-fit:cover;
+opacity:0;
+transform:translate(-44%,-8%) scale(0.5);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.7s;}
+
+.Soda {
+position:absolute;
+width:255px;
+height:255px;
+object-fit:cover;
+opacity:0;
+transform:translate(47%,-14.7%) scale(0.5);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.9s;}
+
+header.active .Burger {
+opacity:1;
+transform:translate(0,5.5%) scale(1);}
+
+header.active .Fries {
+opacity:1;
+transform:translate(-44%,-8%) scale(1);}
+
+header.active .Soda {
+opacity:1;
+transform:translate(47%,-14.7%) scale(1);}
+
+header .logo {
+position:absolute;
+top:15px;
+left:15px;
+width:auto;
+height:25px;
+object-fit:cover;}
+
+header .Ham {
+position:absolute;
+top:10px;
+right:10px;
+cursor:pointer;
+fill:url(#gradient);}
+
+.Cross, .Close {
+position:absolute;
+top:0;
+left:0;
+cursor:pointer;
+fill:url(#gradient);}
+
+header .wrapper, .yummy .title-container {
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+white-space:nowrap;}
+
+header .wrapper {
+padding-right:100px;
+gap:12px;}
+
+header h1 {
+position:relative;
+text-align:center;
+font-size:2.5rem;
+color:var(--secondary);
+text-shadow:0 4px 7px rgba(0,0,0,1);}
+
+header a {
+position:relative;
+border-radius:50px;
+margin-top:35px;
+padding:20px 30px;
+text-decoration:none;
+background:var(--primary);
+box-shadow:0 6px 25px rgba(255,92,0,0.4);}
+
+header a span {
+color:var(--secondary);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:1.1rem;
+text-shadow:0 3px 5px rgba(0,0,0,0.4);}
+
+body.touch header a span {
+padding-top:7px;}
+
+body.mouse header a:hover, body.mouse .orders ul li .main-container:hover {
+transform:scale(1.2);}
+
+.menu button, .orders .Price button {
+position:relative;
+padding:10px 20px;
+border:none;
+border-radius:50px;
+box-shadow:0 3px 8px rgba(255,92,0,0.2);}
+
+.menu .login, .orders .Price button {
+background:var(--primary);}
+
+.menu button span, .orders .Price button {
+font-size:0.75rem;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+body.touch .menu button span {
+margin-top:4.6875px;}
+
+.menu .login span, .orders .Price button span {
+color:var(--secondary);
+text-shadow:0 2px 3px rgba(0,0,0,0.4);}
+
+button, header a {
+transition:0.3s;}
+
+button, a, .icon {
+cursor:pointer;}
+
+button:active, header a:active, 
+.orders ul li .container:active, 
+.social-media .Icon:active, 
+.accounts .account-container .account:active, 
+.accounts .account-container img:active, 
+.menu .container .icon:active, 
+.orders ul li .main-container:active {
+transform:scale(0.85);}
+
+section {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;}
+
+
+/* Offers */
+
+.offers, .reviews {
+position:relative;
+display:flex;
+flex-direction:column;}
+
+.offers {
+width:100%;
+padding-bottom:50px;
+gap:30px;}
+
+.offers h1, .reviews h1, .features h1, footer .wrapper .social-media span {
+position:relative;
+color:var(--secondary);
+font-size:1.6rem;
+text-shadow:0 3px 6px rgba(0,0,0,1);}
+
+.offers h1, .reviews h1 {
+padding-left:30px;
+align-self:start;}
+
+.offers .carousel {
+position:relative;
+width:100%;
+height:230px;
+cursor:grab;}
+
+.offers .carousel li {
+position:absolute;
+left:0;
+width:var(--width);
+height:100%;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+box-shadow:0 5px 10px rgba(0,0,0,0.4);}
+
+.offers li .image {
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;}
+
+.offers li .details {
+position:absolute;
+bottom:0;
+width:100%;
+padding:15px 20px;
+display:flex;
+align-items:center;
+flex-direction:column;
+background:linear-gradient(to bottom,transparent 0%, rgba(0,0,0,0.7) 60%);}
+
+.offers li h2, .offers li p, .offers .offer span {
+font-weight:600;
+font-size:1rem;
+color:var(--secondary);
+font-family: "Khand", sans-serif;
+text-shadow:0 1px 2px rgba(0,0,0,1);}
+
+.offers li h2, .offers li p {
+align-self:start;}
+
+.offers li p {
+width:65%;
+font-weight:500;
+font-size:0.65rem;}
+
+.offers li button {
+position:absolute;
+bottom:20px;
+padding:8px 14px;
+border-radius:20px;
+background:var(--primary);
+border:none;
+display:flex;
+align-items:center;
+justify-content:center;
+align-self:end;
+box-shadow:0 2px 8px rgba(255,157,0,0.5);}
+
+.offers li button span {
+color:var(--secondary);
+font-size:0.5rem;
+text-shadow:0 1px 2px rgba(0,0,0,0.3);}
+
+body.touch .offers li button span {
+padding-top:3.125px;}
+
+.offers li .badge {
+position:absolute;
+top:0;
+right:0;
+width:100px;
+height:100px;
+object-fit:cover;
+filter:drop-shadow(0 0 5px rgba(0,0,0,0.6));}
+
+
+/* Yummy */
+
+.yummy {
+height:calc(1000px * 250px/360px);}
+
+.yummy .wrapper {
+position:absolute;
+width:360px;
+height:380px;
+display:flex;
+align-items:center;
+justify-content:center;
+transform:scale(calc(1000px/360px));}
+
+.yummy .shadow {
+position:absolute;
+width:620px;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+opacity:0.5;
+filter:blur(5px);
+mask:url(#blobMask);
+-webkit-mask:url(#blobMask);}
+
+.yummy .wave {
+position:absolute;
+width:620px;
+height:380px;
+clip-path:path("M130 133.203C201.7 100.793 241.455 122.776 310 148.84C387.4 181.459 417.538 200.188 490 171.486V273.703C418.292 292.663 378.796 285.137 310 227.581C239.628 162.71 200.215 146.921 130 171.486V133.203Z");}
+
+.yummy .stroke {
+stroke-dasharray:600;
+stroke-dashoffset:600;}
+
+.yummy.active .stroke {
+animation:draw 1s ease-out forwards;}
+
+@keyframes draw {
+to {stroke-dashoffset:0;}}
+
+.yummy .image {
+position:absolute;
+width:620px;
+height:100%;
+clip-path:path("M130 97C204.5 97 232.5 96.9994 310 97.0008C389 97.0022 411 97 490 97.0007V273.703C418.292 292.663 378.796 285.137 310 227.581C239.628 162.71 200.215 146.921 130 171.486V97Z");}
+
+.yummy .image img {
+position:absolute;
+right:130px;
+top:140px;
+width:150px;
+height:150px;
+object-fit:cover;
+transform:translateY(150px);
+transition:0.5s 0.2s ease-out;}
+
+.yummy.active .image img {
+transform:translateY(0);}
+
+.yummy .title-container {
+position:absolute;
+left:40px;
+margin-top:-20px;
+align-items:start;}
+
+.yummy h1 {
+position:relative;
+text-align:center;
+color:var(--secondary);
+font-size:1rem;
+line-height:25px;
+text-shadow:0 2px 3px rgba(0,0,0,0.5);}
+
+.yummy .title-container {
+opacity:0;
+transform:scale(0.5);
+transition:0.4s cubic-bezier(0,0,0.5,1.7) 0.6s;}
+
+.yummy.active .title-container {
+opacity:1;
+transform:scale(1);}
+
+/* Orders */
+
+.orders {
+padding:50px 0 150px 0;
+flex-direction:column;
+gap:80px;}
+
+.orders .wrapper {
+position:relative;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+overflow:auto;
+scroll-snap-type:x mandatory;
+scroll-behavior:smooth;}
+
+.orders .wrapper::-webkit-scrollbar, .offers .wrapper::-webkit-scrollbar, .reviews .wrapper::-webkit-scrollbar {
+display:none;}
+
+.orders .sections {
+position:absolute;
+left:0;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:40px;
+padding:0 40px;}
+
+.orders .button {
+position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;}
+
+.orders .button .text {
+position:relative;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center; }
+
+.orders .button span {
+font-weight:600;
+white-space:nowrap;
+font-size:1.7rem;
+color:var(--grey2);
+padding:7px 0;
+transition:0.5s;
+font-family: "Khand", sans-serif;}
+
+.orders .button span.default {
+position:relative;
+opacity:1;
+color:var(--grey2);
+text-shadow:0 1.5px 5px rgba(0,0,0,0.3);}
+
+.orders .button span.active {
+position:absolute;
+opacity:0;
+background:var(--primary);
+color:transparent;
+background-clip:text;
+-webkit-background-clip:text;
+text-shadow:0 1.5px 3px rgba(255,157,0,0.3);}
+
+.orders .button .line {
+position:absolute;
+left:0;
+bottom:0;
+width:0;
+height:3px;
+--i1:0%;
+--i2:100%;
+display:flex;
+border-radius:1.5px;
+transition:0.4s;
+background:var(--primary);
+box-shadow:0 1.5px 4.5px rgba(255,157,0,0.3);}
+
+.orders .button.active span.default {
+opacity:0;}
+
+.orders .button.active span.active {
+opacity:1;}
+
+.orders .button.active .line {
+display:flex;
+animation:Gentle-Width 0.8s forwards linear;}
+
+.orders ul {
+position:relative;
+width:100%;
+display:none;
+justify-content:center;
+list-style:none;
+grid-template-columns:repeat(4,180px);
+gap:60px;}
+
+.orders ul.active {
+display:grid;}
+
+.orders ul li {
+position:relative;
+width:180px;
+height:180px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+--i1:-1000px;
+--i2:1000px;
+transition:0.3s;
+transform:translateX(-1000px);}
+
+.orders ul li .main-container {
+position:relative;
+width:100%;
+height:100%;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.3s;
+cursor:pointer;}
+
+.orders ul li .container {
+position:relative;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+transition:0.3s;
+gap:10px;}
+
+.orders ul li.active .container {
+filter:brightness(60%);}
+
+.orders ul li svg {
+position:absolute;
+bottom:0;
+fill:var(--color1);
+filter:drop-shadow(0 5px 15px var(--shadow));}
+
+.orders ul li img {
+position:absolute;
+width:100px;
+height:100px;
+object-fit:cover;
+transform:translate(-15px,-25px);}
+
+.orders ul li .check {
+position:absolute;
+width:100px;
+height:100px;
+opacity:0;
+transition:0.3s;}
+
+.orders ul li.active .check {
+opacity:1;}
+
+.orders .info {
+position:absolute;
+bottom:14px;
+width:80%;
+display:flex;
+align-items:center;
+flex-direction:column;
+gap:4px;}
+
+.orders .info p, .orders .info span, .orders .info h1, .orders .Price h1 {
+position:relative;
+align-self:start;
+font-weight:800;
+font-family:"Khand", sans-serif;
+text-shadow:0 2px 4px rgba(0,0,0,0.5);}
+
+.orders .info h1 {
+position:absolute;
+bottom:-5px;
+right:0;
+font-size:1.3rem;
+color:var(--secondary);}
+
+.orders .info span, .orders .Price h1 {
+color:var(--secondary);
+font-size:1.1rem;}
+
+.orders .info p {
+width:80%;
+font-size:0.8rem;
+font-weight:800;
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.orders .Price {
+position:relative;
+width:80%;
+padding:20px;
+display:none;
+align-items:center;
+justify-content:space-between;}
+
+.orders .Price button {
+padding:calc(10px + 5px * (100vw - 360px)/1200px) calc(20px + 5px * (100vw - 360px)/1200px);
+box-shadow:0 calc(2px + 2px * (100vw - 360px)/1200px) calc(8px + 8px * (100vw - 360px)/1200px) rgba(255,157,0,0.5);}
+
+.orders .Price button span {
+font-size:calc(0.6rem + 0.6rem * (100vw - 360px)/1200px);
+text-shadow:0 calc(1px + 1px * (100vw - 360px)/1200px) calc(2px + 2px * (100vw - 360px)/1200px) rgba(0,0,0,0.4);}
+
+body.touch .orders .Price button span {
+padding-top:calc(3.75px + 3.75px * (100vw - 360px)/1200px);}
+
+.orders .Price h1 {
+font-size:calc(1.2rem + 1rem*(100vw - 360px)/1200px);}
+
+
+/* Features */
+
+.features {
+flex-direction:column;
+gap:80px;
+padding-bottom:150px;}
+
+.features ul {
+position:relative;
+width:100%;
+display:grid;
+justify-content:center;
+grid-template-columns:repeat(4,200px);
+gap:40px;
+list-style:none;}
+
+.features ul li {
+position:relative;
+width:200px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;}
+
+.features ul li img {
+position:relative;
+width:60px;
+height:60px;
+object-fit:cover;}
+
+.features ul li span {
+position:relative;
+width:100%;
+font-size:0.9rem;
+font-weight:550;
+line-height:35px;
+text-align:center;
+font-family:"Khand", sans-serif;}
+
+.features ul li p {
+position:relative;
+width:70%;
+font-size:0.7rem;
+line-height:18px;
+text-align:center;}
+
+
+/* Reviews */
+
+.reviews {
+padding-bottom:40px;}
+
+.reviews .wrapper-container {
+position:relative;
+width:100%;
+height:260px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.reviews .wrapper {
+position:absolute;
+width:100%;
+height:230px;
+display:flex;
+align-items:center;
+justify-content:center;
+pointer-events:auto;
+overflow:auto;
+scroll-behavior:smooth;
+scroll-snap-type:x mandatory;}
+
+.reviews .carousel {
+position:absolute;
+left:0;
+height:180px;
+padding: 0 20px;
+list-style:none;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:20px;}
+
+.reviews li {
+position:relative;
+width:280px;
+height:100%;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+scroll-snap-align:center;
+scroll-snap-stop:always;
+background:rgba(255,255,255,0.05);
+box-shadow:0 5px 10px rgba(0,0,0,0.2);}
+
+.reviews .profile {
+position:absolute;
+top:-15px;
+left:40px;
+width:50px;
+height:50px;
+object-fit:cover;
+border-radius:25px;
+overflow:hidden;
+box-shadow:0 4px 5px rgba(0,0,0,0.4);}
+
+.reviews li .details {
+position:absolute;
+width:100%;
+bottom:15px;
+padding:0 35px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:10px;}
+
+.reviews li .Rate {
+position:relative;
+width:100%;
+height:35px;
+overflow:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;}
+
+.reviews li span {
+position:relative;
+font-weight:500;
+font-size:0.9rem;
+font-family:"Khand", sans-serif;}
+
+.reviews li .rate {
+position:relative;
+display:flex;
+gap:2px;}
+
+.reviews li .star {
+position:relative;
+width:12px;
+height:12px;
+object-fit:cover;}
+
+.reviews li p {
+position:relative;
+font-size:0.7rem;}
+
+.reviews li .line {
+width:100%;
+opacity:0.5;}
+
+.reviews .arrows .left {
+left:0;
+opacity:0;
+pointer-events:none;}
+
+.reviews .arrows .right {
+right:0;
+opacity:0;
+pointer-events:none;}
+
+.reviews .arrows .left.active, .reviews .arrows .right.active {
+opacity:1;
+pointer-events:auto;}
+
+.reviews .arrows img:active {
+transform:scale(0.85);}
+
+.reviews .arrows {
+position:absolute;
+width:calc(100% - 50px);
+height:40px;
+display:flex;
+align-items:center;
+justify-content:center;
+pointer-events:none;}
+
+.reviews .arrows img {
+position:absolute;
+width:40px;
+height:40px;
+object-fit:cover;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+pointer-events:auto;
+cursor:pointer;
+transition:0.2s;
+background:#221f1d;
+box-shadow:0 3px 10px rgba(0,0,0,0.3);}
+
+
+/* FAQ */
+
+.FAQ {
+flex-direction:column;
+gap:20px;
+padding-bottom:80px;}
+
+.FAQ h1 {
+position:relative;
+align-self:start;
+padding-left:5%;
+font-size:1.8rem;
+background:linear-gradient(#FA5C00,#FFC300);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+background-clip:text;
+filter:drop-shadow(0 3px 5px rgba(0,0,0,0.5));}
+
+.FAQ ul {
+position:relative;
+width:90%;
+display:flex;
+align-items:center;
+justify-content:center;
+list-style:none;
+flex-direction:column;}
+
+.FAQ ul li {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.FAQ ul li .wrapper {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+transition:0.3s ease-out;}
+
+.FAQ ul li span {
+position:absolute;
+top:0;
+width:100%;
+padding:10px;
+margin-top:2px;
+display:flex;
+align-items:center;
+color:var(--secondary);
+font-size:1.2rem;
+font-weight:500;
+font-family:"Khand", sans-serif;
+text-shadow:0 2px 4px rgba(0,0,0,0.2);}
+
+.FAQ ul li p {
+position:absolute;
+width:100%;
+padding:0 10px 10px 10px;
+display:flex;
+align-items:center;
+color:var(--grey2);
+font-size:1rem;
+font-weight:500;
+font-family:"Khand", sans-serif;
+text-shadow:0 2px 3px rgba(0,0,0,0.5);}
+
+.FAQ ul li .line, .FAQ ul li .Line, .reviews li .line {
+position:relative;
+height:0.5px;
+border-radius:1px;
+background:var(--grey2);}
+
+.FAQ ul li .line, .FAQ ul li .Line {
+position:absolute;}
+
+.FAQ ul li .line {
+top:0;
+width:100%;}
+
+.FAQ ul li .Line {
+width:100%;}
+
+.FAQ ul li .arrow {
+position:absolute;
+right:0;
+transition:0.4s;
+cursor:pointer;
+pointer-events:auto;}
+
+.FAQ .wrapper.active .arrow {
+transform:rotate(180deg);}
+
+
+/* Footer */
+
+footer {
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;}
+
+footer .line {
+position:absolute;
+top:0;
+width:90%;
+height:1px;
+border-radius:1px;
+background:var(--primary);}
+
+footer .wrapper {
+position:relative;
+width:90%;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+gap:20px;
+padding:50px 0 10px 0;}
+
+footer .lists {
+position:relative;
+width:80%;
+display:flex;
+align-items:start;
+justify-content:space-between;}
+
+footer .wrapper ul {
+position:relative;
+top:0;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:start;
+gap:20px;
+list-style:none;}
+
+footer .wrapper ul li, .reviews li p, .features ul li p {
+color:var(--grey2);
+font-family: "Khand", sans-serif;
+text-shadow:0 1px 2px rgba(0,0,0,1);}
+
+footer .wrapper ul .title, footer .wrapper .social-media span, .reviews li span, .features ul li span {
+font-weight:550;
+color:var(--secondary);
+text-shadow:0 1px 2px rgba(0,0,0,1);}
+
+footer .wrapper ul li {
+font-size:1rem;}
+
+footer .wrapper ul .title {
+font-size:1.2rem;}
+
+footer .wrapper .social-media span {
+font-size:1rem;}
+
+footer .wrapper .social-media {
+position:relative;
+padding-top:80px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+gap:20px;}
+
+footer .wrapper .social-media .Icons {
+position:relative;
+display:flex;
+gap:10px;}
+
+footer .wrapper .social-media .Icon {
+fill:url(#gradient);
+filter:drop-shadow(0 2px 4px rgba(255,92,0,0.3));
+transition:0.3s;
+cursor:pointer;}
+
+footer .wrapper .copyright {
+position:relative;
+width:100%;
+height:20px;
+display:flex;
+justify-content:center;
+align-items:center;}
+
+footer .wrapper .copyright svg {
+margin-left:4px;
+fill:var(--grey2);
+filter:drop-shadow(0 1px 2px rgba(0,0,0,1));}
+
+footer .wrapper .copyright p {
+color:var(--grey2);
+font-size:0.5rem;
+font-family: "Khand", sans-serif;
+text-shadow:0 1px 2px rgba(0,0,0,1);}
+
+
+/* Sign Up / Login Window */
+
+.window-container, .confirmation-container {
+position:fixed;
+left:0;
+bottom:-100vh;
+width:100vw;
+height:100vh;
+display:none;
+align-items:center;
+justify-content:center;
+pointer-events:auto;
+overflow:auto;
+transition:0.6s ease;
+scroll-behavior:smooth;}
+
+.window-wrapper, .confirmation-wrapper {
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.window, .confirmation {
+position:absolute;
+width:360px;
+height:650px;
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+pointer-events:auto;
+background:var(--secondary);
+box-shadow:0 5px 10px rgba(0,0,0,0.5);}
+
+.window-container.active, .confirmation-container.active {
+bottom:0;}
+
+.confirmation {
+width:300px;
+height:500px;
+border-radius:15px;}
+
+.window .wrapper {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:10px;
+transition:0.5s;}
+
+.window .wrapper h1 {
+padding-bottom:30px;
+font-size:1.8rem;
+text-shadow:0 2px 3px rgba(0,0,0,0.1);}
+
+.window .wrapper .input-field {
+position:relative;
+width:250px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.input-field span {
+position:absolute;
+top:0;
+left:0;
+font-size:0.7rem;
+font-weight:500;}
+
+.input-field a {
+position:absolute;
+top:2px;
+right:0;
+font-size:0.55rem;
+font-weight:800;
+font-family:"Inter", sans-serif;}
+
+.input-field input {
+position:absolute;
+bottom:15px;
+width:100%;
+height:35px;
+border-radius:5px;
+padding-left:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:0.7rem;
+font-weight:700;
+font-family:"Inter", sans-serif;}
+
+.input-field input, .accounts .account-container img {
+border:calc(1.5px + 0.5px * (100vw - 360px)/1200px) solid rgba(0,0,0,0.15);}
+
+.input-field input::placeholder {
+color:var(--grey1);}
+
+.input-field input:focus {
+outline:none;
+border:calc(1.5px + 0.5px * (100vw - 360px)/1200px) solid rgba(0,0,0,0.15);}
+
+.input-field p {
+position:absolute;
+left:5px;
+bottom:0;
+font-size:0.5rem;
+font-weight:700;
+color:#ff002f;
+font-family:"Inter", sans-serif;}
+
+.window .wrapper button {
+position:relative;
+padding:12px 25px;
+border-radius:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--primary);
+border:none;
+box-shadow:0 3px 6px rgba(0,0,0,0.15);}
+
+.window .wrapper button span {
+color:var(--secondary);
+font-size:1rem;
+display:flex;
+align-items:center;
+justify-content:center;
+text-shadow:0 2px 3px rgba(0,0,0,0.4);}
+
+body.touch .window .wrapper button span {
+padding-top:6.25px;}
+
+.window .accounts {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;
+padding:20px 0;}
+
+.window .accounts .container {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;}
+
+.accounts .container span {
+position:relative;
+font-size:0.7rem;
+font-weight:500;
+color:var(--background);}
+
+.accounts .container .line {
+position:relative;
+width:20%;
+height:1px;
+border-radius:1px;
+background:var(--background);
+box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.accounts .account-container {
+position:relative;
+display:flex;
+gap:30px;}
+
+.accounts .account-container img {
+position:relative;
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+cursor:pointer;
+transition:0.3s;
+pointer-events:auto;}
+
+.window .switch {
+position:absolute;
+bottom:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:5px;
+transition:0.5s;
+font-weight:700;
+font-family:"Khand", sans-serif;}
+
+.window .switch p {
+position:relative;
+font-size:0.65rem;
+font-weight:500;
+font-family:"Inter", sans-serif;}
+
+.window .switch span {
+position:relative;
+font-size:0.8rem;
+background:var(--primary);
+color:transparent;
+background-clip:text;
+-webkit-background-clip:text;
+text-shadow:0 1px 2px rgba(255,157,0,0.3);
+font-weight:1000;
+font-family:"Inter", sans-serif;
+cursor:pointer;}
+
+.window.Success .switch, .window.Success .wrapper {
+opacity:0.5;}
+
+.window .success, .confirmation .success {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+pointer-events:none;}
+
+.window .success .Pop, .confirmation .success .Pop {
+position:relative;
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:30px;
+background:var(--primary);
+opacity:0;
+transform:scale(0.5);
+box-shadow:0 5px 10px rgba(255,0,153,0.2);}
+
+.window .success .Check, .confirmation .success .Check {
+stroke-width:10;
+stroke-dasharray:90;
+stroke-dashoffset:90;
+stroke:var(--secondary);}
+
+@keyframes Success {
+50% {opacity:1;transform:scale(1.2);}
+100% {opacity:1;transform:scale(1);}}
+
+@keyframes Check {
+to {stroke-dasharray:90;stroke-dashoffset:0;}}
+
+.window .success span, .confirmation .success span {
+position:relative;
+font-size:1.5rem;
+line-height:35px;
+color:var(--primary);
+opacity:0;
+transition:0.3s 0.3s;
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.window .success.active .Pop, .confirmation-container .success.active .Pop {
+animation:Success 0.5s linear forwards;}
+
+.window .success.active .Check, .confirmation-container .success.active .Check  {
+animation:Check 0.5s ease forwards;}
+
+.window .success.active span, .confirmation-container .success.active span {
+opacity:1;}
+
+.Cross, .Close {
+top:10px;
+left:10px;}
+
+.loader {
+display:none;
+pointer-events:none;
+animation:rotate 2s linear infinite;
+filter:drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));}
+
+.loader circle {
+stroke-width:6px;
+stroke:url(#gradient);
+fill:none;
+stroke-dasharray:126; /* 2πr ≈ 2*3.14*20 */
+stroke-dashoffset:0;
+transform-origin:center;
+animation:dash 1.5s ease-in-out infinite;}
+
+@keyframes rotate {
+100% {transform:rotate(360deg);}}
+
+@keyframes dash {
+0% {stroke-dashoffset:126;}
+50% {stroke-dashoffset:32;transform:rotate(45deg);}
+100% {stroke-dashoffset:126;transform:rotate(360deg);}}
+
+.window.Success .loader {
+display:flex;}
+
+.menu .container {
+position:absolute;
+display:none;
+align-items:center;
+justify-content:center;}
+
+.menu .container .icon {
+position:relative;
+width:40px;
+height:40px;
+transition:0.3s;
+fill:url(#gradient);
+pointer-events:auto;}
+
+.menu {
+position:absolute;
+top:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:right 0.4s, filter 0.4s;}
+
+.menu ul {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:25px;
+list-style:none;}
+
+.menu ul li {
+position:relative;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--secondary);
+padding:5px 10px;
+font-size:1.2rem;}
+
+.menu .wrapper {
+position:absolute;
+right:20px;
+display:flex;
+gap:20px;
+align-items:center;
+justify-content:center;}
+
+.menu .sign-up span {
+color:black;}
+
+.menu .sign-up {
+background:var(--secondary);}
+
+.Cross, .Ham {
+display:none;}
+
+.menu .container {
+top:10px;
+right:10px;
+gap:10px;}
+
+.mouse {
+position:absolute;
+z-index:5;
+transition:0.5s;
+transform:translate(500px,0);}
+
+.cursor {
+position:absolute;
+fill:var(--secondary);
+filter:drop-shadow(0 2px 5px rgba(255,92,0,0.5));}
+
+.cursor.active {
+animation:click 0.3s forwards;}
+
+@keyframes click {
+0%{transform:scale(1);}
+50%{transform:scale(0.8);}
+100%{transform:scale(1);}}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="Demo-Container">
+
+<div class="Main-Container">
+
+<div class="Container">
+
+
+<!-- Header -->
+
+<header>
+
+<div class="cover">
+
+ <svg class="blob" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+   <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#FA5C00" />
+    <stop offset="100%" stop-color="#FFC300" />
+   </linearGradient>
+
+   <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+    <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#FA5C00" flood-opacity="0.4"/>
+   </filter>
+
+  </defs>
+
+  <path class="path" fill="url(#gradient)" filter="url(#shadow)" d="M46,-20.8C60.4,-1.7,73.4,24.1,65.4,44.3C57.5,64.4,28.8,79.1,0.3,78.9C-28.1,78.7,-56.2,63.7,-66.8,41.9C-77.5,20.1,-70.8,-8.5,-56.8,-27.4C-42.7,-46.3,-21.4,-55.5,-2.8,-53.9C15.8,-52.3,31.7,-39.9,46,-20.8Z" transform="translate(100 100)"/>
+
+ </svg>
+
+ <img class="Fries" src="Images/fries.png">
+ <img class="Soda" src="Images/soda.png">
+ <img class="Burger" src="Images/burger.png">
+
+</div>
+
+<img class="logo" src="Images/Crispo-Logo.svg">
+
+<svg class="Ham" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M27.0986 23.1992C27.8717 23.1992 28.4988 23.8256 28.499 24.5986C28.499 25.3718 27.8718 25.999 27.0986 25.999H7.90039C7.12719 25.999 6.5 25.3718 6.5 24.5986C6.50021 23.8256 7.12732 23.1992 7.90039 23.1992H27.0986ZM27.0986 16.0996C27.8718 16.0996 28.499 16.7268 28.499 17.5C28.4989 18.2731 27.8717 18.8994 27.0986 18.8994H7.90039C7.12729 18.8994 6.50016 18.2731 6.5 17.5C6.5 16.7268 7.12719 16.0996 7.90039 16.0996H27.0986ZM27.0986 9C27.8718 9 28.499 9.62719 28.499 10.4004C28.499 11.1736 27.8718 11.8008 27.0986 11.8008H7.90039C7.12719 11.8008 6.5 11.1736 6.5 10.4004C6.5 9.62719 7.12719 9 7.90039 9H27.0986Z"/>
+</svg>
+
+<div class="wrapper">
+ <h1>Crafted For</h1>
+ <h1>Burger Lovers</h1>
+ <a href="#Orders"><span>ORDER NOW</span></a>
+</div>
+
+</header>
+
+
+<!-- Offers -->
+
+<section class="offers">
+
+ <h1>Special Offers</h1>
+
+ <ul class="carousel"></ul>
+
+</section>
+
+
+<!-- Yummy -->
+
+<section class="yummy">
+
+ <svg class="mask-svg" width="0" height="0" xmlns="http://www.w3.org/2000/svg">
+
+  <defs>
+
+   <!-- Blur -->
+   <filter id="blur">
+    <feGaussianBlur stdDeviation="8"/>
+   </filter>
+
+   <!-- Mask -->
+   <mask id="blobMask">
+    <path d="M130 133.203C201.7 100.793 241.455 122.776 310 148.84C387.4 181.459 417.538 200.188 490 171.486V273.703C418.292 292.663 378.796 285.137 310 227.581C239.628 162.71 200.215 146.921 130 171.486V133.203Z" fill="white" filter="url(#blur)"/>
+   </mask>
+
+  </defs>
+
+ </svg>
+
+ <div class="wrapper">
+
+ <div class="shadow">
+  <svg width="800" height="490" viewBox="0 0 800 490" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path class="stroke" d="M154 234.242C249.552 190.818 308.257 173.603 403.029 241.2C525 328.199 569 288.002 645 259.05" stroke="url(#gradient)" stroke-width="130" stroke-linecap="round"/>
+  </svg>
+ </div>
+
+ <div class="wave">
+  <svg width="620" height="380" viewBox="0 0 620 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path class="stroke" d="M64 179.242C159.552 135.818 218.257 118.603 313.029 186.2C435 273.199 479 233.002 555 204.05" stroke="url(#gradient)" stroke-width="110" stroke-linecap="round"/>
+  </svg>
+ </div>
+
+ <div class="image">
+  <img src="Images/Yummy.png">
+ </div>
+
+ <div class="title-container">
+  <h1>Juicy Burgers,</h1>
+  <h1>Happy Moments</h1>
+ </div>
+
+</div>
+
+</section>
+
+
+<!-- Orders -->
+
+<section class="orders" id="Orders">
+
+ <div class="wrapper">
+
+  <div class="sections">
+
+   <div class="button active">
+
+    <div class="text">
+     <span class="default">Burgers</span>
+     <span class="active">Burgers</span>
+    </div>
+
+    <div class="line"></div>
+
+   </div>
+
+   <div class="button">
+
+    <div class="text">
+     <span class="default">Sides</span>
+     <span class="active">Sides</span>
+    </div>
+
+   <div class="line"></div>
+
+   </div>
+
+   <div class="button">
+
+    <div class="text">
+     <span class="default">Sauces</span>
+     <span class="active">Sauces</span>
+    </div>
+
+    <div class="line"></div>
+
+   </div>
+
+   <div class="button">
+
+    <div class="text">
+     <span class="default">Drinks</span>
+     <span class="active">Drinks</span>
+    </div>
+
+    <div class="line"></div>
+
+   </div>
+
+  </div>
+
+ </div>
+
+ <ul class="burger active"></ul>
+ <ul class="meal"></ul>
+ <ul class="drink"></ul>
+ <ul class="dessert"></ul>
+
+ <div class="Price">
+  <h1>Total : $ 0</h1>
+  <button><span>Confirm</span></button>
+ </div>
+
+</section>
+
+
+<!-- Features -->
+
+<section class="features">
+
+ <h1>Why Choose Us</h1>
+
+ <ul>
+
+  <li>
+   <img src="Images/premium.svg">
+   <span>Premium Ingredients</span>
+   <p>Made with premium ingredients for rich flavor in every bite.</p>
+  </li>
+
+  <li>
+   <img src="Images/grilled.svg">
+   <span>Freshly Grilled</span>
+   <p>Freshly grilled to perfection, delivering smoky taste every time.</p>
+  </li>
+
+  <li>
+   <img src="Images/fast.svg">
+   <span>Super Fast Delivery</span>
+   <p>Fast delivery ensures your meal arrives hot and fresh.</p>
+  </li>
+
+  <li>
+   <img src="Images/love.svg">
+   <span>Loved By Customers</span>
+   <p>Loved by customers for quality, taste, and great service.</p>
+  </li>
+
+ </ul>
+
+</section>
+
+
+<!-- Reviews -->
+
+<section class="reviews">
+
+ <h1>Customer Reviews</h1>
+
+ <div class="wrapper-container">
+
+  <div class="wrapper">
+
+   <ul class="carousel"></ul>
+
+  </div>
+
+  <div class="arrows">
+   <img class="left" src="Images/left-arrow.svg">
+   <img class="right" src="Images/right-arrow.svg">
+  </div>
+
+ </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="FAQ">
+
+ <h1>FAQ</h1>
+
+ <ul></ul>
+
+</section>
+
+
+<!-- Footer -->
+
+<footer>
+
+ <div class="line"></div>
+
+ <div class="wrapper">
+
+  <div class="lists">
+
+   <ul>
+    <li class="title">Menu</li>
+    <li>Burgers</li>
+    <li>Sides</li>
+    <li>Sauces</li>
+    <li>Drinks</li>
+   </ul>
+
+   <ul>
+    <li class="title">Offers</li>
+    <li>Combo Deals</li>
+    <li>BOGO Offers</li>
+    <li>Family Packs</li>
+    <li>Limited Specials</li>
+   </ul>
+
+   <ul>
+    <li class="title">Support</li>
+    <li>Delivery Info</li>
+    <li>Help Center</li>
+    <li>Contact Us</li>
+   </ul>
+
+  </div>
+
+ <div class="social-media">
+
+  <span>Follow Us</span>
+
+  <div class="Icons">
+
+  <svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M14.9993 10.0067C12.2352 10.0067 10.0067 12.2566 10.0067 14.9993C10.0067 17.7421 12.2566 19.992 14.9993 19.992C17.7421 19.992 19.992 17.7421 19.992 14.9993C19.992 12.2566 17.7421 10.0067 14.9993 10.0067ZM29.9987 14.9993C29.9987 12.9209 29.9987 10.8852 29.8915 8.8067C29.7844 6.4069 29.2273 4.2641 27.4702 2.52846C25.7131 0.77139 23.5918 0.21428 21.1919 0.10714C19.1134 6.70552e-08 17.0778 0 14.9993 0C12.9209 0 10.8852 6.70552e-08 8.8067 0.10714C6.4069 0.21428 4.2641 0.77139 2.52846 2.52846C0.77139 4.28552 0.21428 6.4069 0.10714 8.8067C6.70552e-08 10.8852 0 12.9209 0 14.9993C0 17.0778 6.70552e-08 19.1134 0.10714 21.1919C0.21428 23.5918 0.77139 25.7346 2.52846 27.4702C4.28552 29.2273 6.4069 29.7844 8.8067 29.8915C10.8852 29.9987 12.9209 29.9987 14.9993 29.9987C17.0778 29.9987 19.1134 29.9987 21.1919 29.8915C23.5918 29.7844 25.7346 29.2273 27.4702 27.4702C29.2273 25.7131 29.7844 23.5918 29.8915 21.1919C30.0201 19.1349 29.9987 17.0778 29.9987 14.9993ZM14.9993 22.6918C10.7352 22.6918 7.3068 19.2634 7.3068 14.9993C7.3068 10.7352 10.7352 7.3068 14.9993 7.3068C19.2634 7.3068 22.6918 10.7352 22.6918 14.9993C22.6918 19.2634 19.2634 22.6918 14.9993 22.6918ZM23.0133 8.7853C22.0276 8.7853 21.2133 7.9925 21.2133 6.9854C21.2133 5.9783 22.0062 5.1855 23.0133 5.1855C24.0204 5.1855 24.8132 5.9783 24.8132 6.9854C24.8186 7.2201 24.7758 7.4534 24.6873 7.6709C24.5988 7.8884 24.4666 8.0854 24.2989 8.2496C24.1346 8.4174 23.9377 8.5495 23.7202 8.638C23.5027 8.7265 23.2694 8.7693 23.0347 8.7639L23.0133 8.7853Z"/>
+  </svg>
+
+  <svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4545 0C4.00791 0 2.62053 0.57467 1.5976 1.5976C0.57467 2.62052 0 4.00791 0 5.45454V24.5454C0 25.992 0.57467 27.3794 1.5976 28.4024C2.62053 29.4253 4.00791 30 5.4545 30H24.5455C25.9921 30 27.3795 29.4253 28.4024 28.4024C29.4253 27.3794 30 25.992 30 24.5454V5.45454C30 4.00791 29.4253 2.62052 28.4024 1.5976C27.3795 0.57467 25.9921 0 24.5455 0H5.4545ZM15.4636 4.77272H18.7186C18.7186 6.95454 20.5623 9.42274 23.3686 9.42274V12.6763C21.4364 12.5427 19.785 12.2263 18.7186 11.2813V19.6486C18.7186 21.9736 16.8805 25.2272 12.6764 25.2272C7.5409 25.2272 6.6327 20.5772 6.6327 19.1836C6.6327 17.79 7.4509 13.14 13.14 13.14V16.395C11.6523 16.08 9.8864 17.3236 9.8864 19.1836C9.8864 21.5086 11.2814 21.9736 12.6764 21.9736C14.0714 21.9736 15.465 20.5786 15.465 19.1836L15.4636 4.77272Z"/>
+  </svg>
+
+  <svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path fill-rule="evenodd" clip-rule="evenodd" d="M5.4545 0C4.00791 0 2.62053 0.57467 1.5976 1.5976C0.57467 2.62052 0 4.00791 0 5.45454V24.5454C0 25.992 0.57467 27.3794 1.5976 28.4024C2.62053 29.4253 4.00791 30 5.4545 30H24.5455C25.9921 30 27.3795 29.4253 28.4024 28.4024C29.4253 27.3794 30 25.992 30 24.5454V5.45454C30 4.00791 29.4253 2.62052 28.4024 1.5976C27.3795 0.57467 25.9921 0 24.5455 0H5.4545ZM4.99909 4.77272C4.84982 4.8282 4.71556 4.91777 4.60701 5.03434C4.49847 5.15084 4.41863 5.29104 4.37387 5.44394C4.32911 5.59674 4.32065 5.75794 4.34918 5.91464C4.3777 6.07124 4.44242 6.21914 4.53818 6.34634L12.1936 16.5054L4.12773 25.1577L4.06773 25.2272H6.8591L13.4455 18.165L18.5073 24.885C18.6247 25.0405 18.7842 25.1593 18.9668 25.2272H24.9968C25.1459 25.1715 25.2798 25.0817 25.3881 24.965C25.4963 24.8484 25.5759 24.7081 25.6204 24.5553C25.6649 24.4025 25.6731 24.2414 25.6444 24.0849C25.6157 23.9283 25.5508 23.7807 25.455 23.6536L17.7995 13.4945L25.9323 4.77272H23.1368L16.5505 11.8363L11.4859 5.11634C11.3687 4.96031 11.2092 4.84107 11.0264 4.77272H4.99909ZM19.8355 23.2472L7.4059 6.75274H10.1591L22.5873 23.2459L19.8355 23.2472Z"/>
+  </svg>
+
+ </div>
+
+ </div>
+
+ <div class="copyright">
+
+  <p>©2026</p>
+
+  <svg width="34" height="12" viewBox="0 0 34 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M7.47647 7.84237C7.95599 7.84239 8.3451 8.22876 8.34561 8.70468V8.92147C8.34538 9.51673 7.85837 9.9996 7.25869 9.9996H1.82901C1.22936 9.99955 0.743299 9.51671 0.743068 8.92147V8.70468C0.743576 8.22888 1.13186 7.84258 1.61123 7.84237H7.47647ZM20.538 3.53768C20.675 3.53769 20.8163 3.54318 20.9618 3.55428C21.1074 3.56262 21.2517 3.57908 21.3944 3.60409C21.5399 3.62907 21.6813 3.66095 21.8183 3.69979C21.9554 3.73869 22.0858 3.78795 22.2089 3.84628L22.0497 5.53866C21.8593 5.47475 21.6591 5.42214 21.4491 5.38046C21.242 5.33598 21.0385 5.31405 20.8397 5.31405C20.8033 5.31406 20.7558 5.31519 20.6972 5.31796C20.6413 5.31796 20.5808 5.32232 20.5165 5.33065C20.4551 5.33621 20.3923 5.34608 20.328 5.35995C20.2635 5.37384 20.2056 5.39255 20.1552 5.41757C20.105 5.43974 20.0648 5.47064 20.0341 5.50936C20.0033 5.54825 19.9893 5.59429 19.9921 5.64706C19.9949 5.708 20.0168 5.75533 20.0585 5.78866C20.1033 5.82202 20.1602 5.84718 20.2274 5.86385C20.2973 5.87769 20.373 5.88436 20.454 5.88436C20.5378 5.88436 20.6201 5.88322 20.7011 5.88046C20.7823 5.87489 20.8586 5.87054 20.9286 5.86776C20.9985 5.86222 21.0557 5.86109 21.1005 5.86385C21.3243 5.87774 21.5258 5.92497 21.705 6.00546C21.8841 6.08606 22.0359 6.19333 22.1591 6.32675C22.2851 6.46012 22.3798 6.62008 22.4442 6.80624C22.5113 6.9896 22.5458 7.1924 22.5458 7.41464C22.5458 7.79538 22.478 8.12499 22.3437 8.40292C22.2121 8.67803 22.03 8.90586 21.7978 9.08651C21.5681 9.26438 21.298 9.39683 20.9872 9.483C20.6794 9.56639 20.3476 9.60797 19.9921 9.608C19.855 9.608 19.7031 9.5904 19.538 9.55428C19.3757 9.51814 19.2108 9.47325 19.0429 9.4205C18.875 9.36495 18.7123 9.30679 18.5556 9.24569C18.4016 9.18176 18.2639 9.12159 18.1435 9.066L18.329 7.43124C18.5669 7.57293 18.8298 7.6814 19.1181 7.75643C19.409 7.82867 19.6947 7.86479 19.9745 7.86483C20.0276 7.86483 20.0923 7.8637 20.1679 7.86093C20.2434 7.85536 20.3156 7.84327 20.3827 7.82382C20.4524 7.80164 20.5111 7.7696 20.5585 7.72811C20.606 7.68643 20.6298 7.62622 20.6298 7.54843C20.6298 7.49561 20.6136 7.45077 20.58 7.41464C20.5464 7.37575 20.5023 7.34506 20.4491 7.32284C20.3962 7.29801 20.3362 7.28021 20.2694 7.26913C20.2022 7.25523 20.1356 7.24539 20.0712 7.23983C20.0069 7.2343 19.9464 7.23104 19.8905 7.23104H19.7567C19.516 7.23104 19.2963 7.19372 19.0976 7.11874C18.9016 7.0437 18.7316 6.93853 18.5888 6.80233C18.4488 6.66335 18.34 6.49592 18.2616 6.30135C18.1833 6.10409 18.1435 5.88599 18.1435 5.64706C18.1435 5.31912 18.2101 5.02564 18.3417 4.76718C18.476 4.50608 18.6538 4.28467 18.8749 4.10409C19.0988 3.92081 19.3552 3.78042 19.6435 3.68319C19.9318 3.58597 20.2301 3.53768 20.538 3.53768ZM25.4872 3.60409C25.7027 3.6041 25.9181 3.62266 26.1337 3.65878C26.3491 3.69212 26.555 3.74589 26.7509 3.82089C26.9496 3.89593 27.1337 3.99014 27.3017 4.10409C27.4723 4.2152 27.619 4.34895 27.7421 4.50448C27.8653 4.66013 27.9621 4.83853 28.0321 5.03866C28.1049 5.23873 28.1415 5.46114 28.1415 5.70565C28.1415 5.97515 28.1006 6.21405 28.0194 6.42245C27.9382 6.63091 27.8263 6.81479 27.6835 6.97323C27.5435 7.12883 27.3778 7.26037 27.1874 7.36874C26.9972 7.47424 26.7932 7.56199 26.5751 7.63143C26.3595 7.69814 26.1346 7.74847 25.9022 7.78182C25.67 7.81236 25.4415 7.82885 25.2177 7.83163V9.608H23.2606V8.68221C23.2635 8.38224 23.2655 8.08504 23.2655 7.79061C23.2683 7.49331 23.2694 7.19421 23.2694 6.89413C23.2722 6.59406 23.2754 6.28394 23.2782 5.96444C23.2838 5.62538 23.2848 5.28592 23.2821 4.94686C23.2793 4.60789 23.2858 4.266 23.3026 3.92147C23.661 3.81588 24.0195 3.73601 24.3778 3.68319C24.7363 3.63038 25.1064 3.60409 25.4872 3.60409ZM12.0712 3.4371C12.3904 3.4371 12.6991 3.48194 12.996 3.57089C13.2953 3.657 13.5596 3.78759 13.789 3.96249C14.0186 4.1376 14.2025 4.35649 14.3397 4.61776C14.4796 4.87895 14.5497 5.18357 14.5497 5.53085C14.5497 5.74748 14.5303 5.94486 14.4911 6.12264C14.4547 6.29771 14.3954 6.45876 14.3144 6.60604C14.2331 6.75334 14.1278 6.88918 13.9989 7.01425C13.8702 7.13932 13.7151 7.25966 13.5331 7.37362L14.5331 9.1412L12.6425 9.50839L11.996 7.73202L11.4755 7.74862L11.3993 9.483H9.59365C9.60765 8.84938 9.62055 8.21847 9.63174 7.59042C9.64575 6.96224 9.66084 6.33059 9.67764 5.69686C9.68324 5.37736 9.68865 5.06063 9.69424 4.74667C9.69984 4.43273 9.71162 4.11597 9.72842 3.79647C9.92433 3.72424 10.1173 3.66402 10.3075 3.61678C10.498 3.56954 10.6884 3.5334 10.8788 3.50839C11.072 3.4806 11.2668 3.46204 11.4628 3.4537C11.6614 3.4426 11.8642 3.4371 12.0712 3.4371ZM17.1718 9.358L15.3993 9.44979L15.2313 3.79647L17.4657 3.67928L17.1718 9.358ZM31.289 3.68807C31.6948 3.6881 32.0642 3.75053 32.3974 3.87557C32.7331 4.00057 33.0187 4.17941 33.2538 4.41268C33.4917 4.64338 33.6758 4.9247 33.8046 5.25546C33.9361 5.58339 34.0019 5.95032 34.0019 6.35604C34.0018 6.60881 33.9727 6.85332 33.914 7.08944C33.8552 7.32292 33.7691 7.54293 33.6571 7.74862C33.5479 7.95421 33.4133 8.14374 33.2538 8.316C33.0971 8.48534 32.9192 8.63133 32.7206 8.7535C32.5247 8.87573 32.3103 8.97115 32.078 9.04061C31.8457 9.1073 31.5992 9.1412 31.3388 9.1412C31.087 9.14117 30.8465 9.10931 30.6171 9.0455C30.3904 8.98157 30.1772 8.89188 29.9784 8.77792C29.7797 8.6612 29.5988 8.5221 29.4364 8.36093C29.2769 8.197 29.1401 8.01617 29.0253 7.81893C28.9134 7.61889 28.825 7.40516 28.7606 7.17733C28.699 6.94944 28.6679 6.71178 28.6679 6.46444C28.6679 6.22262 28.6969 5.98616 28.7558 5.75546C28.8145 5.52218 28.8986 5.30278 29.0077 5.09725C29.1196 4.89164 29.2543 4.70214 29.411 4.52987C29.5678 4.35754 29.7433 4.20867 29.9364 4.08358C30.1323 3.95858 30.3435 3.86106 30.5702 3.79159C30.797 3.7221 31.037 3.68807 31.289 3.68807ZM3.09561 2.56405C4.06518 1.72941 5.53217 1.83301 6.37295 2.7955C6.43589 2.86755 6.42868 2.976 6.35635 3.03866L0.991115 7.6578C0.855253 7.77475 0.649083 7.76028 0.531154 7.62557C-0.254695 6.72585 -0.157347 5.36378 0.748927 4.58358L3.09561 2.56405ZM31.3388 5.52206C31.2073 5.52209 31.0897 5.54613 30.9862 5.59335C30.8828 5.64054 30.7932 5.70542 30.7177 5.78866C30.6448 5.86927 30.5889 5.96556 30.5497 6.07675C30.5105 6.18507 30.4911 6.30024 30.4911 6.42245C30.4911 6.53918 30.5074 6.6563 30.5409 6.77303C30.5744 6.88965 30.6252 6.99503 30.6923 7.08944C30.7594 7.18395 30.8423 7.26056 30.9403 7.31893C31.0411 7.37727 31.1574 7.40682 31.289 7.40682C31.4204 7.40679 31.538 7.38163 31.6415 7.33163C31.7479 7.27882 31.8372 7.20881 31.9101 7.12264C31.9827 7.0338 32.0389 6.93273 32.078 6.81893C32.1172 6.705 32.1376 6.58671 32.1376 6.46444C32.1376 6.3451 32.1192 6.22976 32.0829 6.11874C32.0493 6.00479 31.9987 5.90411 31.9315 5.81796C31.8644 5.72904 31.7804 5.65788 31.6796 5.60507C31.5816 5.54948 31.4676 5.52206 31.3388 5.52206ZM25.6806 5.27206C25.6218 5.27206 25.5594 5.27754 25.495 5.28866C25.4337 5.29698 25.375 5.30802 25.3192 5.32186L25.2685 6.53964C25.3076 6.54519 25.3454 6.54744 25.3817 6.54745H25.495C25.5958 6.54745 25.6927 6.53099 25.7851 6.49764C25.8802 6.46431 25.9642 6.41714 26.037 6.35604C26.1096 6.29223 26.1669 6.21853 26.2089 6.13534C26.2536 6.04917 26.2763 5.95287 26.2763 5.84725C26.2763 5.6666 26.2202 5.52642 26.1083 5.42635C25.9992 5.32364 25.8568 5.27214 25.6806 5.27206ZM11.748 4.87557C11.6948 4.88114 11.643 4.891 11.5927 4.90487L11.5253 6.45565H11.6269C11.7471 6.45561 11.8691 6.44029 11.9921 6.40975C12.118 6.37918 12.2301 6.33202 12.328 6.26815C12.4287 6.20425 12.5097 6.12204 12.5712 6.02206C12.6355 5.92203 12.6679 5.80257 12.6679 5.66366C12.6679 5.547 12.6516 5.43961 12.6181 5.34237C12.5872 5.24521 12.5389 5.1618 12.4745 5.09237C12.413 5.02025 12.3343 4.96522 12.2392 4.92635C12.1468 4.88471 12.038 4.86288 11.912 4.86288C11.8561 4.86288 11.8012 4.86724 11.748 4.87557Z"/>
+  </svg>
+
+  <p>. All Rights Reserved.</p>
+
+ </div>
+
+</div>
+
+</footer>
+
+</div>
+
+
+<!-- Menu -->
+
+<div class="menu">
+
+
+ <div class="container">
+
+  <img class="icon" src="Images/notification.svg">
+  <img class="icon" src="Images/personal.svg">
+
+ </div>
+
+
+ <div class="wrapper">
+
+  <button class="sign-up"><span>Sign Up<span></button>
+  <button class="login"><span>Login<span></button>
+
+ </div>
+
+ <ul>
+  <li>Home</li>
+  <li>About</li>
+  <li>Products</li>
+  <li>Contacts</li>
+ </ul>
+
+ <svg class="Cross" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22.5557 11.5C22.6793 11.5001 22.8026 11.5249 22.917 11.5723C23.0315 11.6197 23.1362 11.69 23.2237 11.7774C23.3109 11.8649 23.3804 11.9696 23.4278 12.084C23.4749 12.1982 23.4989 12.3209 23.499 12.4443V12.4453C23.4989 12.5688 23.475 12.6915 23.4278 12.8057C23.3802 12.9201 23.3105 13.0246 23.2227 13.1123L18.834 17.499L23.2227 21.8867C23.3996 22.0635 23.4986 22.3038 23.499 22.5537C23.4992 22.804 23.4004 23.0446 23.2237 23.2217C23.0467 23.3987 22.8061 23.4989 22.5557 23.499C22.3369 23.499 22.1259 23.4224 21.958 23.2852L21.8887 23.2227L17.499 18.834L13.1123 23.2227C13.0466 23.2884 12.9714 23.344 12.8897 23.3877L12.8057 23.4277C12.6912 23.4751 12.5683 23.499 12.4444 23.499C12.2252 23.4989 12.0137 23.4228 11.8457 23.2852L11.7764 23.2227C11.6891 23.1351 11.6187 23.0304 11.5713 22.916C11.524 22.8016 11.5 22.6784 11.5 22.5547C11.5001 22.431 11.5239 22.3078 11.5713 22.1934L11.6113 22.1094C11.6551 22.0277 11.7108 21.9524 11.7764 21.8867L16.1641 17.499L11.7764 13.1123C11.5995 12.9353 11.5001 12.6946 11.5 12.4443C11.5001 12.194 11.5994 11.9535 11.7764 11.7764L11.8457 11.7139C12.0137 11.5762 12.2253 11.5001 12.4444 11.5C12.6946 11.5 12.9353 11.5995 13.1123 11.7764L17.499 16.1641L21.8887 11.7764L21.9571 11.7139C22.0285 11.6554 22.1087 11.6078 22.1944 11.5723C22.3087 11.525 22.432 11.5001 22.5557 11.5Z"/>
+ </svg>
+
+</div>
+
+
+<!-- Sign Up / Login Window -->
+
+<div class="window-container">
+
+ <div class="window-wrapper">
+
+  <div class="window">
+
+   <div class="wrapper">
+
+    <h1></h1>
+
+    <div class="input-field username">
+     <span>Username</span>
+     <input placeholder="Enter your username" type="text">
+     <p></p>
+    </div>
+
+    <div class="input-field email">
+     <span>Email</span>
+     <input placeholder="Enter your email" type="email">
+     <p></p>
+    </div>
+
+    <div class="input-field password" style="margin-bottom:20px;">
+     <span>Password</span>
+     <a>forgot password?</a>
+     <input placeholder="Enter your password" type="password">
+     <p></p>
+    </div>
+
+    <button><span><span></button>
+
+    <div class="accounts">
+
+     <div class="container">
+
+      <div class="line"></div>
+      <span>or continue with</span>
+      <div class="line"></div>
+
+     </div>
+
+     <div class="account-container">
+      <img class="submit" src="Images/Google.svg">
+      <img class="submit" src="Images/Facebook.svg">
+     </div>
+
+    </div>
+
+   </div>
+
+  <div class="switch">
+   <p></p><span></span>
+  </div>
+
+  <svg class="loader" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <circle cx="40" cy="40" r="20" stroke-linecap="round"/>
+  </svg>
+
+  <div class="success">
+
+   <div class="Pop">
+
+    <svg class="Check" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+     <path d="M36 60L52.0025 76L84 44" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+   </div>
+
+   <span>Logged In</span>
+   <span>Successfully</span>
+
+  </div>
+
+  <svg class="Close" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M22.5557 11.5C22.6793 11.5001 22.8026 11.5249 22.917 11.5723C23.0315 11.6197 23.1362 11.69 23.2237 11.7774C23.3109 11.8649 23.3804 11.9696 23.4278 12.084C23.4749 12.1982 23.4989 12.3209 23.499 12.4443V12.4453C23.4989 12.5688 23.475 12.6915 23.4278 12.8057C23.3802 12.9201 23.3105 13.0246 23.2227 13.1123L18.834 17.499L23.2227 21.8867C23.3996 22.0635 23.4986 22.3038 23.499 22.5537C23.4992 22.804 23.4004 23.0446 23.2237 23.2217C23.0467 23.3987 22.8061 23.4989 22.5557 23.499C22.3369 23.499 22.1259 23.4224 21.958 23.2852L21.8887 23.2227L17.499 18.834L13.1123 23.2227C13.0466 23.2884 12.9714 23.344 12.8897 23.3877L12.8057 23.4277C12.6912 23.4751 12.5683 23.499 12.4444 23.499C12.2252 23.4989 12.0137 23.4228 11.8457 23.2852L11.7764 23.2227C11.6891 23.1351 11.6187 23.0304 11.5713 22.916C11.524 22.8016 11.5 22.6784 11.5 22.5547C11.5001 22.431 11.5239 22.3078 11.5713 22.1934L11.6113 22.1094C11.6551 22.0277 11.7108 21.9524 11.7764 21.8867L16.1641 17.499L11.7764 13.1123C11.5995 12.9353 11.5001 12.6946 11.5 12.4443C11.5001 12.194 11.5994 11.9535 11.7764 11.7764L11.8457 11.7139C12.0137 11.5762 12.2253 11.5001 12.4444 11.5C12.6946 11.5 12.9353 11.5995 13.1123 11.7764L17.499 16.1641L21.8887 11.7764L21.9571 11.7139C22.0285 11.6554 22.1087 11.6078 22.1944 11.5723C22.3087 11.525 22.432 11.5001 22.5557 11.5Z"/>
+  </svg>
+
+ </div>
+
+ </div>
+
+ </div>
+
+</div>
+
+
+<div class="confirmation-container">
+
+ <div class="confirmation-wrapper">
+
+  <div class="confirmation">
+
+   <div class="success">
+
+    <div class="Pop">
+
+     <svg class="Check" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M36 60L52.0025 76L84 44" stroke-linecap="round" stroke-linejoin="round"/>
+     </svg>
+
+    </div>
+
+    <span>Order Confirmed</span>
+    <span>Successfully</span>
+
+   </div>
+
+  </div>
+
+ </div>
+
+</div>
+
+<div class="mouse">
+ <svg class="cursor" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.80368 4.63023L15.8367 6.99023C19.3167 8.35223 21.0567 9.03323 20.9997 10.1132C20.9417 11.1932 19.1257 11.6892 15.4937 12.6792C14.4127 12.9742 13.8717 13.1212 13.4967 13.4962C13.1217 13.8712 12.9747 14.4122 12.6797 15.4932C11.6897 19.1252 11.1937 20.9412 10.1137 20.9992C9.03367 21.0572 8.35367 19.3162 6.99167 15.8362L4.63067 9.80323C3.20467 6.15923 2.49067 4.33823 3.41467 3.41423C4.33867 2.49123 6.15968 3.20423 9.80368 4.63023Z" stroke-linejoin="round"/>
+ </svg>
+</div>
+
+</div>
+
+<script src="Burger-Demo.js"></script>
+<script src="Offers.js"></script>
+
+</body>
+
+</html>
