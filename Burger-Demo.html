@@ -52,16 +52,8 @@ pointer-events:none;}
 body {
 margin:0;
 padding:0;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;}
-
-.Demo-Container {
-position:absolute;
-width:calc(330px + 490px * (100vw - 360px)/1200px);
-height:calc(330px + 490px * (100vw - 360px)/1200px);
-overflow:hidden;
+width:100vw;
+height:100vh;
 display:flex;
 align-items:center;
 justify-content:center;}
@@ -70,7 +62,6 @@ justify-content:center;}
 position:absolute;
 width:1000px;
 height:1000px;
-transform:scale(calc((330px + 490px * (100vw - 360px)/1200px)/1000px));
 overflow:hidden;
 display:flex;
 align-items:center;
@@ -1465,7 +1456,6 @@ animation:click 0.3s forwards;}
 
 <body>
 
-<div class="Demo-Container">
 
 <div class="Main-Container">
 
@@ -1942,8 +1932,6 @@ animation:click 0.3s forwards;}
   </div>
 
  </div>
-
-</div>
 
 <div class="mouse">
  <svg class="cursor" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
