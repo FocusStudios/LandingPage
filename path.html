@@ -1,0 +1,517 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Responsive SVG Clip Path</title>
+
+<style>
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    overflow-x: hidden;
+    background: #f5b000;
+}
+
+
+/* -------------------------------- */
+/* YUMMY */
+/* -------------------------------- */
+
+.yummy {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+
+/* SVG containing the clip path */
+
+.clip-svg {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+
+    top: 0;
+    left: 0;
+
+    pointer-events: none;
+}
+
+
+/* The element being clipped */
+
+.content {
+    position: relative;
+
+    width: 100vw;
+    min-height: 100vh;
+
+    background: #ff5c00;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    clip-path: url(#blobClip);
+}
+
+
+/* Content */
+
+.wrapper {
+    position: relative;
+
+    width: min(800px, 90vw);
+    height: 500px;
+}
+
+
+/* Image */
+
+.image {
+    position: absolute;
+
+    width: 320px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.image img {
+    width: 100%;
+    display: block;
+}
+
+
+/* Text */
+
+.title-container {
+    position: absolute;
+
+    left: 50%;
+    top: 20%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+.title-container h1 {
+    font-family: Arial, sans-serif;
+    font-size: clamp(30px, 5vw, 70px);
+    line-height: 1;
+    color: white;
+}
+
+
+/* Wave */
+
+.wave {
+    position: absolute;
+
+    width: 620px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.wave svg {
+    width: 100%;
+    height: auto;
+}
+
+
+/* Shadow */
+
+.shadow {
+    position: absolute;
+
+    width: 800px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+.shadow svg {
+    width: 100%;
+    height: auto;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<section class="yummy">
+
+
+    <!--
+        SVG used only for the clip path.
+        The SVG itself is invisible.
+    -->
+
+    <svg
+        class="clip-svg"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+
+        <defs>
+
+            <clipPath id="blobClip">
+
+                <path
+                    id="blobPath"
+                    d="
+                        M130 133.203
+
+                        C201.7 100.793
+                        241.455 122.776
+                        310 148.84
+
+                        C387.4 181.459
+                        417.538 200.188
+                        490 171.486
+
+                        V273.703
+
+                        C418.292 292.663
+                        378.796 285.137
+                        310 227.581
+
+                        C239.628 162.71
+                        200.215 146.921
+                        130 171.486
+
+                        V133.203
+
+                        Z
+                    "
+                />
+
+            </clipPath>
+
+        </defs>
+
+    </svg>
+
+
+    <!--
+        Everything inside this element is clipped
+        by the responsive SVG path.
+    -->
+
+    <div class="content">
+
+
+        <div class="wrapper">
+
+
+            <!-- Shadow -->
+
+            <div class="shadow">
+
+                <svg
+                    viewBox="0 0 800 490"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <path
+                        d="
+                            M154 234.242
+                            C249.552 190.818
+                            308.257 173.603
+                            403.029 241.2
+                            C525 328.199
+                            569 288.002
+                            645 259.05
+                        "
+                        stroke="#000"
+                        stroke-width="130"
+                        stroke-linecap="round"
+                        opacity=".15"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- Wave -->
+
+            <div class="wave">
+
+                <svg
+                    viewBox="0 0 620 380"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <path
+                        d="
+                            M64 179.242
+                            C159.552 135.818
+                            218.257 118.603
+                            313.029 186.2
+                            C435 273.199
+                            479 233.002
+                            555 204.05
+                        "
+                        stroke="#fff"
+                        stroke-width="110"
+                        stroke-linecap="round"
+                        opacity=".8"
+                    />
+
+                </svg>
+
+            </div>
+
+
+            <!-- Burger -->
+
+            <div class="image">
+
+                <img
+                    src="Images/Yummy.png"
+                    alt="Burger"
+                >
+
+            </div>
+
+
+            <!-- Title -->
+
+            <div class="title-container">
+
+                <h1>Juicy Burgers,</h1>
+                <h1>Happy Moments</h1>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<script>
+
+
+/*
+    ORIGINAL PATH
+
+    Original X range:
+
+    130 → 490
+
+    Therefore:
+
+    Original width = 360
+*/
+
+
+const BlobPath = document.querySelector("#blobPath");
+const ClipSVG = document.querySelector(".clip-svg");
+
+
+function updateClipPath() {
+
+
+    /*
+        Current screen width
+    */
+
+    const screenWidth = window.innerWidth;
+
+
+    /*
+        Original path width
+    */
+
+    const originalWidth = 360;
+
+
+    /*
+        Calculate the required ratio
+
+        Example:
+
+        360px screen
+        360 / 360 = 1
+
+        720px screen
+        720 / 360 = 2
+
+        1440px screen
+        1440 / 360 = 4
+    */
+
+    const ratio = screenWidth / originalWidth;
+
+
+    /*
+        Convert the original X coordinate
+        to a new coordinate.
+
+        Original:
+
+        130 → 0
+        490 → screenWidth
+    */
+
+    function X(value) {
+
+        return (value - 130) * ratio;
+
+    }
+
+
+    /*
+        Scale Y coordinates using
+        the same ratio so the shape
+        keeps its proportions.
+    */
+
+    function Y(value) {
+
+        return value * ratio;
+
+    }
+
+
+    /*
+        Create the new path.
+
+        Notice that we are NOT using:
+
+        transform: scale()
+
+        We are actually changing
+        the path geometry.
+    */
+
+    const newPath = `
+
+        M${X(130)} ${Y(133.203)}
+
+        C${X(201.7)} ${Y(100.793)}
+         ${X(241.455)} ${Y(122.776)}
+         ${X(310)} ${Y(148.84)}
+
+        C${X(387.4)} ${Y(181.459)}
+         ${X(417.538)} ${Y(200.188)}
+         ${X(490)} ${Y(171.486)}
+
+        V${Y(273.703)}
+
+        C${X(418.292)} ${Y(292.663)}
+         ${X(378.796)} ${Y(285.137)}
+         ${X(310)} ${Y(227.581)}
+
+        C${X(239.628)} ${Y(162.71)}
+         ${X(200.215)} ${Y(146.921)}
+         ${X(130)} ${Y(171.486)}
+
+        V${Y(133.203)}
+
+        Z
+    `;
+
+
+    /*
+        Replace the original
+        path geometry.
+    */
+
+    BlobPath.setAttribute("d", newPath);
+
+
+    /*
+        Set the SVG coordinate system
+        to match the new path size.
+    */
+
+    const height = 380 * ratio;
+
+    ClipSVG.setAttribute(
+        "viewBox",
+        `0 0 ${screenWidth} ${height}`
+    );
+
+
+    /*
+        Make the SVG itself cover
+        the screen.
+    */
+
+    ClipSVG.setAttribute(
+        "width",
+        screenWidth
+    );
+
+    ClipSVG.setAttribute(
+        "height",
+        height
+    );
+
+}
+
+
+/*
+    Initial calculation
+*/
+
+updateClipPath();
+
+
+/*
+    Recalculate whenever
+    the screen size changes.
+*/
+
+window.addEventListener(
+    "resize",
+    updateClipPath
+);
+
+
+</script>
+
+
+</body>
+
+</html>
+```
