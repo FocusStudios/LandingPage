@@ -30,31 +30,6 @@ if ("ontouchstart" in document.documentElement) {
 
 }
 
-document.querySelector(".Main-Container").addEventListener("scroll",() => {
-
-if(document.querySelector(".Main-Container").scrollTop > Header.offsetHeight){
-
- IMGs[0].style.animation="PopUp1 0.4s cubic-bezier(0,0,0.5,2) forwards";
- IMGs[1].style.animation="PopUp2 0.4s cubic-bezier(0,0,0.5,2) forwards 0.2s";
- IMGs[2].style.animation="PopUp3 0.4s cubic-bezier(0,0,0.5,2) forwards 0.4s";
- IMGs[3].style.animation="PopUp4 0.4s cubic-bezier(0,0,0.5,2) forwards 0.6s";
-
- document.querySelectorAll(".daily-routine h1")[0].style.opacity="1";
- document.querySelectorAll(".daily-routine h1")[1].style.opacity="1";
-
-}
-
-Feature.querySelectorAll("ul li").forEach((element,index) => {
-
-if(document.querySelector(".Main-Container").scrollTop  > Header.offsetHeight + Collection.offsetHeight + Routine.offsetHeight + 0.9*Product.offsetHeight + index*Feature.offsetHeight/3){
- 
-  element.style.opacity="1";
-
-}
-
-});
-
-});
 
 function signUp() {
 
@@ -427,9 +402,11 @@ lists.forEach(list => {
 
         </button>
 
-        <svg class="icon" width="20" height="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path d="M15.9248 5.11328C18.4387 3.14475 21.3645 3.08988 23.7754 4.33984L24.0068 4.46484C26.6652 5.95682 28.5815 9.02108 28.4971 12.6436C28.3954 17.0076 24.8407 21.2334 17.7334 25.2979V25.2988C17.1125 25.6542 16.6874 25.9331 16.1797 26.1748C15.7107 26.398 15.3369 26.5 15 26.5C14.6801 26.5 14.3021 26.3974 13.8184 26.168C13.3063 25.9251 12.8654 25.6407 12.2646 25.2969L11.6094 24.915C4.94172 20.969 1.60143 16.8699 1.50293 12.6436C1.41848 9.02141 3.33504 5.95844 5.99414 4.46484L5.99316 4.46387C8.4471 3.08876 11.481 3.08185 14.0752 5.11328C14.6184 5.53865 15.3816 5.53865 15.9248 5.11328Z" stroke-linejoin="round"/>
-        </svg>
+        <div class="icon">
+         <svg width="21" height="21" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M15.9248 5.11328C18.4387 3.14475 21.3645 3.08988 23.7754 4.33984L24.0068 4.46484C26.6652 5.95682 28.5815 9.02108 28.4971 12.6436C28.3954 17.0076 24.8407 21.2334 17.7334 25.2979V25.2988C17.1125 25.6542 16.6874 25.9331 16.1797 26.1748C15.7107 26.398 15.3369 26.5 15 26.5C14.6801 26.5 14.3021 26.3974 13.8184 26.168C13.3063 25.9251 12.8654 25.6407 12.2646 25.2969L11.6094 24.915C4.94172 20.969 1.60143 16.8699 1.50293 12.6436C1.41848 9.02141 3.33504 5.95844 5.99414 4.46484L5.99316 4.46387C8.4471 3.08876 11.481 3.08185 14.0752 5.11328C14.6184 5.53865 15.3816 5.53865 15.9248 5.11328Z" stroke-linejoin="round"/>
+         </svg>
+        </div>
 
        </div>
 
@@ -471,8 +448,6 @@ Icons.forEach(Icon => {
 
 Icon.addEventListener("click",() => {
 
- document.querySelector("audio").play();
-
  if(Icon.classList.contains("active")){
 
   Icon.classList.remove("active");
@@ -506,28 +481,290 @@ button.addEventListener("click",() => {
 });
 
 
-// Carousel
-let MaxScrollLeft = Collection.querySelector(".wrapper").scrollWidth - Collection.querySelector(".wrapper").clientWidth;
-
-window.addEventListener("resize",() => {MaxScrollLeft = Collection.querySelector(".wrapper").scrollWidth - Collection.querySelector(".wrapper").clientWidth;});
-
-Collection.querySelector(".wrapper").addEventListener("scroll",() => {
+const Mouse = document.querySelector(".Mouse");
 
 
-if(Collection.querySelector(".wrapper").scrollLeft <= 10){Collection.querySelector(".left").classList.remove("active");}else{Collection.querySelector(".left").classList.add("active");}
-if(Collection.querySelector(".wrapper").scrollLeft >= MaxScrollLeft - 10){Collection.querySelector(".right").classList.remove("active");}else{Collection.querySelector(".right").classList.add("active");}
+function demo () {
 
+// Step 1
+setTimeout(() => {
+
+Container.style.transform = "translateY(-700px)";
+
+
+// Step 2
+setTimeout(() => {
+
+Routine.classList.add("active");
+
+
+// Step 3
+setTimeout(() => {
+
+Collection.querySelector(".carousel").style.transform = "translateX(-260px)";
+
+
+// Step 4
+setTimeout(() => {
+
+Collection.querySelector(".carousel").style.transform = "translateX(-560px)";
+
+
+// Step 5
+setTimeout(() => {
+
+Collection.querySelector(".carousel").style.transform = "translateX(-820px)";
+
+
+// Step 6
+setTimeout(() => {
+
+Container.style.transform = "translateY(-1500px)";
+
+
+// Step 7
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-115px,-405px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[1].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 8
+setTimeout(() => {
+
+Mouse.style.transform = "translate(15px,-405px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[2].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 9
+setTimeout(() => {
+
+Mouse.style.transform = "translate(130px,-405px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[3].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 10
+setTimeout(() => {
+
+Mouse.style.transform = "translate(255px,-405px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[4].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 11
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-265px,-405px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[0].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 12
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-310px,-65px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+buttons[0].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 13
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-270px,-65px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Icons[0].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 14
+setTimeout(() => {
+
+Mouse.style.transform = "translate(500px,0)";
+
+Container.style.transform = "translateY(-3040px)";
+Container.style.transition = "2s";
+
+},1000);
+
+
+setTimeout(() => {
+
+Feature.querySelectorAll("ul li")[0].style.opacity = "1";
+
+},1000);
+
+setTimeout(() => {
+
+Feature.querySelectorAll("ul li")[1].style.opacity = "1";
+
+},1500);
+
+setTimeout(() => {
+
+Feature.querySelectorAll("ul li")[2].style.opacity = "1";
+
+},2000);
+
+
+// Step 15
+setTimeout(() => {
+
+Container.style.transform = "translateY(0)";
+
+
+// Step 16
+setTimeout(() => {
+
+Container.style.transition = "0.6s";
+
+Collection.querySelector(".carousel").style.transform = "translateX(0)";
+
+setTimeout(() => {
+  
+Routine.classList.remove("active");
+
+Feature.querySelectorAll("ul li").forEach(element => {
+  element.style.opacity = "0";
 });
 
-Collection.querySelector(".left").addEventListener("click",() => {
+Icons[0].click();
+buttons[0].click();
 
-Collection.querySelector(".wrapper").scrollLeft -= 300;
+},2000);
 
-});
+},100);
 
 
-Collection.querySelector(".right").addEventListener("click",() => {
+},4000);
 
-Collection.querySelector(".wrapper").scrollLeft += 300;
 
-});
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},1500);
+
+
+},1500);
+
+
+},1500);
+
+
+},1000);
+
+
+},300);
+
+
+},1000);
+
+
+}
+
+
+demo();
+setInterval(() => {demo();},27000);
