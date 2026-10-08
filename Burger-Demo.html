@@ -63,6 +63,7 @@ justify-content:center;}
 position:absolute;
 width:1000px;
 height:1000px;
+transform: scale(0.2);
 overflow:hidden;
 display:flex;
 align-items:center;
@@ -72,8 +73,8 @@ background:var(--background);}
 .Container {
 position:absolute;
 top:0;
-width:1000px;
-transition:0.4s;
+width:100%;
+transition:0.6s;
 display:flex;
 flex-direction:column;}
 
@@ -83,8 +84,8 @@ flex-direction:column;}
 header {
 position:relative;
 width:100%;
-height:700px;
-padding:200px 0 125px 0;
+height:650px;
+padding:200px 0 50px 0;
 display:flex;
 align-items:center;
 justify-content:space-between;}
@@ -128,7 +129,7 @@ height:270px;
 object-fit:cover;
 opacity:0;
 transform:translate(0,5.5%) scale(0.5);
-transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.5s;}
+transition:none;}
 
 .Fries {
 position:absolute;
@@ -137,7 +138,7 @@ height:270px;
 object-fit:cover;
 opacity:0;
 transform:translate(-44%,-8%) scale(0.5);
-transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.7s;}
+transition:none;}
 
 .Soda {
 position:absolute;
@@ -146,19 +147,22 @@ height:255px;
 object-fit:cover;
 opacity:0;
 transform:translate(47%,-14.7%) scale(0.5);
-transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.9s;}
+transition:none;}
 
 header.active .Burger {
 opacity:1;
-transform:translate(0,5.5%) scale(1);}
+transform:translate(0,5.5%) scale(1);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.5s;}
 
 header.active .Fries {
 opacity:1;
-transform:translate(-44%,-8%) scale(1);}
+transform:translate(-44%,-8%) scale(1);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.7s;}
 
 header.active .Soda {
 opacity:1;
-transform:translate(47%,-14.7%) scale(1);}
+transform:translate(47%,-14.7%) scale(1);
+transition:0.6s cubic-bezier(0,0,0.5,1.8) 0.9s;}
 
 header .logo {
 position:absolute;
@@ -223,6 +227,70 @@ padding-top:7px;}
 
 body.mouse header a:hover, body.mouse .orders ul li .main-container:hover {
 transform:scale(1.2);}
+
+.menu .container {
+position:absolute;
+display:none;
+align-items:center;
+justify-content:center;}
+
+.menu .container .icon {
+position:relative;
+width:40px;
+height:40px;
+transition:0.3s;
+fill:url(#gradient);
+pointer-events:auto;}
+
+.menu {
+position:absolute;
+top:0;
+width:100%;
+height:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:right 0.4s, filter 0.4s;}
+
+.menu ul {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:25px;
+list-style:none;}
+
+.menu ul li {
+position:relative;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+color:var(--secondary);
+padding:5px 10px;
+font-size:1.2rem;}
+
+.menu .wrapper {
+position:absolute;
+right:20px;
+display:flex;
+gap:20px;
+align-items:center;
+justify-content:center;}
+
+.menu .sign-up span {
+color:black;}
+
+.menu .sign-up {
+background:var(--secondary);}
+
+.Cross, .Ham {
+display:none;}
+
+.menu .container {
+top:10px;
+right:10px;
+gap:10px;}
 
 .menu button, .orders .Price button {
 position:relative;
@@ -357,7 +425,7 @@ box-shadow:0 2px 8px rgba(255,157,0,0.5);}
 
 .offers li button span {
 color:var(--secondary);
-font-size:0.5rem;
+font-size:0.55rem;
 text-shadow:0 1px 2px rgba(0,0,0,0.3);}
 
 body.touch .offers li button span {
@@ -376,7 +444,8 @@ filter:drop-shadow(0 0 5px rgba(0,0,0,0.6));}
 /* Yummy */
 
 .yummy {
-height:calc(1000px * 250px/360px);}
+height:calc(1000px * 250px/360px);
+margin-top:-80px;}
 
 .yummy .wrapper {
 position:absolute;
@@ -451,18 +520,19 @@ text-shadow:0 2px 3px rgba(0,0,0,0.5);}
 .yummy .title-container {
 opacity:0;
 transform:scale(0.5);
-transition:0.4s cubic-bezier(0,0,0.5,1.7) 0.6s;}
+transition:none;}
 
 .yummy.active .title-container {
 opacity:1;
-transform:scale(1);}
+transform:scale(1);
+transition:0.4s cubic-bezier(0,0,0.5,1.7) 0.6s;}
 
 /* Orders */
 
 .orders {
 padding:50px 0 150px 0;
 flex-direction:column;
-gap:80px;}
+gap:50px;}
 
 .orders .wrapper {
 position:relative;
@@ -586,6 +656,14 @@ justify-content:center;
 transition:0.3s;
 cursor:pointer;}
 
+.orders ul li.active .main-container {
+animation:Click 0.4s forwards;}
+
+@keyframes Click {
+0%{transform:scale(1.2);}
+50%{transform:scale(0.8);}
+100%{transform:scale(1);}}
+
 .orders ul li .container {
 position:relative;
 width:100%;
@@ -615,8 +693,8 @@ transform:translate(-15px,-25px);}
 
 .orders ul li .check {
 position:absolute;
-width:100px;
-height:100px;
+width:80px;
+height:80px;
 opacity:0;
 transition:0.3s;}
 
@@ -657,34 +735,35 @@ font-weight:800;
 text-shadow:0 1px 2px rgba(0,0,0,0.2);}
 
 .orders .Price {
-position:relative;
-width:80%;
+position:absolute;
+bottom:0;
+width:90%;
 padding:20px;
 display:none;
 align-items:center;
 justify-content:space-between;}
 
 .orders .Price button {
-padding:calc(10px + 5px * (100vw - 360px)/1200px) calc(20px + 5px * (100vw - 360px)/1200px);
-box-shadow:0 calc(2px + 2px * (100vw - 360px)/1200px) calc(8px + 8px * (100vw - 360px)/1200px) rgba(255,157,0,0.5);}
+padding:12px 22px;
+box-shadow:0 3px 12px rgba(255,157,0,0.5);}
 
 .orders .Price button span {
-font-size:calc(0.6rem + 0.6rem * (100vw - 360px)/1200px);
-text-shadow:0 calc(1px + 1px * (100vw - 360px)/1200px) calc(2px + 2px * (100vw - 360px)/1200px) rgba(0,0,0,0.4);}
+font-size:0.9rem;
+text-shadow:0 2px 3px rgba(0,0,0,0.4);}
 
 body.touch .orders .Price button span {
-padding-top:calc(3.75px + 3.75px * (100vw - 360px)/1200px);}
+padding-top:5px;}
 
 .orders .Price h1 {
-font-size:calc(1.2rem + 1rem*(100vw - 360px)/1200px);}
+font-size:1.7rem;}
 
 
 /* Features */
 
 .features {
 flex-direction:column;
-gap:80px;
-padding-bottom:150px;}
+gap:50px;
+padding:50px 0 100px 0;}
 
 .features ul {
 position:relative;
@@ -746,10 +825,7 @@ height:230px;
 display:flex;
 align-items:center;
 justify-content:center;
-pointer-events:auto;
-overflow:auto;
-scroll-behavior:smooth;
-scroll-snap-type:x mandatory;}
+pointer-events:auto;}
 
 .reviews .carousel {
 position:absolute;
@@ -760,7 +836,8 @@ list-style:none;
 display:flex;
 align-items:center;
 justify-content:start;
-gap:20px;}
+gap:20px;
+transition:0.4s;}
 
 .reviews li {
 position:relative;
@@ -1075,12 +1152,12 @@ text-shadow:0 1px 2px rgba(0,0,0,1);}
 /* Sign Up / Login Window */
 
 .window-container, .confirmation-container {
-position:fixed;
+position:absolute;
 left:0;
-bottom:-100vh;
-width:100vw;
-height:100vh;
-display:none;
+bottom:-100%;
+width:100%;
+height:100%;
+display:flex;
 align-items:center;
 justify-content:center;
 pointer-events:auto;
@@ -1368,71 +1445,7 @@ animation:dash 1.5s ease-in-out infinite;}
 .window.Success .loader {
 display:flex;}
 
-.menu .container {
-position:absolute;
-display:none;
-align-items:center;
-justify-content:center;}
-
-.menu .container .icon {
-position:relative;
-width:40px;
-height:40px;
-transition:0.3s;
-fill:url(#gradient);
-pointer-events:auto;}
-
-.menu {
-position:absolute;
-top:0;
-width:100%;
-height:80px;
-display:flex;
-align-items:center;
-justify-content:center;
-transition:right 0.4s, filter 0.4s;}
-
-.menu ul {
-position:absolute;
-display:flex;
-align-items:center;
-justify-content:center;
-gap:25px;
-list-style:none;}
-
-.menu ul li {
-position:relative;
-height:100%;
-display:flex;
-align-items:center;
-justify-content:center;
-color:var(--secondary);
-padding:5px 10px;
-font-size:1.2rem;}
-
-.menu .wrapper {
-position:absolute;
-right:20px;
-display:flex;
-gap:20px;
-align-items:center;
-justify-content:center;}
-
-.menu .sign-up span {
-color:black;}
-
-.menu .sign-up {
-background:var(--secondary);}
-
-.Cross, .Ham {
-display:none;}
-
-.menu .container {
-top:10px;
-right:10px;
-gap:10px;}
-
-.mouse {
+.Mouse {
 position:absolute;
 z-index:5;
 transition:0.5s;
@@ -1443,7 +1456,7 @@ position:absolute;
 fill:var(--secondary);
 filter:drop-shadow(0 2px 5px rgba(255,92,0,0.5));}
 
-.cursor.active {
+.cursor.active, .orders .Price button.active, .right.click {
 animation:click 0.3s forwards;}
 
 @keyframes click {
@@ -1455,7 +1468,7 @@ animation:click 0.3s forwards;}
 
 </head>
 
-<body>
+<body class="mouse">
 
 
 <div class="Main-Container">
@@ -1692,7 +1705,7 @@ animation:click 0.3s forwards;}
 
   <div class="arrows">
    <img class="left" src="Images/left-arrow.svg">
-   <img class="right" src="Images/right-arrow.svg">
+   <img class="right active" src="Images/right-arrow.svg">
   </div>
 
  </div>
@@ -1784,7 +1797,6 @@ animation:click 0.3s forwards;}
 
 </footer>
 
-</div>
 
 
 <!-- Menu -->
@@ -1817,6 +1829,9 @@ animation:click 0.3s forwards;}
  <svg class="Cross" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M22.5557 11.5C22.6793 11.5001 22.8026 11.5249 22.917 11.5723C23.0315 11.6197 23.1362 11.69 23.2237 11.7774C23.3109 11.8649 23.3804 11.9696 23.4278 12.084C23.4749 12.1982 23.4989 12.3209 23.499 12.4443V12.4453C23.4989 12.5688 23.475 12.6915 23.4278 12.8057C23.3802 12.9201 23.3105 13.0246 23.2227 13.1123L18.834 17.499L23.2227 21.8867C23.3996 22.0635 23.4986 22.3038 23.499 22.5537C23.4992 22.804 23.4004 23.0446 23.2237 23.2217C23.0467 23.3987 22.8061 23.4989 22.5557 23.499C22.3369 23.499 22.1259 23.4224 21.958 23.2852L21.8887 23.2227L17.499 18.834L13.1123 23.2227C13.0466 23.2884 12.9714 23.344 12.8897 23.3877L12.8057 23.4277C12.6912 23.4751 12.5683 23.499 12.4444 23.499C12.2252 23.4989 12.0137 23.4228 11.8457 23.2852L11.7764 23.2227C11.6891 23.1351 11.6187 23.0304 11.5713 22.916C11.524 22.8016 11.5 22.6784 11.5 22.5547C11.5001 22.431 11.5239 22.3078 11.5713 22.1934L11.6113 22.1094C11.6551 22.0277 11.7108 21.9524 11.7764 21.8867L16.1641 17.499L11.7764 13.1123C11.5995 12.9353 11.5001 12.6946 11.5 12.4443C11.5001 12.194 11.5994 11.9535 11.7764 11.7764L11.8457 11.7139C12.0137 11.5762 12.2253 11.5001 12.4444 11.5C12.6946 11.5 12.9353 11.5995 13.1123 11.7764L17.499 16.1641L21.8887 11.7764L21.9571 11.7139C22.0285 11.6554 22.1087 11.6078 22.1944 11.5723C22.3087 11.525 22.432 11.5001 22.5557 11.5Z"/>
  </svg>
+
+</div>
+
 
 </div>
 
@@ -1906,7 +1921,6 @@ animation:click 0.3s forwards;}
 
  </div>
 
-</div>
 
 
 <div class="confirmation-container">
@@ -1932,18 +1946,22 @@ animation:click 0.3s forwards;}
 
   </div>
 
- </div>
+  </div>
 
-<div class="mouse">
- <svg class="cursor" width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+</div>
+
+
+<div class="Mouse">
+ <svg class="cursor" width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
   <path d="M9.80368 4.63023L15.8367 6.99023C19.3167 8.35223 21.0567 9.03323 20.9997 10.1132C20.9417 11.1932 19.1257 11.6892 15.4937 12.6792C14.4127 12.9742 13.8717 13.1212 13.4967 13.4962C13.1217 13.8712 12.9747 14.4122 12.6797 15.4932C11.6897 19.1252 11.1937 20.9412 10.1137 20.9992C9.03367 21.0572 8.35367 19.3162 6.99167 15.8362L4.63067 9.80323C3.20467 6.15923 2.49067 4.33823 3.41467 3.41423C4.33867 2.49123 6.15968 3.20423 9.80368 4.63023Z" stroke-linejoin="round"/>
  </svg>
 </div>
 
+
+
 </div>
 
 <script src="Burger-Demo.js"></script>
-<script src="Offers.js"></script>
 
 </body>
 
