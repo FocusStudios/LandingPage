@@ -34,18 +34,6 @@ if ("ontouchstart" in document.documentElement) {
 
 }
 
-setTimeout(() => {Header.classList.add("active");},100);
-
-document.querySelector(".Main-Container").addEventListener("scroll",() => {
-
- if(document.querySelector(".Main-Container").scrollTop > Header.offsetHeight + 0.25*Offer.offsetHeight){
-
-   Yummy.classList.add("active");
-
- }
-
-});
-
 
 function signUp() {
 
@@ -608,6 +596,7 @@ Items.forEach((Item, index) => {
 Confirm.addEventListener("click", () => {
 
  document.querySelector(".confirmation-container").classList.add("active");
+ Confirm.classList.add("active");
  Container.style.filter="brightness(75%)";
 
  setTimeout(() => {
@@ -617,6 +606,7 @@ Confirm.addEventListener("click", () => {
   setTimeout(() => {
    document.querySelector(".confirmation-container").classList.remove("active");
    document.querySelector(".confirmation-container").scrollTop = 0;
+   Confirm.classList.remove("active");
 
    Items.forEach(Item => Item.classList.remove("active"));
    Price.style.display = "none";
@@ -705,43 +695,666 @@ window.addEventListener("load", async () => {
 window.addEventListener("resize", updateFAQ);
 
 
-// Reviews
-Review.querySelector(".right").classList.add("active");
+const carousel = document.querySelector(".offers .carousel");
 
-Review.querySelector(".wrapper").addEventListener("scroll",() => {
+let isDragging = false;
+let isVerticalScroll = false;
+let startX = 0;
+let startY = 0;
+let slidesInView;
+let SlidesPerView;
 
- if(Review.querySelector(".wrapper").scrollLeft <= 10){
 
-   Review.querySelector(".left").classList.remove("active");
+let totalRealSlides = document.querySelectorAll(".slide").length;
 
-  }else{
+let N;
 
-   Review.querySelector(".left").classList.add("active");
+N = 2 * document.querySelectorAll(".slide").length;
+
+for (let i = 0; i < N; i++) {
+
+ let clone = document.querySelectorAll(".slide")[i % document.querySelectorAll(".slide").length].cloneNode(true);
+
+ carousel.appendChild(clone);
+
+}
+
+
+let P = 0;
+let centralSlide = totalRealSlides + 1;
+let currentIndex = centralSlide;
+
+
+function updateLayout() {
+
+ SlidesPerView = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--x"));
+
+ for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
+
+   document.querySelectorAll(".slide")[i].style.left=`calc(${i - currentIndex}*(var(--width) + var(--gap)) + 2*var(--gap))`;
+  
+ }
+
+}
+
+
+updateLayout();
+window.addEventListener("resize", updateLayout);
+
+
+function appendSlides() {
+
+  const slides = carousel.querySelectorAll(".slide");
+
+  for (let i = 0; i < SlidesPerView; i++) {
+
+    slides[i].style.transition = "none";
+    carousel.append(slides[i]);
+    
+  }
+
+  currentIndex -= SlidesPerView;
+
+}
+
+
+function prependSlides() {
+
+  const slides = carousel.querySelectorAll(".slide");
+
+  for (let i = 0; i < SlidesPerView; i++) {
+    
+    slides[i].style.transition = "none";
+    carousel.prepend(slides[slides.length - i - 1]);
 
   }
 
+  currentIndex += SlidesPerView;
 
- if(Review.querySelector(".wrapper").scrollLeft >= MaxScrollLeft - 10){
-  
-   Review.querySelector(".right").classList.remove("active");
+}
 
- }else{
 
-   Review.querySelector(".right").classList.add("active");
+function forward() {
+
+ currentIndex += SlidesPerView;
+
+ for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
+    
+   document.querySelectorAll(".slide")[i].style.left=`calc(${i - currentIndex}*(var(--width) + var(--gap)) + 2*var(--gap))`;
 
  }
 
+}
+
+
+function backward() {
+
+ currentIndex -= SlidesPerView;
+
+ for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
+    
+   document.querySelectorAll(".slide")[i].style.left=`calc(${i - currentIndex}*(var(--width) + var(--gap)) + 2*var(--gap))`;
+
+ }
+
+}
+
+
+function dragStart(e) {
+
+ stopAutoplay();
+ carousel.style.cursor="grab";
+
+ isDragging = false;
+ isVerticalScroll = false;
+
+ document.querySelectorAll(".slide").forEach(Slide => Slide.style.transition="0s");
+
+ if(currentIndex > centralSlide){appendSlides();}
+ if(currentIndex < centralSlide){prependSlides();}
+
+ startX = e.type.includes("touch") ? e.touches[0].clientX : e.clientX;
+ startY = e.type.includes("touch") ? e.touches[0].clientY : e.clientY;
+
+}
+
+
+function dragging(e) {
+
+ if (isVerticalScroll) return;
+ carousel.style.cursor="grabbing";
+
+ let dx;
+ let dy;
+
+ dx = e.type.includes("touch") ? e.touches[0].clientX - startX : e.clientX - startX;
+ dy = e.type.includes("touch") ? e.touches[0].clientY - startY : e.clientY - startY;
+ 
+
+ // Detect vertical scroll intent
+ if (!isDragging && Math.abs(dy) > Math.abs(dx) && carousel.classList.contains("touch")) {
+
+   isVerticalScroll = true;
+   document.body.style.overflowY="auto";
+
+   return;
+
+ }else{
+  
+   document.body.style.overflowY="hidden";
+  
+ }
+
+
+ isDragging = true;
+
+ P = dx;
+
+ for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
+
+   document.querySelectorAll(".slide")[i].style.left=`calc(${i - currentIndex}*(var(--width) + var(--gap)) + 2*var(--gap) + ${dx}px)`;
+  
+ }
+
+
+}
+
+function dragEnd() {
+
+ carousel.style.cursor="grab";
+
+ if(!isDragging) return;
+ isDragging = false;
+
+ document.querySelectorAll(".slide").forEach(Slide => Slide.style.transition="0.4s");
+
+ if(P >= -60 && P <= 60){
+
+   for(let i = 0; i < document.querySelectorAll(".slide").length; i++) {
+
+     document.querySelectorAll(".slide")[i].style.left=`calc(${i - currentIndex}*(var(--width) + var(--gap)) + 2*var(--gap))`;
+
+   }
+
+  }else if(P > 60){
+
+   backward();
+
+  }else if(P < -60) {
+
+   forward();
+
+  }
+
+ resetAutoplayDelay();
+
+}
+
+
+// Touch Events
+carousel.addEventListener('touchstart', (e) => {dragStart(e);});
+carousel.addEventListener('touchmove', (e) => {dragging(e);});
+carousel.addEventListener('touchend', dragEnd);
+
+let isMouseDown = false;
+
+// Mouse Events
+carousel.addEventListener('mousedown', (e) => {
+isMouseDown = true;
+dragStart(e);
+});
+
+carousel.addEventListener('mousemove', (e) => {
+if (!isMouseDown) return;
+dragging(e);
+});
+
+carousel.addEventListener('mouseup', () => {
+if (!isMouseDown) return;
+isMouseDown = false;
+dragEnd();
+});
+
+carousel.addEventListener('mouseleave', () => {
+if (!isMouseDown) return;
+isMouseDown = false;
+dragEnd();
 });
 
 
-Review.querySelector(".left").addEventListener("click",() => {
+// Autoplay logic
+let autoplayTimer = null;
+let autoplayInterval = 1500;
+let idleTimeout = null;
 
- Review.querySelector(".wrapper").scrollLeft -= 300;
+function startAutoplay() {
 
-});
+ if (autoplayTimer) return;
 
-Review.querySelector(".right").addEventListener("click",() => {
+ autoplayTimer = setInterval(() => {
 
- Review.querySelector(".wrapper").scrollLeft += 300;
+   document.querySelectorAll(".slide").forEach(Slide => Slide.style.transition="0.4s");
 
-});
+   appendSlides();
+   forward();
+
+ }, autoplayInterval);
+
+}
+
+
+function stopAutoplay() {
+
+  clearInterval(autoplayTimer);
+  autoplayTimer = null;
+  clearTimeout(idleTimeout);
+
+}
+
+function resetAutoplayDelay() {
+
+  stopAutoplay();
+  clearTimeout(idleTimeout);
+
+  idleTimeout = setTimeout(() => {
+    startAutoplay();
+  }, 5000);
+
+}
+
+
+const Mouse = document.querySelector(".Mouse");
+
+
+
+function demo () {
+
+// Step 1
+setTimeout(() => {
+  
+Header.classList.add("active");
+
+startAutoplay();
+
+// Step 2
+setTimeout(() => {
+
+Container.style.transform = "translateY(-600px)";
+
+Yummy.classList.add("active");
+
+
+// Step 3
+setTimeout(() => {
+
+Container.style.transform = "translateY(-1650px)";
+
+
+// Step 4
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-330px,-460px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[1].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 5
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-230px,-460px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[2].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 6
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-115px,-460px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[3].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 7
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-440px,-460px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Buttons[0].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 8
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-370px,-250px)";
+
+setTimeout(() => {
+
+Items[0].querySelector(".main-container").style.transform = "scale(1.2)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Items[0].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 9
+setTimeout(() => {
+
+Mouse.style.transform = "translate(-150px,-250px)";
+
+setTimeout(() => {
+
+Items[1].querySelector(".main-container").style.transform = "scale(1.2)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Items[1].click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 10
+setTimeout(() => {
+
+Mouse.style.transform = "translate(380px,160px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+
+Confirm.click();
+
+setTimeout(() => {
+
+Items[0].querySelector(".main-container").style.transform = "scale(1)";
+Items[1].querySelector(".main-container").style.transform = "scale(1)";
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 11
+setTimeout(() => {
+
+Container.style.transform = "translateY(-2360px)";
+
+
+// Step 12
+setTimeout(() => {
+
+Mouse.style.transform = "translate(450px,15px)";
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+Review.querySelector(".right").classList.add("click");
+
+
+Review.querySelector(".left").classList.add("active");
+Review.querySelector(".carousel").style.transform = "translateX(-260px)"
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+Review.querySelector(".right").classList.remove("click");
+
+
+// Step 13
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+Review.querySelector(".right").classList.add("click");
+
+Review.querySelector(".carousel").style.transform = "translateX(-560px)"
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+Review.querySelector(".right").classList.remove("click");
+
+
+// Step 14
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+Review.querySelector(".right").classList.add("click");
+
+Review.querySelector(".right").classList.remove("active");
+Review.querySelector(".carousel").style.transform = "translateX(-820px)"
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+Review.querySelector(".right").classList.remove("click");
+
+
+// Step 15
+setTimeout(() => {
+
+Container.style.transform = "translateY(-2900px)";
+
+setTimeout(() => {
+
+Mouse.style.transform = "translate(420px,-275px)";
+
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+sections[0].querySelector(".arrow").click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 16
+setTimeout(() => {
+
+Mouse.style.transform = "translate(420px,-195px)";
+
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+sections[1].querySelector(".arrow").click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 17
+setTimeout(() => {
+
+Mouse.style.transform = "translate(420px,-235px)";
+
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.add("active");
+sections[1].querySelector(".arrow").click();
+
+setTimeout(() => {
+
+Mouse.querySelector(".cursor").classList.remove("active");
+
+
+// Step 18
+setTimeout(() => {
+
+Container.style.transform = "translateY(0)";
+Container.style.transition = "2s";
+Mouse.style.transform = "translate(500px,0)";
+Header.classList.remove("active");
+stopAutoplay();
+
+
+// Step 19
+setTimeout(() => {
+
+Yummy.classList.remove("active");
+Container.style.transition = "0.6s";
+Review.querySelector(".left").classList.remove("active");
+Review.querySelector(".right").classList.add("active");
+Review.querySelector(".carousel").style.transform = "translateX(0)"
+
+
+},2000);
+
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},500);
+
+},500);
+
+},1000);
+
+
+},500);
+
+},1500);
+
+
+},500);
+
+},1500);
+
+
+},500);
+
+},500);
+
+},1000);
+
+
+},1500);
+
+
+},500);
+
+},500);
+
+},800);
+
+
+},500);
+
+},500);
+
+},200);
+
+},800);
+
+
+},500);
+
+},500);
+
+},200);
+
+},1200);
+
+
+},500);
+
+},500);
+
+},1200);
+
+
+},500);
+
+},500);
+
+},1200);
+
+
+},500);
+
+},500);
+
+},1200);
+
+
+},500);
+
+},500);
+
+},1200);
+
+
+
+},3000);
+
+
+},3000);
+
+
+},100);
+
+
+}
+
+
+demo();
+setInterval(() => {demo();},38000);
+
