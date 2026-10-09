@@ -347,6 +347,7 @@ flex-direction:column;}
 
 .offers {
 width:100%;
+height:340px
 padding-bottom:50px;
 gap:30px;}
 
@@ -529,6 +530,7 @@ transition:0.4s cubic-bezier(0,0,0.5,1.7) 0.6s;}
 /* Orders */
 
 .orders {
+height:750px;
 padding:50px 0 150px 0;
 flex-direction:column;
 gap:50px;}
@@ -760,6 +762,7 @@ font-size:1.7rem;}
 /* Features */
 
 .features {
+height:360px;
 flex-direction:column;
 gap:50px;
 padding:50px 0 100px 0;}
@@ -807,6 +810,7 @@ text-align:center;}
 /* Reviews */
 
 .reviews {
+height:330px;
 padding-bottom:40px;}
 
 .reviews .wrapper-container {
@@ -987,11 +991,15 @@ justify-content:center;}
 .FAQ ul li .wrapper {
 position:relative;
 width:100%;
+height:50px;
 display:flex;
 align-items:center;
 justify-content:center;
 overflow:hidden;
 transition:0.3s ease-out;}
+
+.FAQ ul li .wrapper.active {
+height:85px;}
 
 .FAQ ul li span {
 position:absolute;
@@ -1009,6 +1017,7 @@ text-shadow:0 2px 4px rgba(0,0,0,0.2);}
 
 .FAQ ul li p {
 position:absolute;
+top:50px;
 width:100%;
 padding:0 10px 10px 10px;
 display:flex;
@@ -1051,6 +1060,7 @@ transform:rotate(180deg);}
 footer {
 position:relative;
 width:100%;
+height:480px;
 display:flex;
 justify-content:center;}
 
@@ -1961,18 +1971,6 @@ animation:click 0.3s forwards;}
 </div>
 
 <script src="Burger-Demo.js"></script>
-
-    <script>
-
-      setTimeout(() => {
-document.querySelectorAll("header h1").innerHTML = document.querySelectorAll(".FAQ .wrapper")[0].offsetHeight;
-                 },1000);
-
-      setTimeout(() => {
-document.querySelectorAll("header h1").innerHTML = document.querySelectorAll(".FAQ .wrapper")[0].offsetHeight;
-                 },2000);
-      
-    </script>
 
 </body>
 
