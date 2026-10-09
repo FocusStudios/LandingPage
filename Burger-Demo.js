@@ -1171,7 +1171,7 @@ Review.querySelector(".right").classList.remove("click");
 // Step 15
 setTimeout(() => {
 
-Container.style.transform = "translateY(-2880px)";
+Container.style.transform = "translateY(-2900px)";
 
 setTimeout(() => {
 
