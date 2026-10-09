@@ -652,47 +652,22 @@ faqs.forEach(faq => {
 
 const sections = document.querySelectorAll(".FAQ .wrapper");
 
-let MaxScrollLeft;
-
-function updateFAQ() {
-
-    sections.forEach(section => {
-        const H1 = section.querySelector("span").offsetHeight;       
-        const H2 = section.querySelector("p").offsetHeight;
-        section.querySelector("p").style.top = `${H1}px`;       
-        section.querySelector(".arrow").style.top = `${(H1 - 40) / 2}px`;
-        if (section.classList.contains("active")) {section.style.height = `${H1 + H2}px`;} else {section.style.height = `${H1}px`;}
-    });
-
-    MaxScrollLeft = Review.querySelector(".wrapper").scrollWidth - Review.querySelector(".wrapper").clientWidth;
-
-}
-
 sections.forEach(section => {
 
     section.querySelector(".arrow").addEventListener("click", () => {
+        
+        if (section.classList.contains("active")) {
+          
+            section.classList.remove("active");           
+        
+        }else{
 
-        const H1 = section.querySelector("span").offsetHeight;       
-        const H2 = section.querySelector("p").offsetHeight;
-        const isActive = section.classList.contains("active");
-        sections.forEach(item => {
-            const itemH1 = item.querySelector("span").offsetHeight;
-            item.classList.remove("active");            item.style.height = `${itemH1}px`;
-        });
-
-        if (!isActive) {
-            section.classList.add("active");           
-         section.style.height = `${H1 + H2}px`;
+          section.classList.add("active");
+          
         }
+      
     });
 });
-
-window.addEventListener("load", async () => {
-    await document.fonts.ready;
-    updateFAQ();
-});
-
-window.addEventListener("resize", updateFAQ);
 
 
 const carousel = document.querySelector(".offers .carousel");
