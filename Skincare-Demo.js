@@ -767,4 +767,4 @@ buttons[0].click();
 
 
 demo();
-setInterval(() => {demo();},27000);
+setInterval(() => {demo();},28000);
