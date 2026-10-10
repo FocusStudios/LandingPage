@@ -652,21 +652,23 @@ faqs.forEach(faq => {
 
 const sections = document.querySelectorAll(".FAQ .wrapper");
 
+
 sections.forEach(section => {
 
-    section.querySelector(".arrow").addEventListener("click", () => {
-        
-        if (section.classList.contains("active")) {
-          
-            section.classList.remove("active");           
-        
-        }else{
+  section.querySelector(".arrow").addEventListener("click", () => {
 
-          section.classList.add("active");
-          
-        }
-      
-    });
+    const isActive = section.classList.contains("active");
+
+    sections.forEach(section => {section.classList.remove("active");});
+
+    if (!isActive) {
+
+      section.classList.add("active");           
+
+    }
+
+  });
+
 });
 
 
@@ -1097,7 +1099,7 @@ Container.style.transform = "translateY(-2360px)";
 // Step 12
 setTimeout(() => {
 
-Mouse.style.transform = "translate(450px,15px)";
+Mouse.style.transform = "translate(450px,12px)";
 
 setTimeout(() => {
 
@@ -1146,11 +1148,11 @@ Review.querySelector(".right").classList.remove("click");
 // Step 15
 setTimeout(() => {
 
-Container.style.transform = "translateY(-2900px)";
+Container.style.transform = "translateY(-2910px)";
 
 setTimeout(() => {
 
-Mouse.style.transform = "translate(420px,-275px)";
+Mouse.style.transform = "translate(420px,-285px)";
 
 
 setTimeout(() => {
@@ -1166,12 +1168,13 @@ Mouse.querySelector(".cursor").classList.remove("active");
 // Step 16
 setTimeout(() => {
 
-Mouse.style.transform = "translate(420px,-195px)";
+Mouse.style.transform = "translate(420px,-200px)";
 
 
 setTimeout(() => {
 
 Mouse.querySelector(".cursor").classList.add("active");
+
 sections[1].querySelector(".arrow").click();
 
 setTimeout(() => {
@@ -1182,7 +1185,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 // Step 17
 setTimeout(() => {
 
-Mouse.style.transform = "translate(420px,-235px)";
+Mouse.style.transform = "translate(420px,-240px)";
 
 
 setTimeout(() => {
