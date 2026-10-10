@@ -34,13 +34,7 @@ document.querySelector(".Main-Container").addEventListener("scroll",() => {
 
 if(document.querySelector(".Main-Container").scrollTop > Header.offsetHeight){
 
- IMGs[0].style.animation="PopUp1 0.4s cubic-bezier(0,0,0.5,2) forwards";
- IMGs[1].style.animation="PopUp2 0.4s cubic-bezier(0,0,0.5,2) forwards 0.2s";
- IMGs[2].style.animation="PopUp3 0.4s cubic-bezier(0,0,0.5,2) forwards 0.4s";
- IMGs[3].style.animation="PopUp4 0.4s cubic-bezier(0,0,0.5,2) forwards 0.6s";
-
- document.querySelectorAll(".daily-routine h1")[0].style.opacity="1";
- document.querySelectorAll(".daily-routine h1")[1].style.opacity="1";
+Routine.classList.add("active");
 
 }
 
@@ -514,8 +508,25 @@ window.addEventListener("resize",() => {MaxScrollLeft = Collection.querySelector
 Collection.querySelector(".wrapper").addEventListener("scroll",() => {
 
 
-if(Collection.querySelector(".wrapper").scrollLeft <= 10){Collection.querySelector(".left").classList.remove("active");}else{Collection.querySelector(".left").classList.add("active");}
-if(Collection.querySelector(".wrapper").scrollLeft >= MaxScrollLeft - 10){Collection.querySelector(".right").classList.remove("active");}else{Collection.querySelector(".right").classList.add("active");}
+if(Collection.querySelector(".wrapper").scrollLeft <= 10){
+  
+  Collection.querySelector(".left").classList.remove("active");
+
+}else{
+  
+  Collection.querySelector(".left").classList.add("active");
+
+}
+
+if(Collection.querySelector(".wrapper").scrollLeft >= MaxScrollLeft - 10){
+  
+  Collection.querySelector(".right").classList.remove("active");
+
+}else{
+  
+  Collection.querySelector(".right").classList.add("active");
+
+}
 
 });
 
