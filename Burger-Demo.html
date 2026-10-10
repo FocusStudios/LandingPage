@@ -24,16 +24,11 @@ html {
 scroll-behavior:smooth;}
 
 :root {
---i1:100vw;
---i2:360px;
---i3:1200px;
---ia:360px;
---ib:300px;
 --primary:linear-gradient(to right, #FA5C00, #FFC300);
---secondary:#FFF;
+--secondary:#fff;
 --grey1:#CACACA;
 --grey2:#A3A3A3;
---width:calc(850px/3);
+--width:280px;
 --background:linear-gradient(to bottom right, #3E362F, #110B0B);
 --gap:25px;
 --x:3;}
@@ -41,11 +36,11 @@ scroll-behavior:smooth;}
 * {
 margin:0;
 padding:0;
-box-sizing:border-box;
-font-family:"Luckiest Guy", cursive; 
 font-weight:500;
 font-style:normal;
-user-select:none;}
+user-select:none;
+box-sizing:border-box;
+font-family:"Luckiest Guy", cursive; }
 
 img {
 pointer-events:none;}
@@ -127,8 +122,8 @@ width:270px;
 height:270px;
 object-fit:cover;
 opacity:0;
-transform:translate(0,5.5%) scale(0.5);
-transition:none;}
+transition:none;
+transform:translate(0,5.5%) scale(0.5);}
 
 .Fries {
 position:absolute;
@@ -136,8 +131,8 @@ width:270px;
 height:270px;
 object-fit:cover;
 opacity:0;
-transform:translate(-44%,-8%) scale(0.5);
-transition:none;}
+transition:none;
+transform:translate(-44%,-8%) scale(0.5);}
 
 .Soda {
 position:absolute;
@@ -145,8 +140,8 @@ width:255px;
 height:255px;
 object-fit:cover;
 opacity:0;
-transform:translate(47%,-14.7%) scale(0.5);
-transition:none;}
+transition:none;
+transform:translate(47%,-14.7%) scale(0.5);}
 
 header.active .Burger {
 opacity:1;
@@ -194,8 +189,8 @@ flex-direction:column;
 white-space:nowrap;}
 
 header .wrapper {
-padding-right:100px;
-gap:12px;}
+gap:12px;
+padding-right:100px;}
 
 header h1 {
 position:relative;
@@ -206,23 +201,23 @@ text-shadow:0 4px 7px rgba(0,0,0,1);}
 
 header a {
 position:relative;
-border-radius:50px;
 margin-top:35px;
 padding:20px 30px;
+border-radius:50px;
 text-decoration:none;
 background:var(--primary);
 box-shadow:0 6px 25px rgba(255,92,0,0.4);}
 
 header a span {
-color:var(--secondary);
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:1.1rem;
+font-size:1.2rem;
+color:var(--secondary);
 text-shadow:0 3px 5px rgba(0,0,0,0.4);}
 
 body.touch header a span {
-padding-top:7px;}
+padding-top:7.5px;}
 
 body.mouse header a:hover, body.mouse .orders ul li .main-container:hover {
 transform:scale(1.2);}
@@ -302,10 +297,10 @@ box-shadow:0 3px 8px rgba(255,92,0,0.2);}
 background:var(--primary);}
 
 .menu button span, .orders .Price button {
-font-size:0.75rem;
 display:flex;
 align-items:center;
-justify-content:center;}
+justify-content:center;
+font-size:0.75rem;}
 
 body.touch .menu button span {
 margin-top:4.6875px;}
@@ -347,7 +342,7 @@ flex-direction:column;}
 
 .offers {
 width:100%;
-height:340px
+height:340px;
 padding-bottom:50px;
 gap:30px;}
 
@@ -429,7 +424,7 @@ font-size:0.55rem;
 text-shadow:0 1px 2px rgba(0,0,0,0.3);}
 
 body.touch .offers li button span {
-padding-top:3.125px;}
+padding-top:3.75px;}
 
 .offers li .badge {
 position:absolute;
@@ -444,7 +439,7 @@ filter:drop-shadow(0 0 5px rgba(0,0,0,0.6));}
 /* Yummy */
 
 .yummy {
-height:calc(1000px * 250px/360px);
+height:700px;
 margin-top:-80px;}
 
 .yummy .wrapper {
@@ -753,7 +748,7 @@ font-size:0.9rem;
 text-shadow:0 2px 3px rgba(0,0,0,0.4);}
 
 body.touch .orders .Price button span {
-padding-top:5px;}
+padding-top:5.625px;}
 
 .orders .Price h1 {
 font-size:1.7rem;}
@@ -1046,6 +1041,7 @@ width:100%;}
 
 .FAQ ul li .arrow {
 position:absolute;
+top:5px;
 right:0;
 transition:0.4s;
 cursor:pointer;
@@ -1965,7 +1961,6 @@ animation:click 0.3s forwards;}
   <path d="M9.80368 4.63023L15.8367 6.99023C19.3167 8.35223 21.0567 9.03323 20.9997 10.1132C20.9417 11.1932 19.1257 11.6892 15.4937 12.6792C14.4127 12.9742 13.8717 13.1212 13.4967 13.4962C13.1217 13.8712 12.9747 14.4122 12.6797 15.4932C11.6897 19.1252 11.1937 20.9412 10.1137 20.9992C9.03367 21.0572 8.35367 19.3162 6.99167 15.8362L4.63067 9.80323C3.20467 6.15923 2.49067 4.33823 3.41467 3.41423C4.33867 2.49123 6.15968 3.20423 9.80368 4.63023Z" stroke-linejoin="round"/>
  </svg>
 </div>
-
 
 
 </div>
