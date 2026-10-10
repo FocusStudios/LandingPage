@@ -274,6 +274,7 @@ document.addEventListener("click", (e) => {
     !menu.classList.contains("active") &&
     !Ham.contains(e.target)) {
 
+    Window.scrollTop = 0;
     Window.classList.remove("active");
     Login.classList.remove("active");
     SignUp.classList.remove("active");
