@@ -1,770 +1,1428 @@
-const Ham = document.querySelector(".Ham");
-const Cross = document.querySelector(".Cross");
-const menu = document.querySelector(".menu");
-const Container = document.querySelector(".Container");
-const Header = document.querySelector("header");
-const Collection = document.querySelector(".collections");
-const Routine = document.querySelector(".daily-routine");
-const Product = document.querySelector(".products");
-const Feature = document.querySelector(".features");
-const Buttons = document.querySelectorAll(".products .wrapper button");
-const Sections = document.querySelectorAll(".products ul");
-const BestSeller = document.querySelector(".products .best-seller");
-const NewArrival = document.querySelector(".products .new-arrival");
-const Serum = document.querySelector(".products .serum");
-const Cream = document.querySelector(".products .cream");
-const Cleanser = document.querySelector(".products .cleanser");
-const IMGs = document.querySelectorAll(".daily-routine img");
-const SignUp = document.querySelector(".sign-up");
-const Login = document.querySelector(".login");
-const Window = document.querySelector(".window-container");
-const Submits = document.querySelectorAll(".submit");
-
-if ("ontouchstart" in document.documentElement) {
-  
-  document.body.classList.replace("mouse","touch");
-
-}else{
-  
-  document.body.classList.replace("touch","mouse");
-
-}
-
-
-function signUp() {
-
- Window.querySelector("h1").innerHTML="Sign Up";
- Window.querySelector(".username").style.display="flex";
- Window.querySelector(".password a").style.display="none";
- Window.querySelector("button").innerHTML="Sign Up";
- Window.querySelector(".switch p").innerHTML="Already have account?";
- Window.querySelector(".switch span").innerHTML="Login";
- Window.querySelector(".success span").innerHTML="Signed Up";
-
-}
-
-function login() {
-
- Window.querySelector("h1").innerHTML="Login";
- Window.querySelector(".username").style.display="none";
- Window.querySelector(".password a").style.display="flex";
- Window.querySelector("button").innerHTML="Login";
- Window.querySelector(".switch p").innerHTML="Don't have account?";
- Window.querySelector(".switch span").innerHTML="Create One";
- Window.querySelector(".success span").innerHTML="Logged In";
-
-}
-
-function success() {
-
-Window.querySelector(".window").classList.add("Success");
-
-setTimeout(() => {
-
- Window.querySelector(".wrapper").style.display="none";
- Window.querySelector(".switch").style.display="none";
- Window.querySelector(".loader").style.display="none";
- Window.querySelector(".success").classList.add("active");
- Window.scrollTop = 0;
-
- setTimeout(() => {
-
-   SignUp.style.display="none";
-   Login.style.display="none";
-   if(window.innerWidth <= 1200){menu.querySelector("ul").style.top="80px";}
-   menu.querySelector(".container").style.display="flex";
-
-   menu.classList.remove("active");
-   Window.classList.remove("active");
-   Login.classList.remove("active");
-   SignUp.classList.remove("active");
-
-   Window.querySelectorAll(".wrapper .input-field").forEach(Input => {
-   Input.querySelector("p").innerHTML="";});
-
-   Container.style.filter="brightness(100%)";
-
-   menu.style.filter="brightness(100%)";
-   menu.style.pointerEvents="auto";
-   Ham.style.pointerEvents="auto";
-   document.querySelector(".Main-Container").style.pointerEvents="auto";
-
- },1200);
-
-},1500);
-
-}
-
-SignUp.addEventListener("click",() => {
-
-Window.classList.add("active");
-Container.style.filter="brightness(75%)";
-
-if(document.body.classList.contains("mouse")){
-menu.style.filter="brightness(75%)";
-menu.style.pointerEvents="none";
-}
-
-SignUp.classList.add("active");
-document.querySelector(".Main-Container").style.pointerEvents="none";
-
-signUp();
-setTimeout(() => {
-menu.classList.remove("active");},300);
-
-});
-
-Login.addEventListener("click",() => {
-
-Window.classList.add("active");
-Container.style.filter="brightness(75%)";
-
-if(document.body.classList.contains("mouse")){
-menu.style.filter="brightness(75%)";
-menu.style.pointerEvents="none";
-}
-
-Login.classList.add("active");
-document.querySelector(".Main-Container").style.pointerEvents="none";
-
-login();
-setTimeout(() => {
-menu.classList.remove("active");},300);
-
-});
-
-Window.querySelector(".switch span").addEventListener("click",() => {
-
- if(Login.classList.contains("active")){
-
-  Login.classList.remove("active");
-  SignUp.classList.add("active");
-  signUp();
-
- }else{
-
-  SignUp.classList.remove("active");
-  Login.classList.add("active");
-  login();
-
- }
-
- Window.querySelectorAll(".wrapper .input-field").forEach(Input => Input.querySelector("p").innerHTML="");
- Window.querySelectorAll(".wrapper .input-field input").forEach(input => input.value = "");
-
-});
-
-
-Window.querySelectorAll(".wrapper .input-field").forEach(Input => {
-
-Input.addEventListener("input",() => {
-
-if(Input.querySelector("input").value.trim() != ""){Input.querySelector("p").innerHTML="";}
-
-});
-
-});
-
-
-Window.querySelector(".wrapper button").addEventListener("click", () => {
-
-    let hasError = false;
-
-    Window.querySelectorAll(".wrapper .input-field").forEach(input => {
-
-        // Ignore hidden fields
-        if (getComputedStyle(input).display === "none") return;
-
-        const field = input.querySelector("input");
-        const error = input.querySelector("p");
-
-        if (field.value.trim() === "") {
-            error.innerHTML = "This field cannot be empty";
-            hasError = true;
-        } else {
-            error.innerHTML = "";
-        }
-
-    });
-
-    if (!hasError) {
-        success();
-    }
-
-});
-
-
-Submits.forEach(Submit => {
-
-Submit.addEventListener("click",() => {
-
- success();
-
-});
-
-});
-
-
-Ham.addEventListener("click",() => {
-
- menu.classList.add("active");
- Container.style.filter="brightness(75%)";
-
-});
-
-
-Cross.addEventListener("click",() => {
-
- menu.classList.remove("active");
- Container.style.filter="brightness(100%)";
-
-});
-
-document.addEventListener("click", (e) => {
-
-  const resetUI = () => {
-    menu.style.filter = "brightness(100%)";
-    menu.style.pointerEvents = "auto";
-    Ham.style.pointerEvents = "auto";
-
-    Container.style.filter = "brightness(100%)";
-    document.querySelector(".Main-Container").style.pointerEvents="auto";
-  };
-
-  if (!menu.contains(e.target) && !Ham.contains(e.target) && !Window.classList.contains("active")) {
-    menu.classList.remove("active");
-    resetUI();
-  }
-
-  if (
-    !Window.querySelector(".window").contains(e.target) &&
-    !SignUp.contains(e.target) &&
-    !Login.contains(e.target) &&
-    !menu.classList.contains("active") &&
-    !Ham.contains(e.target)) {
-
-    Window.classList.remove("active");
-    Login.classList.remove("active");
-    SignUp.classList.remove("active");
-
-    Window.querySelectorAll(".wrapper .input-field p").forEach(p => p.innerHTML = "");
-
-    resetUI();
-  }
-
-});
-
-
-const collections = [
-
-  { img: "Images/collection1.png", brand: "IRISYA Collection", off: "50% OFF" },
-  { img: "Images/collection2.png", brand: "RIRI Collection", off: "25% OFF" },
-  { img: "Images/collection3.png", brand: "RADIANCE Collection", off: "25% OFF" },
-  { img: "Images/collection4.png", brand: "LUMIÈRE Collection", off: "25% OFF" },
-  { img: "Images/collection5.png", brand: "SAKURA Collection", off: "50% OFF" },
-  { img: "Images/collection6.png", brand: "Lumèra Collection", off: "25% OFF" }
-
-];
-
-const list1 = [
-
-  { img: "Images/cream8.jpg", product: "L'Oréal Anti-Aging Cream", price: "$ 35" },
-  { img: "Images/serum5.jpg", product: "Medicube Peptide Serum", price: "$ 20" },
-  { img: "Images/cleanser1.jpg", product: "Cetaphil Skin Cleanser", price: "$ 15" },
-  { img: "Images/serum4.jpg", product: "ELEMIS Pro-Collagen Serum", price: "$ 35" },
-  { img: "Images/cream3.jpg", product: "GARNIER Vitamin C Cream", price: "$ 17" },
-  { img: "Images/cleanser2.jpg", product: "CeraVe Foaming Cleanser", price: "$ 13" },
-  { img: "Images/cream5.jpg", product: "Neutrogena Water Gel Cream", price: "$ 20" },
-  { img: "Images/serum3.jpg", product: "JUMISO Niacinamide Serum", price: "$ 32" } 
-
-];
-
-const list2 = [
-
-  { img: "Images/serum2.jpg", product: "Iunik Tea Tree Serum", price: "$ 25" },
-  { img: "Images/cleanser8.jpg", product: "NIVEA Wash Gel", price: "$ 14" },
-  { img: "Images/cream2.jpg", product: "Medicube Collagene Cream", price: "$ 34" },
-  { img: "Images/cleanser7.jpg", product: "MoonLook Daily Feminine", price: "$ 16" },
-  { img: "Images/serum7.jpg", product: "CENTELLA Serum", price: "$ 18" },
-  { img: "Images/cream8.jpg", product: "L'Oréal Anti-Aging Cream", price: "$ 35" },
-  { img: "Images/cream3.jpg", product: "GARNIER Vitamin C Cream", price: "$ 17" },
-  { img: "Images/serum5.jpg", product: "Medicube Peptide Serum", price: "$ 20" }
-
-];
-
-const list3 = [
-
-  { img: "Images/serum1.jpg", product: "GARNIER Vitamin C Serum", price: "$ 12" },
-  { img: "Images/serum2.jpg", product: "Iunik Tea Tree Serum", price: "$ 25" },
-  { img: "Images/serum3.jpg", product: "JUMISO Niacinamide Serum", price: "$ 32" },
-  { img: "Images/serum4.jpg", product: "ELEMIS Pro-Collagen Serum", price: "$ 35" },
-  { img: "Images/serum5.jpg", product: "Medicube Peptide Serum", price: "$ 20" },
-  { img: "Images/serum6.jpg", product: "Ordinary Niacinamide Serum", price: "$ 28" },
-  { img: "Images/serum7.jpg", product: "CENTELLA Serum", price: "$ 18" },
-  { img: "Images/serum8.jpg", product: "LA ROCHE-POSAY B5 Serum", price: "$ 36" }
-
-];
-
-const list4 = [
-
-  { img: "Images/cream1.jpg", product: "CeraVe Moisturzing Cream", price: "$ 23" },
-  { img: "Images/cream2.jpg", product: "Medicube Collagene Cream", price: "$ 34" },
-  { img: "Images/cream3.jpg", product: "GARNIER Vitamin C Cream", price: "$ 17" },
-  { img: "Images/cream4.jpg", product: "Cetaphil Moisturizer Cream", price: "$ 24" },
-  { img: "Images/cream5.jpg", product: "Neutrogena Water Gel Cream", price: "$ 20" },
-  { img: "Images/cream6.jpg", product: "NIVEA Soft Cream", price: "$ 15" },
-  { img: "Images/cream7.jpg", product: "NIVEA Cream", price: "$ 26" },
-  { img: "Images/cream8.jpg", product: "L'Oréal Anti-Aging Cream", price: "$ 35" }
-
-];
-
-const list5 = [
-
-  { img: "Images/cleanser1.jpg", product: "Cetaphil Skin Cleanser", price: "$ 15" },
-  { img: "Images/cleanser2.jpg", product: "CeraVe Foaming Cleanser", price: "$ 13" },
-  { img: "Images/cleanser3.jpg", product: "GARNIER Micellar Vitamin C", price: "$ 19" },
-  { img: "Images/cleanser4.jpg", product: "SAKURA Cleanser", price: "$ 18" },
-  { img: "Images/cleanser5.jpg", product: "LA ROCHE-POSAY Cleanser", price: "$ 26" },
-  { img: "Images/cleanser6.jpg", product: "Neutrogena Foaming Cleanser", price: "$ 22" },
-  { img: "Images/cleanser7.jpg", product: "MoonLook Daily Feminine", price: "$ 16" },
-  { img: "Images/cleanser8.jpg", product: "NIVEA Wash Gel", price: "$ 14" }
-
-];
-
-const lists = [
-
-  { data: list1, element: BestSeller },
-  { data: list2, element: NewArrival },
-  { data: list3, element: Serum },
-  { data: list4, element: Cream },
-  { data: list5, element: Cleanser }
-
-];
-
-
-collections.forEach(collection => {
-
-Collection.querySelector("ul").innerHTML += `
-
- <li>
-
-  <img src="${collection.img}">
-
-  <div class="details">
-
-   <h1>${collection.off}</h1>
-
-   <div class="brand">
-
-    <div class="line"></div>
-
-    <span>${collection.brand}</span>
-
-    <div class="line"></div>
-
-   </div>
-
-   <button>BUY NOW</button>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Flora</title>
+
+  <link rel="icon" type="image/x-icon" href="Images/Flora.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalnia:wght@100..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+html {
+-webkit-tap-highlight-color:transparent;
+scroll-behavior:smooth;}
+
+:root {
+--primary:#FF0099;
+--secondary:#FFCADD;
+--background:#FFFFFF;}
+
+* {
+margin:0;
+padding:0;
+user-select:none;
+font-weight:500;
+font-style:normal;
+box-sizing:border-box;
+font-family:Kalnia, serif;}
+
+img {
+pointer-events:none;}
+
+body {
+margin:0;
+padding:0;
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.Main-Container {
+position:absolute;
+width:1000px;
+height:1000px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.Container {
+position:absolute;
+top:0;
+width:100%;
+transition:0.6s;
+display:flex;
+flex-direction:column;
+background:var(--background);}
+
+
+/* Header */
+
+header {
+position:relative;
+width:100%;
+height:700px;
+padding-bottom:100px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+header .cover {
+position:absolute;
+top:0;
+right:0;
+width:auto;
+height:800px;}
+
+header .logo {
+position:absolute;
+top:15px;
+left:15px;
+width:auto;
+height:30px;
+object-fit:cover;}
+
+header .Ham {
+position:absolute;
+top:10px;
+right:10px;
+fill:var(--primary);}
+
+.Cross {
+position:absolute;
+top:0;
+left:0;
+fill:var(--primary);}
+
+header .wrapper {
+position:absolute;
+left:0;
+margin-top:250px;
+padding:150px 0 100px 50px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+white-space:nowrap;}
+
+header h1 {
+position:relative;
+align-self:start;
+text-align:left;
+font-size:2.8rem;
+line-height:80px;}
+
+header h1:nth-child(2) {
+margin-bottom:50px;}
+
+header a {
+position:relative;
+padding:16px 35px;
+border-radius:50px;
+font-size:1.1rem;
+font-weight:600;
+line-height:30px;
+text-decoration:none;
+background:var(--primary);
+color:var(--background);
+text-shadow:0 2px 5px rgba(0,0,0,0.3);
+box-shadow:0 10px 30px rgba(255,0,153,0.25);}
+
+body.mouse header a:hover {
+transform:scale(1.2);}
+
+.menu .container {
+position:absolute;
+top:15px;
+right:15px;
+display:none;
+align-items:center;
+justify-content:center;
+gap:15px;}
+
+.menu .container .icon {
+position:relative;
+width:40px;
+height:40px;
+border-radius:50%;
+transition:0.3s;
+pointer-events:auto;
+background:var(--background);
+box-shadow:0 3px 5px rgba(255,0,153,0.2);}
+
+.menu {
+position:absolute;
+top:0;
+width:1000px;
+height:60px;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:right 0.4s, filter 0.4s;}
+
+.menu ul {
+position:absolute;
+list-style:none;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:15px;}
+
+.menu ul li {
+position:relative;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:5px 10px;
+font-size:1rem;}
+
+.menu .wrapper {
+position:absolute;
+right:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;}
+
+.Cross, .Ham {
+display:none;}
+
+.menu button {
+position:relative;
+padding:5px 20px;
+border-radius:50px;
+border:none;
+font-size:0.65rem;
+line-height:20px;
+color:var(--background);
+background:var(--primary);
+box-shadow:0 5px 10px rgba(255,0,153,0.25);}
+
+.menu .sign-up {
+color:var(--primary);
+background:var(--background);}
+
+button, header a {
+transition:0.3s;}
+
+.menu .wrapper {
+transition:0.4s;}
+
+button, a, .icon {
+cursor:pointer;}
+
+button:active, header a:active, 
+.social-media .Icon:active, 
+.accounts .account-container .account:active, 
+.accounts .account-container img:active, 
+.menu .container .icon:active {
+transform:scale(0.85);}
+
+section {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;}
+
+
+/* Collections */
+
+.collections {
+position:relative;
+display:flex;
+flex-direction:column;
+padding:40px 0 60px 0;}
+
+.collections h1 {
+position:relative;
+align-self:start;
+padding-left:30px;
+font-size:1.9rem;
+color:var(--primary);}
+
+.collections .wrapper-container {
+position:relative;
+width:100%;
+height:300px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections .wrapper {
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;}
+
+.collections .carousel {
+position:absolute;
+left:0;
+width:auto;
+height:230px;
+padding:0 20px;
+list-style:none;
+transition:0.4s;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:20px;}
+
+.collections .carousel li {
+position:relative;
+width:280px;
+height:100%;
+border-radius:12px;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 5px 10px rgba(0,0,0,0.1);}
+
+.collections li .details {
+position:absolute;
+right:0;
+width:50%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections li .details h1 {
+position:absolute;
+top:20px;
+width:70%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:2rem;
+font-weight:1000;
+text-align:right;
+color:var(--background);
+font-family:"Inter", sans-serif;
+text-shadow:0 4px 5px rgba(0,0,0,0.2);}
+
+.collections li .brand {
+position:absolute;
+bottom:70px;
+height:25px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.collections li .brand .line {
+position:absolute;
+width:100%;
+height:0.7px;
+border-radius:1px;
+background:var(--background);
+box-shadow:0 0.5px 1px rgba(0,0,0,0.3);}
+
+.collections li .brand .line:nth-child(1) {
+top:0;}
+
+.collections li .brand .line:nth-child(3) {
+bottom:0;}
+
+.collections li .brand span {
+font-size:0.6rem;
+color:var(--background);
+text-shadow:0 1px 2px rgba(0,0,0,0.3);}
+
+.collections li button {
+position:absolute;
+bottom:30px;
+padding:8px 14px;
+border-radius:20px;
+font-size:0.5rem;
+border:none;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--background);
+box-shadow:0 3px 6px rgba(255,0,153,0.2);}
+
+.collections li img {
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;}
+
+.collections .arrows {
+position:absolute;
+width:calc(100% - 50px);
+height:40px;
+display:none;
+align-items:center;
+justify-content:center;
+pointer-events:none;}
+
+.collections .arrows img {
+position:absolute;
+width:40px;
+height:40px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+cursor:pointer;
+transition:0.2s;
+background:var(--primary);
+box-shadow:-2px 2px 10px rgba(0,0,0,0.2);}
+
+.collections .arrows .left {
+left:0;}
+
+.collections .arrows .right {
+right:0;}
+
+.collections .arrows .left, .collections .arrows .right {
+opacity:0;
+pointer-events:none;}
+
+.collections .arrows .left.active, .collections .arrows .right.active {
+opacity:1;
+pointer-events:auto;}
+
+.collections .arrows img:active {
+transform:scale(0.8);}
+
+
+/* Daily Routine */
+
+.daily-routine {
+padding:25px 0 50px 0;
+flex-direction:column;
+background:var(--primary);}
+
+.daily-routine .lists {
+position:relative;
+width:540px;
+height:210px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:20px;}
+
+.daily-routine .lists img {
+position:relative;
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+opacity:0;
+box-shadow:0 8px 15px rgba(0,0,0,0.2);}
+
+.daily-routine .lists img:nth-child(1) {
+transform:translate(0,25%) scale(0.5);}
+
+.daily-routine .lists img:nth-child(2) {
+transform:translate(-3%,-25%) scale(0.5);}
+
+.daily-routine .lists img:nth-child(3) {
+transform:translate(3%,-25%) scale(0.5);}
+
+.daily-routine .lists img:nth-child(4) {
+transform:translate(0,25%) scale(0.5);}
+
+.daily-routine.active .lists img:nth-child(1) {
+animation:PopUp1 0.4s cubic-bezier(0,0,0.5,2) forwards;}
+
+.daily-routine.active .lists img:nth-child(2) {
+animation:PopUp2 0.4s cubic-bezier(0,0,0.5,2) forwards 0.2s;}
+
+.daily-routine.active .lists img:nth-child(3) {
+animation:PopUp3 0.4s cubic-bezier(0,0,0.5,2) forwards 0.4s;}
+
+.daily-routine.active .lists img:nth-child(4) {
+animation:PopUp4 0.4s cubic-bezier(0,0,0.5,2) forwards 0.6s;}
+
+.daily-routine .text-wrapper {
+display:flex;
+flex-direction:column;
+margin-top:-30px;}
+
+.daily-routine h1 {
+position:relative;
+opacity:0;
+transition:none;
+font-size:1.5rem;
+line-height:36px;
+text-align:center;
+color:var(--background);
+text-shadow:0 3px 5px rgba(0,0,0,0.5);}
+
+.daily-routine.active h1 {
+opacity:1;
+transition:0.5s 1s;}
+
+@keyframes PopUp1 {
+to {transform:translate(0,25%) scale(1);opacity:1;}}
+
+@keyframes PopUp2 {
+to {transform:translate(-3%,-25%) scale(1);opacity:1;}}
+
+@keyframes PopUp3 {
+to {transform:translate(3%,-25%) scale(1);opacity:1;}}
+
+@keyframes PopUp4 {
+to {transform:translate(0,25%) scale(1);opacity:1;}}
+
+
+/* Products */
+
+.products {
+padding:80px 0;
+flex-direction:column;
+gap:60px;}
+
+.products .wrapper {
+position:relative;
+width:100%;
+height:100px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.products .wrapper::-webkit-scrollbar, .collections .wrapper::-webkit-scrollbar {
+display:none;}
+
+.products .sections {
+padding:0 20px;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:20px;}
+
+.products button {
+position:relative;
+padding:10px 20px;
+border-radius:50px;
+display:flex;
+align-items:center;
+justify-content:center;
+font-weight:600;
+font-size:0.8rem;
+color:var(--primary);
+white-space:nowrap;
+background:var(--background);
+border:2px solid var(--primary);}
+
+.products button.active {
+color:var(--background);
+background:var(--primary);
+text-shadow:0 2px 3px rgba(0,0,0,0.5);
+box-shadow:0 3px 6px rgba(255,0,153,0.2);}
+
+.products ul {
+position:relative;
+width:100%;
+list-style:none;
+display:none;
+justify-content:center;
+grid-template-columns:repeat(4,180px);
+gap:50px;}
+
+.products ul.active {
+display:grid;}
+
+.products ul li {
+position:relative;
+width:180px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:15px;
+opacity:0;
+transform:translateY(30px);}
+
+@keyframes Show {
+to {opacity:1;transform:translateY(0);}}
+
+.products ul li img {
+position:relative;
+width:180px;
+height:180px;
+border-radius:12px;
+object-fit:cover;
+overflow:hidden;}
+
+.products .info {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:start;
+flex-direction:column;
+gap:10px;}
+
+.products .info p, .products .info span {
+align-self:start;
+line-height:20px;
+font-size:0.7rem;
+font-weight:800;
+font-family:"Inter", sans-serif;}
+
+.products .info span {
+font-size:1rem;}
+
+.products .info .icon {
+position:absolute;
+bottom:0;
+right:0;
+width:21px;
+height:21px;
+transition:0.3s;}
+
+.products .info .icon svg {
+stroke-width:3;
+stroke:var(--primary);}
+
+.products .info .icon:active {
+transform:scale(0.8);}
+
+.products .info .icon.active svg {
+fill:var(--primary);
+filter:drop-shadow(0 3px 6px rgba(255,0,153,0.2));}
+
+.products .info button {
+position:absolute;
+bottom:0;
+right:30px;
+width:40px;
+height:10px;
+border:none;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--primary);
+box-shadow:0 3px 10px rgba(255,0,153,0.2);}
+
+.products .info button .cart, .products .info button .check {
+position:absolute;
+fill:var(--background);}
+
+.products .info button.active .check, .products .info button .cart {
+display:flex;}
+
+.products .info button.active .cart, .products .info button .check {
+display:none;}
+
+
+/* Features */
+
+.features ul {
+position:relative;
+width:100%;
+padding:80px 0 125px 0;
+list-style:none;
+display:flex;
+justify-content:center;
+flex-direction:column;
+gap:80px;}
+
+.features ul li {
+position:relative;
+width:100%;
+height:300px;
+display:flex;
+align-items:center;
+justify-content:start;
+gap:70px;
+opacity:0;
+transition:0.5s;}
+
+.features ul li:nth-child(2) {
+direction:rtl;}
+
+.features ul li img {
+position:relative;
+width:180px;
+height:auto;
+object-fit:cover;}
+
+.features ul li .text {
+position:relative;
+width:calc(100% - 320px);
+direction:ltr;
+display:flex;
+align-items:center;
+justify-content:start;
+flex-direction:column;
+gap:15px;}
+
+.features ul li .text h1 {
+width:100%;
+align-self:flex-start;
+font-size:2rem;
+font-weight:550;
+line-height:60px;}
+
+.features ul li .text p {
+align-self:flex-start;
+width:100%;
+font-size:1.5rem;
+line-height:35px;}
+
+
+/* Footer */
+
+footer {
+position:relative;
+width:100%;
+display:flex;
+justify-content:center;
+background:var(--secondary);}
+
+footer .wrapper {
+position:relative;
+width:100%;
+padding:50px 0 10px 0;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;}
+
+footer .lists {
+position:relative;
+width:80%;
+display:flex;
+align-items:start;
+justify-content:space-between;}
+
+footer .wrapper ul {
+position:relative;
+top:0;
+list-style:none;
+display:flex;
+align-items:start;
+justify-content:center;
+flex-direction:column;
+gap:20px;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-weight:550;
+color:var(--primary);
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+footer .wrapper ul li {
+font-size:0.8rem;}
+
+footer .wrapper ul .title, footer .wrapper .social-media span {
+font-size:1rem;}
+
+footer .wrapper .social-media {
+position:relative;
+padding-top:80px;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;}
+
+footer .wrapper .social-media .Icons {
+position:relative;
+display:flex;
+gap:10px;}
+
+footer .wrapper .social-media .Icon {
+fill:black;
+transition:0.3s;
+cursor:pointer;}
+
+footer .wrapper .copyright {
+position:relative;
+width:100%;
+height:20px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+footer .wrapper .copyright svg {
+margin-left:5px;
+fill:var(--background);
+filter:drop-shadow(0 1px 1px rgba(0,0,0,0.4));}
+
+footer .wrapper .copyright p {
+font-size:0.5rem;
+color:var(--background);
+text-shadow:0 1px 2px rgba(0,0,0,0.5);}
+
+
+/* Sign Up / Login Window */
+
+.window-container {
+position:absolute;
+bottom:-100%;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+transition:0.6s ease;
+pointer-events:auto;
+scroll-behavior:smooth;}
+
+.window {
+position:absolute;
+width:360px;
+height:650px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:var(--secondary);
+border-radius:200px 200px 15px 15px;
+box-shadow:0 2px 10px rgba(0,0,0,0.15);}
+
+.window-container.active {
+bottom:0;}
+
+.window .wrapper {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:10px;
+transition:0.5s;}
+
+.window .wrapper h1 {
+margin:20px 0;
+font-size:1.8rem;
+color:var(--primary);
+text-shadow:0 2px 3px rgba(0,0,0,0.1);}
+
+.window .wrapper .input-field {
+position:relative;
+width:250px;
+height:70px;
+display:flex;
+align-items:center;
+justify-content:center;}
+
+.window .wrapper .password {
+margin-bottom:20px;}
+
+.input-field span {
+position:absolute;
+top:0;
+left:0;
+font-size:0.65rem;}
+
+.input-field a {
+position:absolute;
+top:2px;
+right:0;
+font-size:0.5rem;
+font-weight:600;
+color:var(--primary);
+font-family:"Inter", sans-serif;}
+
+.input-field input {
+position:absolute;
+bottom:15px;
+width:100%;
+height:35px;
+border-radius:5px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:none;
+font-size:0.7rem;
+font-weight:700;
+padding-left:10px;
+background:var(--background);
+font-family:"Inter", sans-serif;
+box-shadow:0 5px 5px rgba(255,0,153,0.1);}
+
+.input-field input::placeholder {
+color:#cacaca;}
+
+.input-field input:focus {
+border:none;
+outline:none;}
+
+.input-field p {
+position:absolute;
+left:5px;
+bottom:0;
+font-size:0.5rem;
+font-weight:700;
+color:#FF005F;
+font-family:"Inter", sans-serif;}
+
+.window .wrapper button {
+position:relative;
+width:250px;
+height:40px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+border:none;
+font-size:1rem;
+color:var(--background);
+background:var(--primary);
+box-shadow:0 5px 10px rgba(255,0,153,0.2);}
+
+.window .accounts {
+position:relative;
+width:100%;
+padding:10px 0;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+gap:20px;}
+
+.window .accounts .container {
+position:relative;
+width:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;}
+
+.accounts .container span {
+position:relative;
+font-size:0.7rem;
+color:var(--background);
+text-shadow:0 1px 2px rgba(0,0,0,0.4);}
+
+.accounts .container .line {
+position:relative;
+width:20%;
+height:1px;
+border-radius:1px;
+background:var(--background);
+box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.accounts .account-container {
+position:relative;
+display:flex;
+gap:30px;}
+
+.accounts .account-container img {
+position:relative;
+width:50px;
+height:50px;
+border-radius:50%;
+object-fit:cover;
+cursor:pointer;
+transition:0.3s;
+pointer-events:auto;
+background:var(--background);
+box-shadow:0 3px 6px rgba(0,0,0,0.15);}
+
+.window .switch {
+position:absolute;
+bottom:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:5px;
+transition:0.5s;
+font-weight:700;
+font-family:"Inter", sans-serif;}
+
+.window .switch p {
+position:relative;
+font-size:0.65rem;
+font-weight:500;
+font-family:"Inter", sans-serif;}
+
+.window .switch span {
+position:relative;
+cursor:pointer;
+font-size:0.8rem;
+font-weight:700;
+color:var(--primary);
+font-family:"Inter", sans-serif;}
+
+.window.Success .switch, .window.Success .wrapper {
+opacity:0.5;}
+
+.window .success {
+position:absolute;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+pointer-events:none;}
+
+.window .success .Pop {
+position:relative;
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:30px;
+opacity:0;
+transform:scale(0.5);
+background:var(--primary);
+box-shadow:0 5px 10px rgba(255,0,153,0.2);}
+
+.window .success .Check {
+stroke-width:10;
+stroke-dasharray:90;
+stroke-dashoffset:90;
+stroke:var(--background);}
+
+@keyframes Success {
+50% {opacity:1;transform:scale(1.2);}
+100% {opacity:1;transform:scale(1);}}
+
+@keyframes Check {
+to {stroke-dasharray:90;stroke-dashoffset:0;}}
+
+.window .success span {
+position:relative;
+font-size:1.5rem;
+line-height:35px;
+color:var(--primary);
+opacity:0;
+transition:0.3s 0.3s;
+text-shadow:0 1px 2px rgba(0,0,0,0.2);}
+
+.window .success.active .Pop {
+animation:Success 0.5s linear forwards;}
+
+.window .success.active .Check {
+animation:Check 0.5s ease forwards;}
+
+.window .success.active span {
+opacity:1;}
+
+.loader {
+display:none;
+pointer-events:none;
+animation:rotate 2s linear infinite;
+filter:drop-shadow(0 0 2px rgba(0, 0, 0, 0.2));}
+
+.loader circle {
+stroke-width:6px;
+stroke:var(--primary);
+fill:none;
+stroke-dasharray:126; /* 2πr ≈ 2*3.14*20 */
+stroke-dashoffset:0;
+transform-origin:center;
+animation:dash 1.5s ease-in-out infinite;}
+
+@keyframes rotate {
+100% {transform:rotate(360deg);}}
+
+@keyframes dash {
+0% {stroke-dashoffset:126;}
+50% {stroke-dashoffset:32;transform:rotate(45deg);}
+100% {stroke-dashoffset:126;transform:rotate(360deg);}}
+
+.window.Success .loader {
+display:flex;}
+
+.Mouse {
+position:absolute;
+z-index:5;
+transition:0.5s;
+transform:translate(500px,0);}
+
+.cursor {
+position:absolute;
+fill:black;
+filter:drop-shadow(-1px 2px 3px rgba(0,0,0,0.15));}
+
+.cursor.active, button.active, .icon.active {
+animation:click 0.3s forwards;}
+
+@keyframes click {
+0%{transform:scale(1);}
+50%{transform:scale(0.8);}
+100%{transform:scale(1);}}
+
+</style>
+
+</head>
+
+<body class="mouse">
+
+<div class="Main-Container">
+
+<div class="Container">
+
+
+<!-- Header -->
+
+<header>
+
+<img class="cover" src="Images/cover.png">
+
+<img class="logo" src="Images/Flora-Logo.svg">
+
+<svg class="Ham" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M27.0986 23.1992C27.8717 23.1992 28.4988 23.8256 28.499 24.5986C28.499 25.3718 27.8718 25.999 27.0986 25.999H7.90039C7.12719 25.999 6.5 25.3718 6.5 24.5986C6.50021 23.8256 7.12732 23.1992 7.90039 23.1992H27.0986ZM27.0986 16.0996C27.8718 16.0996 28.499 16.7268 28.499 17.5C28.4989 18.2731 27.8717 18.8994 27.0986 18.8994H7.90039C7.12729 18.8994 6.50016 18.2731 6.5 17.5C6.5 16.7268 7.12719 16.0996 7.90039 16.0996H27.0986ZM27.0986 9C27.8718 9 28.499 9.62719 28.499 10.4004C28.499 11.1736 27.8718 11.8008 27.0986 11.8008H7.90039C7.12719 11.8008 6.5 11.1736 6.5 10.4004C6.5 9.62719 7.12719 9 7.90039 9H27.0986Z"/>
+</svg>
+
+<div class="wrapper">
+
+ <h1>Discover Your</h1>
+ <h1>Natural Beauty</h1>
+ <a href="#Products">SHOP NOW</a>
+
+</div>
+
+</header>
+
+
+<!-- Collections -->
+
+<section class="collections">
+
+ <h1>Exclusive Offers</h1>
+
+ <div class="wrapper-container">
+
+  <div class="wrapper">
+
+   <ul class="carousel"></ul>
 
   </div>
 
+  <div class="arrows">
+   <img class="left" src="Images/arrow-left.svg">
+   <img class="right active" src="Images/arrow-right.svg">
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- Daily Routine -->
+
+<section class="daily-routine">
+
+ <div class="lists">
+
+  <img src="Images/routine1.jpg">
+  <img src="Images/routine2.jpg">
+  <img src="Images/routine3.jpg">
+  <img src="Images/routine4.jpg">
+
+ </div>
+
+ <div class="text-wrapper">
+
+  <h1>All Your Skincare</h1>
+  <h1>Products In One Place!</h1>
+
+ </div>
+
+</section>
+
+
+<!-- Products -->
+
+<section class="products" id="Products">
+
+<div class="wrapper">
+
+ <div class="sections">
+
+  <button class="active">Best Seller</button>
+  <button>New Arrival</button>
+  <button>Serums</button>
+  <button>Creams</button>
+  <button>Cleansers</button>
+
+ </div>
+
+</div>
+
+<ul class="best-seller active"></ul>
+<ul class="new-arrival"></ul>
+<ul class="serum"></ul>
+<ul class="cream"></ul>
+<ul class="cleanser"></ul>
+
+</section>
+
+<!-- Features -->
+
+<section class="features">
+
+<ul>
+
+<li>
+
+ <img src="Images/feature1.png">
+
+ <div class="text">
+  <h1>Botanical Care</h1>
+  <p>Made with delicate floral extracts like calendula and rose, our formulas soothe and care for skin naturally and gently.</p>
+ </div>
+
 </li>
 
-`;
+<li>
 
-});
+ <img src="Images/feature2.png">
 
+ <div class="text">
+  <h1>Gentle On Skin</h1>
+  <p>Designed for all skin types, our products are lightweight, non-irritating, and perfect for daily use without harsh effects.</p>
+ </div>
 
-lists.forEach(list => {
+</li>
 
-    list.data.forEach(item => {
+<li>
 
-        list.element.innerHTML += `
+ <img src="Images/feature3.png">
 
-      <li>
+ <div class="text">
+  <h1>Radiant Glow</h1>
+  <p>Enhances your natural beauty by deeply nourishing your skin, leaving it fresh, smooth, and beautifully glowing.</p>
+ </div>
 
-       <img src="${item.img}">
-      
-       <div class="info">
+</li>
 
-        <p>${item.product}</p>
-        <span>${item.price}</span>
+</ul>
 
-        <button>
+</section>
 
-        <svg class="cart" width="20" height="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path d="M5 6.84375C5 6.37618 5.37471 6 5.84046 6H7.43383C8.20426 6 8.88713 6.45 9.2058 7.125H23.5987C24.5197 7.125 25.1921 8.0039 24.9504 8.89687L23.5146 14.2511C23.217 15.355 22.2189 16.125 21.0808 16.125H10.9778L11.1669 17.1269C11.2439 17.5242 11.5906 17.8125 11.9933 17.8125H22.0894C22.5551 17.8125 22.9298 18.1887 22.9298 18.6562C22.9298 19.1238 22.5551 19.5 22.0894 19.5H11.9933C10.7817 19.5 9.7416 18.6351 9.51748 17.4434L7.71049 7.91601C7.68597 7.78241 7.57041 7.68749 7.43383 7.68749H5.84046C5.37471 7.68749 5 7.31133 5 6.84375ZM9.48246 22.3124C9.48246 22.0909 9.52593 21.8714 9.61041 21.6667C9.69488 21.4619 9.8187 21.2759 9.97479 21.1192C10.1309 20.9626 10.3162 20.8382 10.5201 20.7535C10.7241 20.6686 10.9426 20.6249 11.1634 20.6249C11.3841 20.6249 11.6027 20.6686 11.8066 20.7535C12.0106 20.8382 12.1959 20.9626 12.352 21.1192C12.5081 21.2759 12.6319 21.4619 12.7163 21.6667C12.8008 21.8714 12.8443 22.0909 12.8443 22.3124C12.8443 22.5341 12.8008 22.7535 12.7163 22.9582C12.6319 23.1629 12.5081 23.349 12.352 23.5057C12.1959 23.6624 12.0106 23.7867 11.8066 23.8715C11.6027 23.9563 11.3841 24 11.1634 24C10.9426 24 10.7241 23.9563 10.5201 23.8715C10.3162 23.7867 10.1309 23.6624 9.97479 23.5057C9.8187 23.349 9.69488 23.1629 9.61041 22.9582C9.52593 22.7535 9.48246 22.5341 9.48246 22.3124ZM21.2489 20.6249C21.6947 20.6249 22.1223 20.8027 22.4375 21.1192C22.7527 21.4357 22.9298 21.8649 22.9298 22.3124C22.9298 22.76 22.7527 23.1892 22.4375 23.5057C22.1223 23.8222 21.6947 24 21.2489 24C20.8031 24 20.3755 23.8222 20.0603 23.5057C19.7451 23.1892 19.568 22.76 19.568 22.3124C19.568 21.8649 19.7451 21.4357 20.0603 21.1192C20.3755 20.8027 20.8031 20.6249 21.2489 20.6249ZM13.8248 11.625C13.8248 12.0117 14.14 12.3281 14.5252 12.3281H16.0661V13.875C16.0661 14.2617 16.3812 14.5781 16.7664 14.5781C17.1517 14.5781 17.4668 14.2617 17.4668 13.875V12.3281H19.0077C19.3929 12.3281 19.7081 12.0117 19.7081 11.625C19.7081 11.2383 19.3929 10.9218 19.0077 10.9218H17.4668V9.37499C17.4668 8.98827 17.1517 8.67187 16.7664 8.67187C16.3812 8.67187 16.0661 8.98827 16.0661 9.37499V10.9218H14.5252C14.14 10.9218 13.8248 11.2383 13.8248 11.625Z"/>
-        </svg>
 
-        <svg class="check" width="20" height="20" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-         <path fill-rule="evenodd" clip-rule="evenodd" d="M20.9492 9.5C21.1529 9.5 21.3549 9.54027 21.543 9.61816L21.6807 9.68359C21.8146 9.7553 21.937 9.84709 22.0449 9.95508L22.0459 9.9541C22.3367 10.2449 22.5 10.6397 22.5 11.0508C22.5 11.4619 22.3367 11.8566 22.0459 12.1475L14.1719 20.0215C14.0212 20.1723 13.8418 20.2916 13.6455 20.373C13.449 20.4544 13.2381 20.4961 13.0254 20.4961C12.866 20.4961 12.7077 20.4728 12.5557 20.4268L12.4053 20.373C12.2091 20.2916 12.0295 20.1723 11.8789 20.0215V20.0205L7.9668 16.1104L7.96777 16.1094C7.82267 15.9676 7.70616 15.799 7.62598 15.6123C7.54473 15.4232 7.50178 15.2194 7.5 15.0137C7.49826 14.8079 7.53733 14.6035 7.61523 14.4131C7.69319 14.2227 7.80865 14.0498 7.9541 13.9043L8.06836 13.8008C8.18729 13.7034 8.3202 13.6239 8.46289 13.5654H8.46387C8.65423 13.4876 8.85845 13.4483 9.06445 13.4502C9.27025 13.452 9.47421 13.4951 9.66309 13.5762C9.84935 13.6563 10.0184 13.7719 10.1602 13.917L13.0244 16.7812L19.8525 9.9541V9.95508C19.9966 9.81086 20.1675 9.69617 20.3555 9.61816L20.499 9.56641C20.6447 9.52224 20.7965 9.50001 20.9492 9.5Z"/>
-        </svg>
+<!-- Footer -->
 
-        </button>
+<footer>
 
-        <div class="icon">
-         <svg width="21" height="21" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15.9248 5.11328C18.4387 3.14475 21.3645 3.08988 23.7754 4.33984L24.0068 4.46484C26.6652 5.95682 28.5815 9.02108 28.4971 12.6436C28.3954 17.0076 24.8407 21.2334 17.7334 25.2979V25.2988C17.1125 25.6542 16.6874 25.9331 16.1797 26.1748C15.7107 26.398 15.3369 26.5 15 26.5C14.6801 26.5 14.3021 26.3974 13.8184 26.168C13.3063 25.9251 12.8654 25.6407 12.2646 25.2969L11.6094 24.915C4.94172 20.969 1.60143 16.8699 1.50293 12.6436C1.41848 9.02141 3.33504 5.95844 5.99414 4.46484L5.99316 4.46387C8.4471 3.08876 11.481 3.08185 14.0752 5.11328C14.6184 5.53865 15.3816 5.53865 15.9248 5.11328Z" stroke-linejoin="round"/>
-         </svg>
-        </div>
+<div class="wrapper">
 
-       </div>
+<div class="lists">
 
-      </li>
+<ul>
 
-    `;
+ <li class="title">About Us</li>
+ <li>Our Story</li>
+ <li>Our Philosophy</li>
+ <li>Our Promise</li>
 
-  });
+</ul>
 
-});
+<ul>
 
+ <li class="title">Products</li>
+ <li>New Arrivals</li>
+ <li>Best Seller</li>
+ <li>Special Offers</li>
+ <li>Skincare Essentials</li>
 
-const Icons = document.querySelectorAll(".products .icon");
-const buttons = document.querySelectorAll(".products ul button");
+</ul>
 
-document.querySelectorAll(".products ul.active li").forEach((Product,index) => {
- Product.style.animation=`Show 0.4s forwards ${index*0.2}s`;
-});
+<ul>
 
-Buttons.forEach((Button,index) => {
+ <li class="title">Support</li>
+ <li>Contact Us</li>
+ <li>Shipping & Delivery</li>
+ <li>Returns & Refunds</li>
 
-Button.addEventListener("click",() => {
+</ul>
 
- document.querySelector(".products .wrapper button.active").classList.remove("active");
- Button.classList.add("active");
+</div>
 
- document.querySelector(".products ul.active").classList.remove("active");
- Sections[index].classList.add("active");
+<div class="social-media">
 
- document.querySelectorAll(".products ul.active li").forEach((Product,index) => {
-  Product.style.animation=`Show 0.4s forwards ${index*0.2}s`;
- });
+<span>Follow Us</span>
 
-});
+<div class="Icons">
 
-});
+<svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M30 15.0929C30 6.75502 23.2809 0 15 0C6.71344 0 0 6.75502 0 15.0929C0 22.6243 5.48344 28.869 12.6562 30V19.4567H8.84719V15.0939H12.6562V11.7668C12.6562 7.9851 14.8922 5.89661 18.3197 5.89661C19.9613 5.89661 21.6797 6.19093 21.6797 6.19093V9.90473H19.785C17.925 9.90473 17.3438 11.0697 17.3438 12.263V15.0929H21.5034L20.835 19.4557H17.3438V29.9991C24.5109 28.868 30 22.6233 30 15.092V15.0929Z"/>
+</svg>
 
-Icons.forEach(Icon => {
+<svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M14.9993 10.0067C12.2352 10.0067 10.0067 12.2566 10.0067 14.9993C10.0067 17.7421 12.2566 19.992 14.9993 19.992C17.7421 19.992 19.992 17.7421 19.992 14.9993C19.992 12.2566 17.7421 10.0067 14.9993 10.0067ZM29.9987 14.9993C29.9987 12.9209 29.9987 10.8852 29.8915 8.8067C29.7844 6.4069 29.2273 4.2641 27.4702 2.52846C25.7131 0.77139 23.5918 0.21428 21.1919 0.10714C19.1134 6.70552e-08 17.0778 0 14.9993 0C12.9209 0 10.8852 6.70552e-08 8.8067 0.10714C6.4069 0.21428 4.2641 0.77139 2.52846 2.52846C0.77139 4.28552 0.21428 6.4069 0.10714 8.8067C6.70552e-08 10.8852 0 12.9209 0 14.9993C0 17.0778 6.70552e-08 19.1134 0.10714 21.1919C0.21428 23.5918 0.77139 25.7346 2.52846 27.4702C4.28552 29.2273 6.4069 29.7844 8.8067 29.8915C10.8852 29.9987 12.9209 29.9987 14.9993 29.9987C17.0778 29.9987 19.1134 29.9987 21.1919 29.8915C23.5918 29.7844 25.7346 29.2273 27.4702 27.4702C29.2273 25.7131 29.7844 23.5918 29.8915 21.1919C30.0201 19.1349 29.9987 17.0778 29.9987 14.9993ZM14.9993 22.6918C10.7352 22.6918 7.3068 19.2634 7.3068 14.9993C7.3068 10.7352 10.7352 7.3068 14.9993 7.3068C19.2634 7.3068 22.6918 10.7352 22.6918 14.9993C22.6918 19.2634 19.2634 22.6918 14.9993 22.6918ZM23.0133 8.7853C22.0276 8.7853 21.2133 7.9925 21.2133 6.9854C21.2133 5.9783 22.0062 5.1855 23.0133 5.1855C24.0204 5.1855 24.8132 5.9783 24.8132 6.9854C24.8186 7.2201 24.7758 7.4534 24.6873 7.6709C24.5988 7.8884 24.4666 8.0854 24.2989 8.2496C24.1346 8.4174 23.9377 8.5495 23.7202 8.638C23.5027 8.7265 23.2694 8.7693 23.0347 8.7639L23.0133 8.7853Z"/>
+</svg>
 
-Icon.addEventListener("click",() => {
+<svg class="Icon" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M15.0216 0C6.7251 0 0 6.70891 0 14.9854C0 21.3334 3.96028 26.7533 9.5492 28.9359C9.4167 27.7489 9.2992 25.933 9.5981 24.6391C9.8725 23.4673 11.3602 17.1924 11.3602 17.1924C11.3602 17.1924 10.91 16.2886 10.91 14.9658C10.91 12.8854 12.1242 11.3282 13.627 11.3282C14.9098 11.3282 15.531 12.2854 15.531 13.4376C15.531 14.722 14.7134 16.6458 14.2876 18.428C13.9305 19.9178 15.0367 21.1328 16.5102 21.1328C19.1783 21.1328 21.2336 18.325 21.2336 14.272C21.2336 10.6972 18.6492 8.18744 14.9587 8.18744C10.6854 8.18744 8.179 11.391 8.179 14.6864C8.179 15.9754 8.6733 17.3621 9.2955 18.1093C9.4176 18.2602 9.4327 18.3924 9.3979 18.5443C9.2851 19.0131 9.0304 20.0434 8.9816 20.2487C8.913 20.5272 8.7664 20.5853 8.4779 20.454C6.6077 19.5896 5.4282 16.8549 5.4282 14.648C5.4282 9.92654 8.8744 5.58013 15.3552 5.58013C20.5636 5.58013 24.6159 9.29088 24.6159 14.2327C24.6159 19.4041 21.3511 23.5638 16.8091 23.5638C15.2866 23.5638 13.8572 22.7772 13.3535 21.8397L12.4137 25.3995C12.0763 26.7037 11.1553 28.3387 10.5341 29.3306C11.9438 29.76 13.4268 30 14.9831 30C23.2655 30 30 23.2957 30 15.0145C30 6.73804 23.2645 0.0337487 14.9831 0.0337487L15.0216 0Z"/>
+</svg>
 
- if(Icon.classList.contains("active")){
+</div>
 
-  Icon.classList.remove("active");
+</div>
 
- }else{
+<div class="copyright">
 
- Icon.classList.add("active");
+ <p>©2026</p>
 
- }
+ <svg width="34" height="12" viewBox="0 0 34 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M0.0895879 2.10546C1.89135 1.94917 3.29124 1.96648 4.28881 2.15819C5.28625 2.3499 6.098 2.76323 6.72435 3.39745C7.09548 3.77328 7.38567 4.20401 7.59447 4.68944C7.80325 5.17496 7.90793 5.68429 7.90795 6.21678C7.90764 6.71018 7.81309 7.18442 7.62377 7.63866C7.43448 8.09281 7.15805 8.50403 6.79467 8.87206L6.70678 8.95995C6.67986 8.98721 6.6508 9.01263 6.61986 9.03612C6.37208 8.11214 5.93746 7.28974 5.31517 6.56932C4.69279 5.84883 3.95588 5.26961 3.10521 4.83104C3.80888 5.45752 4.38521 6.18165 4.83373 7.00389C5.28227 7.82622 5.55343 8.71155 5.64623 9.65921C5.37534 9.76911 5.11014 9.85351 4.85131 9.91211C4.5924 9.97071 4.335 10 4.07982 10C3.58518 10.0003 3.10352 9.89621 2.63549 9.68851C2.16756 9.48084 1.74385 9.18542 1.36498 8.80175C0.74633 8.17556 0.344544 7.37063 0.158923 6.38768C-0.0266781 5.40467 -0.0496061 3.97717 0.0895879 2.10546ZM20.5124 4.68456C20.9169 4.68456 21.2756 4.74313 21.5867 4.86034C21.8974 4.97747 22.1584 5.14732 22.3699 5.36913C22.5813 5.59116 22.7407 5.85667 22.8464 6.16503C22.9584 6.46725 23.0144 6.80375 23.0144 7.17382C23.0144 7.51301 22.9583 7.8309 22.8464 8.12694C22.7407 8.41688 22.5814 8.67342 22.3699 8.8955C22.1584 9.11117 21.8974 9.28098 21.5867 9.40428C21.2818 9.52771 20.9232 9.58881 20.5124 9.58881C20.102 9.58881 19.7378 9.52761 19.4206 9.40428C19.1098 9.28099 18.8488 9.11117 18.6374 8.8955C18.4321 8.67342 18.2764 8.41688 18.1706 8.12694C18.0649 7.83086 18.0115 7.51307 18.0115 7.17382C18.0115 6.80375 18.0675 6.46725 18.1794 6.16503C18.2976 5.85666 18.463 5.59116 18.6745 5.36913C18.8922 5.14721 19.1565 4.97749 19.4675 4.86034C19.7785 4.74317 20.1269 4.6846 20.5124 4.68456ZM31.1609 4.68456C31.5339 4.68458 31.8544 4.72453 32.1218 4.80468C32.3955 4.88487 32.6195 5.00921 32.7937 5.17577C32.9678 5.34229 33.0956 5.55187 33.1765 5.80468C33.2573 6.05744 33.2976 6.35336 33.2976 6.69237V9.13573C33.2976 9.20973 33.3134 9.26833 33.3445 9.31151C33.3818 9.35464 33.4317 9.37596 33.4939 9.37596C33.5561 9.37591 33.6305 9.35726 33.7175 9.3203C33.8108 9.28328 33.9045 9.23452 33.9978 9.17284V9.26561C33.9171 9.32721 33.8205 9.38233 33.7087 9.43163C33.6029 9.48102 33.4874 9.51821 33.363 9.54291C33.2448 9.57371 33.1267 9.58881 33.0085 9.58881C32.6974 9.58881 32.448 9.50901 32.2615 9.34862C32.0811 9.18213 31.991 8.91375 31.991 8.54393V8.11815L31.9167 8.06249C31.7985 8.30296 31.6586 8.51878 31.4968 8.70995C31.3413 8.89494 31.1671 9.05571 30.9744 9.19139C30.7815 9.32091 30.582 9.41941 30.3767 9.48729C30.1714 9.55511 29.9658 9.58881 29.7605 9.58881C29.5304 9.58881 29.3221 9.54891 29.1355 9.46874C28.9488 9.38858 28.7992 9.2714 28.6872 9.11718C28.5753 8.96297 28.5193 8.77477 28.5193 8.55272C28.5193 8.03459 28.815 7.63696 29.406 7.35936C30.0032 7.07561 30.8649 6.93359 31.991 6.93358C31.991 6.40924 31.9533 5.99562 31.8787 5.69335C31.804 5.3912 31.6737 5.1754 31.487 5.04589C31.3067 4.91634 31.0451 4.85155 30.7029 4.85155C30.4977 4.85157 30.3139 4.87284 30.1521 4.916C29.9906 4.95297 29.8635 4.99661 29.7703 5.04589C29.6769 5.09524 29.6296 5.14137 29.6296 5.18456C29.6296 5.21533 29.6641 5.24921 29.7322 5.28612C29.8006 5.32314 29.9197 5.37287 30.0876 5.43456C30.4172 5.55177 30.5818 5.72757 30.5818 5.9619C30.5818 6.15926 30.4916 6.31376 30.3113 6.42479C30.1308 6.5296 29.9095 6.58202 29.6482 6.58202C29.3933 6.58196 29.1752 6.5296 28.9949 6.42479C28.8208 6.31376 28.7341 6.15299 28.7341 5.94335C28.7341 5.78913 28.7997 5.63828 28.9304 5.49022C29.061 5.34227 29.2378 5.20632 29.4617 5.083C29.6918 4.95962 29.9534 4.86375 30.2458 4.79589C30.5383 4.72186 30.8435 4.68456 31.1609 4.68456ZM20.5222 4.79589C20.2548 4.79591 20.0343 4.90086 19.8601 5.11034C19.6859 5.32008 19.5545 5.6041 19.4675 5.9619C19.3866 6.31962 19.3464 6.72361 19.3464 7.17382C19.3464 7.48833 19.3684 7.78759 19.4119 8.07128C19.4554 8.34887 19.5236 8.59298 19.6169 8.80272C19.7165 9.01243 19.8407 9.17936 19.99 9.30272C20.1392 9.41983 20.3135 9.47841 20.5124 9.4785C20.7114 9.4785 20.8831 9.41976 21.0261 9.30272C21.1754 9.18552 21.2996 9.02126 21.3992 8.81151C21.4987 8.59564 21.5705 8.34882 21.614 8.07128C21.6575 7.79375 21.6794 7.4945 21.6794 7.17382C21.6794 6.84077 21.6576 6.52912 21.614 6.23925C21.5705 5.94939 21.5022 5.69631 21.4089 5.48046C21.3157 5.26465 21.1939 5.09861 21.0447 4.98143C20.9016 4.85806 20.7275 4.79589 20.5222 4.79589ZM14.3962 5.28612H14.2751L13.8357 3.76854C13.7611 3.52198 13.6464 3.3398 13.491 3.22264C13.3354 3.09928 13.1639 3.03807 12.9773 3.03807H11.2136V6.05468H12.156C12.2554 6.05468 12.3457 6.02965 12.4265 5.98046C12.5136 5.93111 12.5889 5.86631 12.6511 5.78612C12.7568 5.67513 12.8505 5.53033 12.9314 5.35155C13.0185 5.17266 13.0674 4.98712 13.0798 4.79589H13.1736V7.13671H13.0798L12.2214 6.16503H11.2136V9.24706L11.7546 9.35741V9.45018H9.30053V9.35741L9.8415 9.21874V3.12987L9.30053 2.9912V2.8994H14.7136L14.3962 5.28612ZM16.8874 9.26561L17.3913 9.35741V9.45018H15.0769V9.35741L15.5808 9.26561V2.9912H15.03V2.88964L16.8874 2.55663V9.26561ZM27.2156 4.68456C27.3649 4.68456 27.5083 4.71564 27.6453 4.77733C27.7822 4.83285 27.8941 4.92251 27.9812 5.04589C28.0682 5.16305 28.112 5.31405 28.112 5.49901C28.112 5.64088 28.0743 5.77048 27.9997 5.88768C27.9251 6.00478 27.8226 6.09718 27.6921 6.16503C27.5614 6.23288 27.4022 6.26757 27.2156 6.26757C27.0539 6.26753 26.9076 6.23907 26.7771 6.18358C26.6466 6.12194 26.5441 6.04192 26.4695 5.94335C26.4011 5.8385 26.3669 5.72129 26.3669 5.59178C26.3669 5.54243 26.3695 5.49891 26.3757 5.4619C26.3882 5.41878 26.3978 5.37874 26.404 5.34178C26.4164 5.30486 26.4226 5.271 26.4226 5.24022C26.4226 5.19704 26.4069 5.17577 26.3757 5.17577C26.3198 5.1759 26.2515 5.22825 26.1706 5.333C26.0961 5.43782 26.0057 5.59787 25.9001 5.81346C25.8442 5.93682 25.7847 6.07888 25.7224 6.23925C25.6602 6.39953 25.6016 6.56927 25.5456 6.74803V9.23729L26.0583 9.35741V9.45018H23.7351V9.35741L24.239 9.23729V5.12011H23.698V5.01757L25.5456 4.68456V6.13768L25.6199 6.2119C25.7069 6.00845 25.791 5.82632 25.8718 5.666C25.9589 5.49946 26.0464 5.36364 26.1335 5.25878C26.2829 5.06137 26.4447 4.91577 26.6189 4.82323C26.7992 4.73088 26.9981 4.6846 27.2156 4.68456ZM31.991 7.04491C31.4684 7.04492 31.0388 7.11234 30.7029 7.24803C30.3672 7.38371 30.1185 7.55958 29.9568 7.77538C29.795 7.98506 29.7137 8.2133 29.7136 8.45995C29.7136 8.60783 29.7417 8.73142 29.7976 8.83007C29.8537 8.9226 29.9289 8.99361 30.0222 9.04296C30.1155 9.08608 30.2241 9.10837 30.3484 9.10839C30.4853 9.10839 30.6287 9.07992 30.7781 9.0244C30.9335 8.96889 31.0859 8.88274 31.2351 8.76561C31.3844 8.6484 31.5243 8.50017 31.655 8.32128C31.7918 8.14242 31.9038 7.92667 31.991 7.67382V7.04491Z"/>
+ </svg>
 
-});
+ <p>. All Rights Reserved.</p>
 
-});
+</div>
 
-buttons.forEach(button => {
+</div>
 
-button.addEventListener("click",() => {
+</footer>
 
- if(button.classList.contains("active")){
 
-  button.classList.remove("active");
 
- }else{
+<!-- Menu -->
 
-  button.classList.add("active");
+<div class="menu">
 
- }
+<div class="container">
 
-});
+ <img class="icon" src="Images/cart.svg">
+ <img class="icon" src="Images/account.svg">
 
-});
+</div>
 
+<div class="wrapper">
 
-const Mouse = document.querySelector(".Mouse");
+ <button class="sign-up">Sign Up</button>
+ <button class="login">Login</button>
 
+</div>
 
-function demo () {
+<ul>
 
-// Step 1
-setTimeout(() => {
+ <li>Home</li>
+ <li>About Us</li>
+ <li>Products</li>
+ <li>Contacts</li>
 
-Container.style.transform = "translateY(-700px)";
+</ul>
 
+<svg class="Cross" width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <path d="M22.5557 11.5C22.6793 11.5001 22.8026 11.5249 22.917 11.5723C23.0315 11.6197 23.1362 11.69 23.2237 11.7774C23.3109 11.8649 23.3804 11.9696 23.4278 12.084C23.4749 12.1982 23.4989 12.3209 23.499 12.4443V12.4453C23.4989 12.5688 23.475 12.6915 23.4278 12.8057C23.3802 12.9201 23.3105 13.0246 23.2227 13.1123L18.834 17.499L23.2227 21.8867C23.3996 22.0635 23.4986 22.3038 23.499 22.5537C23.4992 22.804 23.4004 23.0446 23.2237 23.2217C23.0467 23.3987 22.8061 23.4989 22.5557 23.499C22.3369 23.499 22.1259 23.4224 21.958 23.2852L21.8887 23.2227L17.499 18.834L13.1123 23.2227C13.0466 23.2884 12.9714 23.344 12.8897 23.3877L12.8057 23.4277C12.6912 23.4751 12.5683 23.499 12.4444 23.499C12.2252 23.4989 12.0137 23.4228 11.8457 23.2852L11.7764 23.2227C11.6891 23.1351 11.6187 23.0304 11.5713 22.916C11.524 22.8016 11.5 22.6784 11.5 22.5547C11.5001 22.431 11.5239 22.3078 11.5713 22.1934L11.6113 22.1094C11.6551 22.0277 11.7108 21.9524 11.7764 21.8867L16.1641 17.499L11.7764 13.1123C11.5995 12.9353 11.5001 12.6946 11.5 12.4443C11.5001 12.194 11.5994 11.9535 11.7764 11.7764L11.8457 11.7139C12.0137 11.5762 12.2253 11.5001 12.4444 11.5C12.6946 11.5 12.9353 11.5995 13.1123 11.7764L17.499 16.1641L21.8887 11.7764L21.9571 11.7139C22.0285 11.6554 22.1087 11.6078 22.1944 11.5723C22.3087 11.525 22.432 11.5001 22.5557 11.5Z"/>
+</svg>
 
-// Step 2
-setTimeout(() => {
+</div>
 
-Routine.classList.add("active");
+</div>
 
 
-// Step 3
-setTimeout(() => {
+<!-- Sign Up / Login Window -->
 
-Collection.querySelector(".carousel").style.transform = "translateX(-260px)";
+<div class="window-container">
 
+<div class="window">
 
-// Step 4
-setTimeout(() => {
+<div class="wrapper">
 
-Collection.querySelector(".carousel").style.transform = "translateX(-560px)";
+<h1></h1>
 
+<div class="input-field username">
 
-// Step 5
-setTimeout(() => {
+ <span>Username</span>
+ <input placeholder="Enter your username" type="text">
+ <p></p>
 
-Collection.querySelector(".carousel").style.transform = "translateX(-820px)";
+</div>
 
+<div class="input-field email">
 
-// Step 6
-setTimeout(() => {
+ <span>Email</span>
+ <input placeholder="Enter your email" type="email">
+ <p></p>
 
-Container.style.transform = "translateY(-1500px)";
+</div>
 
+<div class="input-field password">
 
-// Step 7
-setTimeout(() => {
+ <span>Password</span>
+ <a>forgot password?</a>
+ <input placeholder="Enter your password" type="password">
+ <p></p>
 
-Mouse.style.transform = "translate(-115px,-405px)";
+</div>
 
-setTimeout(() => {
+<button></button>
 
-Mouse.querySelector(".cursor").classList.add("active");
+<div class="accounts">
 
-Buttons[1].click();
+ <div class="container">
 
-setTimeout(() => {
+  <div class="line"></div>
 
-Mouse.querySelector(".cursor").classList.remove("active");
+  <span>or continue with</span>
 
+  <div class="line"></div>
 
-// Step 8
-setTimeout(() => {
+ </div>
 
-Mouse.style.transform = "translate(15px,-405px)";
+ <div class="account-container">
 
-setTimeout(() => {
+ <img class="submit" src="Images/Google.svg">
+ <img class="submit" src="Images/Facebook.svg">
 
-Mouse.querySelector(".cursor").classList.add("active");
+ </div>
 
-Buttons[2].click();
+</div>
 
-setTimeout(() => {
+</div>
 
-Mouse.querySelector(".cursor").classList.remove("active");
+<div class="switch">
 
+ <p></p>
+ <span></span>
 
-// Step 9
-setTimeout(() => {
+</div>
 
-Mouse.style.transform = "translate(130px,-405px)";
+<svg class="loader" width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="40" cy="40" r="20" stroke-linecap="round"/>
+</svg>
 
-setTimeout(() => {
+<div class="success">
 
-Mouse.querySelector(".cursor").classList.add("active");
+ <div class="Pop">
 
-Buttons[3].click();
+  <svg class="Check" width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+   <path d="M36 60L52.0025 76L84 44" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
 
-setTimeout(() => {
+ </div>
 
-Mouse.querySelector(".cursor").classList.remove("active");
+ <span>Logged In</span>
 
+ <span>Successfully</span>
 
-// Step 10
-setTimeout(() => {
+</div>
 
-Mouse.style.transform = "translate(255px,-405px)";
+</div>
 
-setTimeout(() => {
+</div>
 
-Mouse.querySelector(".cursor").classList.add("active");
+<div class="Mouse">
+ <svg class="cursor" width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M9.80368 4.63023L15.8367 6.99023C19.3167 8.35223 21.0567 9.03323 20.9997 10.1132C20.9417 11.1932 19.1257 11.6892 15.4937 12.6792C14.4127 12.9742 13.8717 13.1212 13.4967 13.4962C13.1217 13.8712 12.9747 14.4122 12.6797 15.4932C11.6897 19.1252 11.1937 20.9412 10.1137 20.9992C9.03367 21.0572 8.35367 19.3162 6.99167 15.8362L4.63067 9.80323C3.20467 6.15923 2.49067 4.33823 3.41467 3.41423C4.33867 2.49123 6.15968 3.20423 9.80368 4.63023Z" stroke-linejoin="round"/>
+ </svg>
+</div>
 
-Buttons[4].click();
+</div>
 
-setTimeout(() => {
+<script src="Skincare-Demo.js"></script>
 
-Mouse.querySelector(".cursor").classList.remove("active");
+</body>
 
-
-// Step 11
-setTimeout(() => {
-
-Mouse.style.transform = "translate(-265px,-405px)";
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.add("active");
-
-Buttons[0].click();
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.remove("active");
-
-
-// Step 12
-setTimeout(() => {
-
-Mouse.style.transform = "translate(-310px,-65px)";
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.add("active");
-
-buttons[0].click();
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.remove("active");
-
-
-// Step 13
-setTimeout(() => {
-
-Mouse.style.transform = "translate(-270px,-65px)";
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.add("active");
-
-Icons[0].click();
-
-setTimeout(() => {
-
-Mouse.querySelector(".cursor").classList.remove("active");
-
-
-// Step 14
-setTimeout(() => {
-
-Mouse.style.transform = "translate(500px,0)";
-
-Container.style.transform = "translateY(-3040px)";
-Container.style.transition = "2s";
-
-},1000);
-
-
-setTimeout(() => {
-
-Feature.querySelectorAll("ul li")[0].style.opacity = "1";
-
-},1000);
-
-setTimeout(() => {
-
-Feature.querySelectorAll("ul li")[1].style.opacity = "1";
-
-},1500);
-
-setTimeout(() => {
-
-Feature.querySelectorAll("ul li")[2].style.opacity = "1";
-
-},2000);
-
-
-// Step 15
-setTimeout(() => {
-
-Container.style.transform = "translateY(0)";
-
-
-// Step 16
-setTimeout(() => {
-
-Container.style.transition = "0.6s";
-
-Collection.querySelector(".carousel").style.transform = "translateX(0)";
-
-setTimeout(() => {
-  
-Routine.classList.remove("active");
-
-Feature.querySelectorAll("ul li").forEach(element => {
-  element.style.opacity = "0";
-});
-
-Icons[0].click();
-buttons[0].click();
-
-},2000);
-
-},100);
-
-
-},4000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},500);
-
-},500);
-
-},1000);
-
-
-},1500);
-
-
-},1500);
-
-
-},1500);
-
-
-},1000);
-
-
-},300);
-
-
-},1000);
-
-
-}
-
-
-demo();
-setInterval(() => {demo();},27000);
+</html>
