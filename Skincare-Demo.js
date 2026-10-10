@@ -639,7 +639,7 @@ setTimeout(() => {
 
 Mouse.style.transform = "translate(500px,0)";
 
-Container.style.transform = "translateY(-3040px)";
+Container.style.transform = "translateY(-3030px)";
 Container.style.transition = "2s";
 
 },1000);
