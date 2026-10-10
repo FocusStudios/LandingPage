@@ -50,13 +50,18 @@ pointer-events:none;}
 
 body {
 margin:0;
-padding:0;}
+padding:0;
+width:100vw;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;}
 
 .Main-Container {
 position:fixed;
 top:0;
-width:100vw;
-height:100vh;
+width:100%;
+height:100%;
 overflow-x:hidden;
 overflow-y:auto;
 display:flex;
@@ -255,7 +260,7 @@ gap:30px;}
 .offers h1, .reviews h1, .features h1, footer .wrapper .social-media span {
 position:relative;
 color:var(--secondary);
-font-size:calc(1.2rem + 0.8rem*(100vw - 360px)/1200px);
+font-size:calc(1.3rem + 0.7rem*(100vw - 360px)/1200px);
 text-shadow:0 calc(3px + 3px*(100vw - 360px)/1200px) calc(5px + 5px*(100vw - 360px)/1200px) rgba(0,0,0,1);}
 
 .offers h1, .reviews h1 {
@@ -474,7 +479,7 @@ justify-content:center; }
 .orders .button span {
 font-weight:600;
 white-space:nowrap;
-font-size:calc(1rem + 1rem*(100vw - 360px)/1200px);
+font-size:calc(1.2rem + 0.8rem*(100vw - 360px)/1200px);
 color:var(--grey2);
 padding:calc(5px + 5px*(100vw - 360px)/1200px) 0;
 transition:0.5s;
@@ -776,7 +781,7 @@ justify-content:space-between;}
 .reviews li span {
 position:relative;
 font-weight:500;
-font-size:0.9rem;
+font-size:1rem;
 font-family:"Khand", sans-serif;}
 
 .reviews li .rate {
@@ -792,7 +797,7 @@ object-fit:cover;}
 
 .reviews li p {
 position:relative;
-font-size:0.7rem;}
+font-size:0.8rem;}
 
 .reviews li .line {
 width:100%;
@@ -1044,9 +1049,9 @@ text-shadow:0 1px 2px rgba(0,0,0,1);}
 .window-container, .confirmation-container {
 position:fixed;
 left:0;
-bottom:-100vh;
-width:100vw;
-height:100vh;
+bottom:-100%;
+width:100%;
+height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -1420,7 +1425,7 @@ text-shadow:0 calc(3px + 5px*(var(--i1) - var(--i2))/var(--i3)) calc(5px + 8px*(
 header a {
 border-radius:calc(45px + 20px*(var(--i1) - var(--i2))/var(--i3));
 margin-top:calc(30px + 20px*(var(--i1) - var(--i2))/var(--i3));
-padding:calc(18px + 10px*(var(--i1) - var(--i2))/var(--i3)) calc(25px + 20px*(var(--i1) - var(--i2))/var(--i3));
+padding:calc(16px + 12px*(var(--i1) - var(--i2))/var(--i3)) calc(25px + 20px*(var(--i1) - var(--i2))/var(--i3));
 box-shadow:0 calc(8px + 4px*(var(--i1) - var(--i2))/var(--i3)) calc(25px + 10px*(var(--i1) - var(--i2))/var(--i3)) rgba(255,92,0,0.4);}
 
 header a span {
