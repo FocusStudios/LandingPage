@@ -1074,7 +1074,7 @@ Mouse.querySelector(".cursor").classList.remove("active");
 // Step 10
 setTimeout(() => {
 
-Mouse.style.transform = "translate(380px,160px)";
+Mouse.style.transform = "translate(375px,160px)";
 
 setTimeout(() => {
 
