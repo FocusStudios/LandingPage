@@ -943,6 +943,9 @@ function resetAutoplayDelay() {
 
 const Mouse = document.querySelector(".Mouse");
 
+const Buttons = document.querySelectorAll(".orders .wrapper .button");
+const Sections = document.querySelectorAll(".orders ul");
+
 let timers = new Set();
 let demoInterval = null;
 let isRunning = false;
@@ -952,6 +955,14 @@ let demoRunId = 0;
 // =====================================
 // ALL ELEMENTS AFFECTED BY THE DEMO
 // =====================================
+
+const buttonElements = Array.from(Buttons);
+const itemElements = Array.from(Items);
+const sectionElements = Array.from(Sections);
+
+const arrowElements = sectionElements.flatMap(section =>
+    Array.from(section.querySelectorAll(".arrow"))
+);
 
 const demoElements = [
 
@@ -963,12 +974,10 @@ const demoElements = [
     Review,
     Confirm,
 
-    ...Buttons,
-    ...Items,
-    ...sections,
-    ...sections.flatMap(section =>
-        [...section.querySelectorAll(".arrow")]
-    ),
+    ...buttonElements,
+    ...itemElements,
+    ...sectionElements,
+    ...arrowElements,
 
     ...Review.querySelectorAll(".left, .right, .carousel"),
 
@@ -1031,7 +1040,6 @@ const formStates = demoStates.map(({ el }) => {
 function resetDemo() {
 
     clearTimers();
-
 
     // Stop autoplay
 
@@ -1469,7 +1477,7 @@ function demo(runId) {
 
                                                                                                                                                     Mouse.querySelector(".cursor").classList.add("active");
 
-                                                                                                                                                    sections[0].querySelector(".arrow").click();
+                                                                                                                                                    Sections[0].querySelector(".arrow").click();
 
 
                                                                                                                                                     delay(() => {
@@ -1494,7 +1502,7 @@ function demo(runId) {
 
                                                                                                                                                                 Mouse.querySelector(".cursor").classList.add("active");
 
-                                                                                                                                                                sections[1].querySelector(".arrow").click();
+                                                                                                                                                                Sections[1].querySelector(".arrow").click();
 
 
                                                                                                                                                                 delay(() => {
@@ -1519,7 +1527,7 @@ function demo(runId) {
 
                                                                                                                                                                             Mouse.querySelector(".cursor").classList.add("active");
 
-                                                                                                                                                                            sections[1].querySelector(".arrow").click();
+                                                                                                                                                                            Sections[1].querySelector(".arrow").click();
 
 
                                                                                                                                                                             delay(() => {
