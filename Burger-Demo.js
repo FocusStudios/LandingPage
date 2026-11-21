@@ -1440,7 +1440,7 @@ async function demo(runId) {
 
     // STEP 19
 
-    if (!await wait(2000)) return;
+    if (!await wait(3000)) return;
 
     Yummy.classList.remove("active");
 
